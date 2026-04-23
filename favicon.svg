@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Rylo Labz">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#26d0ce"/>
+      <stop offset="100%" stop-color="#1a2980"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="#0d1117"/>
+  <circle cx="36" cy="64" r="14" fill="url(#g)"/>
+  <path d="M58 37h10v54H58zM58 81h34v10H58z" fill="#f4f7fb"/>
+</svg>
