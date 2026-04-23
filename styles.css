@@ -1371,6 +1371,61 @@ main, .nav, .footer { position: relative; z-index: 3; }
   background: var(--accent-dim);
 }
 
+/* ============ Insights ============ */
+.section-insights {
+  padding-top: 100px;
+  padding-bottom: 40px;
+}
+
+.insights-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.insight-card {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  padding: 24px;
+  display: grid;
+  gap: 12px;
+}
+
+.insight-date {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.insight-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.18;
+}
+
+.insight-card p {
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.insight-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 980px) {
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ============ Footer ============ */
 .footer {
   border-top: 1px solid var(--border);

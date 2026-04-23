@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article | Rylo Labz</title>
+  <style>
+    :root {
+      --bg: #0a0f18;
+      --text: #f6f8fb;
+      --muted: #9dafc6;
+      --accent: #63e4d8;
+      --card: #121a27;
+      --border: #243043;
+    }
+    body {
+      margin: 0;
+      padding: 28px 16px;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 15% 0, #1a2941 0, #0a0f18 58%);
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--card);
+      padding: 24px;
+    }
+    a { color: var(--accent); }
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    h1 { margin-top: 0; margin-bottom: 14px; }
+    #summary { color: var(--muted); margin-bottom: 22px; }
+    #content {
+      white-space: pre-wrap;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p><a href="/">← Back to homepage</a></p>
+    <article class="card">
+      <div id="meta" class="meta">Loading...</div>
+      <h1 id="title">Please wait</h1>
+      <p id="summary"></p>
+      <div id="content"></div>
+    </article>
+  </main>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    const titleEl = document.getElementById('title');
+    const summaryEl = document.getElementById('summary');
+    const contentEl = document.getElementById('content');
+    const metaEl = document.getElementById('meta');
+
+    function friendlyDate(iso) {
+      const d = new Date(iso || '');
+      if (Number.isNaN(d.getTime())) return 'Rylo Labz';
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    async function load() {
+      if (!slug) {
+        titleEl.textContent = 'Article not found';
+        metaEl.textContent = 'Missing slug';
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/articles?slug=${encodeURIComponent(slug)}`, {
+          headers: { Accept: 'application/json' }
+        });
+        const body = await response.json();
+        if (!response.ok || !body.article) {
+          titleEl.textContent = 'Article not found';
+          metaEl.textContent = 'Unavailable';
+          return;
+        }
+
+        const article = body.article;
+        document.title = `${article.title} | Rylo Labz`;
+        titleEl.textContent = article.title;
+        summaryEl.textContent = article.summary || '';
+        contentEl.textContent = article.content || '';
+        metaEl.textContent = `${friendlyDate(article.publishedAt)} · ${article.author || 'Rylo Labz'}`;
+      } catch {
+        titleEl.textContent = 'Could not load article';
+        metaEl.textContent = 'Temporary issue';
+      }
+    }
+
+    load();
+  </script>
+</body>
+</html>

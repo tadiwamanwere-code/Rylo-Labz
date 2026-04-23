@@ -196,8 +196,56 @@
   // -----------------------------
   // Reveal on scroll
   // -----------------------------
+  function formatArticleDate(isoDate) {
+    const value = isoDate ? new Date(isoDate) : null;
+    if (!value || Number.isNaN(value.getTime())) return 'Update';
+    return value.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  async function loadArticles() {
+    const listEl = document.getElementById('articles-list');
+    if (!listEl) return;
+
+    try {
+      const response = await fetch('/api/articles', { headers: { Accept: 'application/json' } });
+      if (!response.ok) throw new Error('Failed to fetch articles');
+      const payload = await response.json();
+      const articles = Array.isArray(payload.articles) ? payload.articles : [];
+
+      if (!articles.length) {
+        listEl.innerHTML = `
+          <article class="insight-card">
+            <span class="insight-date">No posts yet</span>
+            <h3>First article coming soon</h3>
+            <p>Publish from <code>/admin</code> and it appears here automatically.</p>
+          </article>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = articles.slice(0, 6).map((article) => `
+        <article class="insight-card reveal">
+          <span class="insight-date">${formatArticleDate(article.publishedAt)}</span>
+          <h3>${article.title || 'Untitled update'}</h3>
+          <p>${article.summary || ''}</p>
+          <a class="insight-link" href="/article?slug=${encodeURIComponent(article.slug)}">Read article</a>
+        </article>
+      `).join('');
+    } catch (error) {
+      listEl.innerHTML = `
+        <article class="insight-card">
+          <span class="insight-date">Temporarily unavailable</span>
+          <h3>Could not load updates</h3>
+          <p>Please try again shortly.</p>
+        </article>
+      `;
+    }
+  }
+
+  loadArticles();
+
   const revealTargets = document.querySelectorAll(
-    '.hero-eyebrow, .hero-title, .hero-subtitle, .hero-actions, .hero-stats, .marquee, .section-header, .mission-copy, .mission-metrics > *, .feature-card, .pipe-card, .timeline-items .ti, .company-copy, .company-portrait, .stats-band > *, .contact-inner > *, .evidence-copy > *, .evidence-imgs > *'
+    '.hero-eyebrow, .hero-title, .hero-subtitle, .hero-actions, .hero-stats, .marquee, .section-header, .mission-copy, .mission-metrics > *, .feature-card, .pipe-card, .timeline-items .ti, .company-copy, .company-portrait, .stats-band > *, .contact-inner > *, .evidence-copy > *, .evidence-imgs > *, .insight-card'
   );
   revealTargets.forEach((el) => el.classList.add('reveal'));
 
