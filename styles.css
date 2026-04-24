@@ -1118,7 +1118,97 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 
 /* =========================================================
-   Founders
+   Meet the Team
+   ========================================================= */
+.team-section {
+  background: #080808;
+}
+
+.team-page {
+  padding: clamp(96px, 12vw, 160px) 0;
+}
+
+.team-page--border {
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.team-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--s-8);
+  display: grid;
+  grid-template-columns: minmax(280px, 400px) 1fr;
+  gap: clamp(48px, 8vw, 120px);
+  align-items: center;
+}
+
+.team-photo-wrap {
+  position: relative;
+}
+
+.team-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--r-lg);
+  display: block;
+}
+
+.team-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #161616;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--r-lg);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: clamp(80px, 10vw, 140px);
+  color: rgba(255,255,255,.12);
+}
+
+.team-name {
+  font-family: var(--font-serif);
+  font-size: clamp(52px, 7.5vw, 100px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--s-5);
+  display: flex;
+  flex-direction: column;
+}
+
+.name-white  { color: #ffffff; }
+.name-accent { color: #b8f051; }
+
+.team-role {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin: 0 0 var(--s-8);
+}
+
+.team-bio {
+  color: rgba(255,255,255,.72);
+  font-size: var(--fs-body-lg);
+  line-height: 1.75;
+  max-width: 54ch;
+}
+
+@media (max-width: 860px) {
+  .team-inner {
+    grid-template-columns: 1fr;
+    gap: var(--s-10);
+  }
+  .team-photo-wrap,
+  .team-photo-placeholder { max-width: 340px; }
+}
+
+/* =========================================================
+   Founders (legacy — kept for CSS reference)
    ========================================================= */
 .founders-grid {
   display: grid;
