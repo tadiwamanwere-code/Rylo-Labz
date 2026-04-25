@@ -753,14 +753,15 @@ img.brand-mark { background: transparent; box-shadow: none; }
   overflow: hidden;
   width: 100%;
   position: relative;
+  margin: 0 auto;
 }
 
 .partners-grid {
   display: flex;
   gap: var(--s-8);
   align-items: center;
-  width: fit-content;
-  animation: scroll-carousel 30s linear infinite;
+  animation: scroll-carousel 25s linear infinite;
+  will-change: transform;
 }
 
 @keyframes scroll-carousel {
@@ -768,7 +769,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-50% - var(--s-8) / 2));
+    transform: translateX(calc(-50%));
   }
 }
 
@@ -777,7 +778,8 @@ img.brand-mark { background: transparent; box-shadow: none; }
   flex-direction: column;
   align-items: center;
   gap: var(--s-3);
-  width: 100%;
+  min-width: calc(16.666% - var(--s-8) / 6);
+  flex-shrink: 0;
 }
 
 .partner-logo-wrap {
