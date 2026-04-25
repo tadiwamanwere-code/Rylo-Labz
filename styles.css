@@ -99,6 +99,7 @@
   /* Motion */
   --ease-out: cubic-bezier(.2, .7, .2, 1);
   --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+  --stagger-delay: 0.08s;
 }
 
 /* =========================================================
@@ -773,6 +774,61 @@ img.brand-mark { background: transparent; box-shadow: none; }
   }
 }
 
+/* =========================================================
+   New Animation Keyframes
+   ========================================================= */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(139, 92, 246, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(139, 92, 246, 0);
+  }
+}
+
+@keyframes connector-draw {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(15deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes count-up {
+  from {
+    counter-increment: num 0;
+  }
+  to {
+    counter-increment: num 1;
+  }
+}
+
 .partner-item {
   display: flex;
   flex-direction: column;
@@ -833,20 +889,37 @@ img.brand-mark { background: transparent; box-shadow: none; }
   .partners-grid {
     gap: var(--s-6);
   }
+  .partner-item {
+    min-width: calc(25% - var(--s-6) / 4);
+  }
   .partner-logo-wrap {
     height: 70px;
   }
 }
 
 @media (max-width: 600px) {
+  .partners-section {
+    padding: var(--s-12) 0 var(--s-16);
+  }
+  .partners-container {
+    padding: 0 var(--s-4);
+  }
+  .partners-label {
+    margin-bottom: var(--s-8);
+  }
   .partners-grid {
     gap: var(--s-4);
+    animation: scroll-carousel 20s linear infinite;
+  }
+  .partner-item {
+    min-width: calc(50% - var(--s-4) / 2);
   }
   .partner-logo-wrap {
-    height: 60px;
+    height: 50px;
   }
   .partner-name {
-    font-size: 11px;
+    font-size: 10px;
+    max-width: 100px;
   }
 }
 
@@ -2118,70 +2191,306 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 
 /* =========================================================
-   How it Works — Bootstrap-enhanced step + service cards
+   How it Works — Timeline Design
    ========================================================= */
 .hiw-section {
   background: var(--bg);
 }
 
-/* Step cards */
-.hiw-step {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  padding: var(--s-8);
-  height: 100%;
+/* Timeline layout - 4 columns */
+.hiw-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-8);
   position: relative;
-  overflow: hidden;
-  transition:
-    border-color .3s var(--ease-out),
-    transform .35s var(--ease-out),
-    box-shadow .35s var(--ease-out);
+  margin-bottom: var(--s-16);
 }
-.hiw-step::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  background: var(--grad-brand-soft);
-  transition: opacity .35s var(--ease-out);
-  pointer-events: none;
-  border-radius: inherit;
-}
-.hiw-step:hover {
-  border-color: rgba(139,92,246,.35);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px -16px rgba(139,92,246,.28);
-}
-.hiw-step:hover::before { opacity: 1; }
-.hiw-step > * { position: relative; z-index: 1; }
 
-.hiw-step-num {
-  display: block;
+/* Individual step in timeline */
+.hiw-timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Staggered reveal delays for timeline steps */
+.hiw-timeline-step:nth-child(1) { --delay: 0.05s; }
+.hiw-timeline-step:nth-child(2) { --delay: 0.15s; }
+.hiw-timeline-step:nth-child(3) { --delay: 0.25s; }
+.hiw-timeline-step:nth-child(4) { --delay: 0.35s; }
+
+.hiw-timeline-step.reveal {
+  transition: opacity 0.7s var(--ease-out) var(--delay), transform 0.7s var(--ease-out) var(--delay);
+}
+
+/* Geometric SVG art - floats gently */
+.hiw-step-art {
+  width: 160px;
+  height: 160px;
+  margin-bottom: var(--s-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--border-strong);
+  animation: float 5s ease-in-out infinite;
+}
+
+.hiw-timeline-step:nth-child(2) .hiw-step-art { animation-duration: 6s; animation-delay: 0.2s; }
+.hiw-timeline-step:nth-child(3) .hiw-step-art { animation-duration: 7s; animation-delay: 0.4s; }
+.hiw-timeline-step:nth-child(4) .hiw-step-art { animation-duration: 5.5s; animation-delay: 0.1s; }
+
+.step-illustration {
+  width: 100%;
+  height: 100%;
+}
+
+/* Numbered circle with pulsing ring */
+.hiw-step-circle {
+  width: 80px;
+  height: 80px;
+  margin-bottom: var(--s-6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse-ring 2.5s ease-out infinite;
+}
+
+.hiw-timeline-step.reveal .hiw-step-circle {
+  animation-delay: var(--delay);
+}
+
+.hiw-step-circle-inner {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--grad-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
   font-family: var(--font-serif);
-  font-size: 64px;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  font-size: 28px;
+  font-weight: 700;
   background: var(--grad-brand);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  margin-bottom: var(--s-4);
 }
+
+.hiw-step-counter {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Step title and body */
 .hiw-step-title {
-  font-family: var(--font-serif) !important;
-  font-weight: 700 !important;
-  font-size: 20px !important;
-  letter-spacing: -0.02em !important;
-  line-height: 1.25 !important;
-  margin-bottom: var(--s-3) !important;
-  color: var(--text) !important;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: var(--s-3);
+  color: var(--text);
 }
+
 .hiw-step-body {
   color: var(--text-muted);
   font-size: var(--fs-small);
   line-height: 1.65;
   margin: 0;
+}
+
+/* Timeline connector arrows (dashed) */
+.hiw-timeline::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--border-soft) 50%, transparent 50%);
+  background-size: 12px 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hover effect for timeline steps */
+.hiw-timeline-step:hover .hiw-step-circle-inner {
+  box-shadow: 0 0 20px -5px rgba(139,92,246,0.5);
+  transform: scale(1.05);
+  transition: all 0.3s var(--ease-out);
+}
+
+/* Responsive timeline - stack on smaller screens */
+@media (max-width: 1024px) {
+  .hiw-timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-10);
+  }
+  .hiw-timeline::before { display: none; }
+}
+
+@media (max-width: 640px) {
+  .hiw-timeline {
+    grid-template-columns: 1fr;
+    gap: var(--s-12);
+  }
+  .hiw-timeline::before { display: none; }
+  .hiw-step-art {
+    width: 120px;
+    height: 120px;
+  }
+  .hiw-step-circle {
+    width: 60px;
+    height: 60px;
+  }
+  .hiw-step-circle-inner {
+    width: 52px;
+    height: 52px;
+  }
+  .hiw-step-counter {
+    font-size: 20px;
+  }
+}
+
+/* =========================================================
+   Site-wide Animations & Interactive Elements
+   ========================================================= */
+
+/* Scroll progress bar at top of page */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--grad-brand);
+  z-index: 1000;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Hero floating gradient blobs */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.25;
+  filter: blur(40px);
+}
+
+.hero-blob--1 {
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.2));
+  top: 10%;
+  left: 10%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero-blob--2 {
+  width: 380px;
+  height: 380px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.15));
+  top: 20%;
+  right: 5%;
+  animation: float 10s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.hero-blob--3 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(180, 240, 81, 0.2), rgba(139, 92, 246, 0.2));
+  bottom: 15%;
+  left: 20%;
+  animation: float 9s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Cursor glow effect */
+.cursor-glow {
+  --mx: 0;
+  --my: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(calc(var(--mx)*1px - 50%), calc(var(--my)*1px - 50%));
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Staggered reveals for grid items */
+.hiw-timeline .hiw-timeline-step.reveal { opacity: 0; transform: translateY(20px); }
+.why-grid .why-cell.reveal { opacity: 0; transform: translateY(20px); }
+.tiles-grid .tile.reveal { opacity: 0; transform: translateY(20px); }
+
+.hiw-timeline .hiw-timeline-step.reveal.in { opacity: 1; transform: none; }
+.why-grid .why-cell.reveal.in { opacity: 1; transform: none; }
+.tiles-grid .tile.reveal.in { opacity: 1; transform: none; }
+
+/* Stagger delays for why cells */
+.why-grid .why-cell:nth-child(1) { --delay-stagger: 0.05s; }
+.why-grid .why-cell:nth-child(2) { --delay-stagger: 0.13s; }
+.why-grid .why-cell:nth-child(3) { --delay-stagger: 0.21s; }
+.why-grid .why-cell:nth-child(4) { --delay-stagger: 0.29s; }
+
+.why-grid .why-cell.reveal {
+  transition: opacity 0.7s var(--ease-out) var(--delay-stagger), transform 0.7s var(--ease-out) var(--delay-stagger);
+}
+
+/* Stagger delays for tiles */
+.tiles-grid .tile:nth-child(1) { --delay-tile: 0.04s; }
+.tiles-grid .tile:nth-child(2) { --delay-tile: 0.11s; }
+.tiles-grid .tile:nth-child(3) { --delay-tile: 0.18s; }
+.tiles-grid .tile:nth-child(4) { --delay-tile: 0.25s; }
+.tiles-grid .tile:nth-child(5) { --delay-tile: 0.32s; }
+
+.tiles-grid .tile.reveal {
+  transition: opacity 0.7s var(--ease-out) var(--delay-tile), transform 0.7s var(--ease-out) var(--delay-tile);
+}
+
+/* Enhanced why cell hover */
+.why-cell {
+  transition: all 0.3s var(--ease-out);
+  position: relative;
+  padding-left: var(--s-8);
+}
+
+.why-cell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--grad-brand);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.why-cell:hover::before {
+  opacity: 1;
+}
+
+.why-cell:hover {
+  transform: translateX(6px);
 }
 
 /* Service cards — Bootstrap .card override */

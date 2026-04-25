@@ -1,6 +1,68 @@
 (() => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ========== Scroll progress bar ==========
+  const progressBar = document.querySelector('.scroll-progress-bar');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = scrolled + '%';
+    }, { passive: true });
+  }
+
+  // ========== Cursor glow effect ==========
+  const cursorGlow = document.querySelector('.cursor-glow');
+  if (cursorGlow && !prefersReducedMotion) {
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.setProperty('--mx', e.clientX);
+      cursorGlow.style.setProperty('--my', e.clientY);
+    }, { passive: true });
+  }
+
+  // ========== Counter animation for step numbers ==========
+  const counters = document.querySelectorAll('.hiw-step-counter');
+  const animateCounter = (element) => {
+    const targetText = element.textContent;
+    const targetNum = parseInt(targetText, 10);
+    if (isNaN(targetNum) || prefersReducedMotion) return;
+
+    let current = 0;
+    const duration = 600;
+    const start = performance.now();
+
+    const animate = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      current = Math.floor(progress * targetNum);
+      element.textContent = String(current).padStart(2, '0');
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        element.textContent = targetText;
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
+  // Observe counters and animate when they come into view
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counters.forEach((counter) => counterObserver.observe(counter));
+
   // Reflective navbar — adds .nav--scrolled once user scrolls past the utility bar
   const navEl = document.querySelector('.nav');
   if (navEl) {

@@ -46,6 +46,11 @@
   </script>
 </head>
 <body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress-bar"></div>
+
+  <!-- Cursor glow effect -->
+  <div class="cursor-glow"></div>
 
   <!-- ============ TOP UTILITY BAR ============ -->
   <div class="utility-bar">
@@ -102,6 +107,10 @@
       <div class="hero-bg">
         <img src="/hero.jpg" alt="" loading="eager"
              onerror="this.onerror=null;this.src='https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920';" />
+        <!-- Floating gradient blobs -->
+        <div class="hero-blob hero-blob--1"></div>
+        <div class="hero-blob hero-blob--2"></div>
+        <div class="hero-blob hero-blob--3"></div>
       </div>
 
       <div class="hero-inner">
@@ -494,35 +503,95 @@
           </p>
         </div>
 
-        <!-- 4-step process -->
-        <div class="row g-4 mb-5">
-          <div class="col-12 col-sm-6 col-xl-3">
-            <div class="hiw-step reveal">
-              <span class="hiw-step-num">01</span>
-              <h4 class="hiw-step-title">Tell us the problem</h4>
-              <p class="hiw-step-body">No deck needed. One message, a call, a rough idea. We ask the right questions and get to work.</p>
+        <!-- 4-step timeline process -->
+        <div class="hiw-timeline mb-5">
+          <div class="hiw-timeline-step reveal">
+            <div class="hiw-step-art">
+              <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" class="step-illustration">
+                <!-- Network graph: nodes and connections -->
+                <circle cx="90" cy="60" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="60" cy="100" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="120" cy="100" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="90" cy="140" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="45" cy="150" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="135" cy="150" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="90" y1="60" x2="60" y2="100" stroke="currentColor" stroke-width="1"/>
+                <line x1="90" y1="60" x2="120" y2="100" stroke="currentColor" stroke-width="1"/>
+                <line x1="60" y1="100" x2="90" y2="140" stroke="currentColor" stroke-width="1"/>
+                <line x1="120" y1="100" x2="90" y2="140" stroke="currentColor" stroke-width="1"/>
+                <line x1="90" y1="140" x2="45" y2="150" stroke="currentColor" stroke-width="1"/>
+                <line x1="90" y1="140" x2="135" y2="150" stroke="currentColor" stroke-width="1"/>
+              </svg>
             </div>
+            <div class="hiw-step-circle">
+              <div class="hiw-step-circle-inner">
+                <span class="hiw-step-counter">01</span>
+              </div>
+            </div>
+            <h4 class="hiw-step-title">Tell us the problem</h4>
+            <p class="hiw-step-body">No deck needed. One message, a call, a rough idea. We ask the right questions and get to work.</p>
           </div>
-          <div class="col-12 col-sm-6 col-xl-3">
-            <div class="hiw-step reveal">
-              <span class="hiw-step-num">02</span>
-              <h4 class="hiw-step-title">We map the system</h4>
-              <p class="hiw-step-body">Architecture, data flow, model selection. Scoped to your constraints — not a template.</p>
+
+          <div class="hiw-timeline-step reveal">
+            <div class="hiw-step-art">
+              <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" class="step-illustration">
+                <!-- Grid and system mapping -->
+                <rect x="40" y="50" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="100" y="50" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="40" y="110" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="100" y="110" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="70" cy="140" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="130" cy="140" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="70" y1="110" x2="70" y2="134" stroke="currentColor" stroke-width="1"/>
+                <line x1="130" y1="110" x2="130" y2="134" stroke="currentColor" stroke-width="1"/>
+              </svg>
             </div>
+            <div class="hiw-step-circle">
+              <div class="hiw-step-circle-inner">
+                <span class="hiw-step-counter">02</span>
+              </div>
+            </div>
+            <h4 class="hiw-step-title">We map the system</h4>
+            <p class="hiw-step-body">Architecture, data flow, model selection. Scoped to your constraints — not a template.</p>
           </div>
-          <div class="col-12 col-sm-6 col-xl-3">
-            <div class="hiw-step reveal">
-              <span class="hiw-step-num">03</span>
-              <h4 class="hiw-step-title">Demo in 2 weeks</h4>
-              <p class="hiw-step-body">Real data. Real code. No placeholders. You see it running before you commit further.</p>
+
+          <div class="hiw-timeline-step reveal">
+            <div class="hiw-step-art">
+              <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" class="step-illustration">
+                <!-- Progress/clock rings -->
+                <circle cx="90" cy="90" r="45" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+                <circle cx="90" cy="90" r="32" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="90" cy="90" r="19" fill="none" stroke="currentColor" stroke-width="2"/>
+                <line x1="90" y1="71" x2="90" y2="60" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="110" y1="90" x2="122" y2="90" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M 90 71 A 19 19 0 0 1 110 90" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.8"/>
+              </svg>
             </div>
+            <div class="hiw-step-circle">
+              <div class="hiw-step-circle-inner">
+                <span class="hiw-step-counter">03</span>
+              </div>
+            </div>
+            <h4 class="hiw-step-title">Demo in 2 weeks</h4>
+            <p class="hiw-step-body">Real data. Real code. No placeholders. You see it running before you commit further.</p>
           </div>
-          <div class="col-12 col-sm-6 col-xl-3">
-            <div class="hiw-step reveal">
-              <span class="hiw-step-num">04</span>
-              <h4 class="hiw-step-title">You own everything</h4>
-              <p class="hiw-step-body">The code, the IP, every byte of the data. Handoff-ready — or we stay on as your embedded team.</p>
+
+          <div class="hiw-timeline-step reveal">
+            <div class="hiw-step-art">
+              <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" class="step-illustration">
+                <!-- Shield and lock -->
+                <path d="M 90 50 L 130 70 L 130 110 Q 90 145 90 145 Q 50 145 50 110 L 50 70 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="90" cy="100" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M 85 100 L 90 105 L 98 97" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
+            <div class="hiw-step-circle">
+              <div class="hiw-step-circle-inner">
+                <span class="hiw-step-counter">04</span>
+              </div>
+            </div>
+            <h4 class="hiw-step-title">You own everything</h4>
+            <p class="hiw-step-body">The code, the IP, every byte of the data. Handoff-ready — or we stay on as your embedded team.</p>
           </div>
         </div>
 
