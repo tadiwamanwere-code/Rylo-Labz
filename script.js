@@ -281,30 +281,93 @@
     });
   })();
 
-  // Lux Finale — GSAP ScrollTrigger staggered reveal
-  (function initFinale() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    gsap.registerPlugin(ScrollTrigger);
+  // Feaster phone showcase — auto-cycles screens, drives step highlights
+  (function initFeasterShowcase() {
+    const phone = document.getElementById('feasterPhone');
+    if (!phone) return;
 
-    const finale = document.querySelector('.lux-finale');
-    if (!finale) return;
+    const screens  = Array.from(phone.querySelectorAll('.feaster-screen'));
+    const barFill  = document.getElementById('feasterBarFill');
+    const dots     = Array.from(document.querySelectorAll('.feaster-dot'));
+    const steps    = Array.from(document.querySelectorAll('.feaster-step'));
+    const DURATION = 2600;
 
-    const lines = finale.querySelectorAll('.lux-finale-line');
-    const sub   = finale.querySelector('.lux-finale-sub');
-    const cta   = finale.querySelector('.lux-finale-cta');
-    const eyebrow = finale.querySelector('.lux-finale-eyebrow');
+    let currentIdx = 0;
+    let intervalId = null;
+    let startTs    = null;
+    let rafId      = null;
+    let running    = false;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: finale,
-        start: 'top 75%',
-        toggleActions: 'play none none reverse',
-      },
+    const setScreen = (idx) => {
+      screens.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+      dots.forEach((d, i)    => d.classList.toggle('is-active', i === idx));
+
+      const phase = parseInt(screens[idx]?.dataset.phase ?? '0', 10);
+      steps.forEach((st, i)  => st.classList.toggle('is-active', i === phase));
+
+      currentIdx = idx;
+      startTs    = performance.now();
+      if (barFill) {
+        barFill.style.transition = 'none';
+        barFill.style.width = '0%';
+        requestAnimationFrame(() => {
+          barFill.style.transition = `width ${DURATION}ms linear`;
+          barFill.style.width = '100%';
+        });
+      }
+    };
+
+    const next = () => setScreen((currentIdx + 1) % screens.length);
+
+    const startCycle = () => {
+      if (running) return;
+      running = true;
+      intervalId = setInterval(next, DURATION);
+    };
+
+    const stopCycle = () => {
+      running = false;
+      clearInterval(intervalId);
+      intervalId = null;
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        stopCycle();
+        setScreen(i);
+        startCycle();
+      });
     });
 
-    tl.from(eyebrow, { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' })
-      .from(lines,   { opacity: 0, y: 70, duration: 1, stagger: 0.18, ease: 'power4.out' }, '-=0.2')
-      .from(sub,     { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.5')
-      .from(cta,     { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      const section  = document.querySelector('.feaster-showcase');
+      const copy     = section?.querySelector('.feaster-copy');
+      const phoneCol = section?.querySelector('.feaster-phone-col');
+
+      if (section && copy && phoneCol) {
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 75%',
+          once: true,
+          onEnter: () => { setScreen(0); startCycle(); },
+        });
+
+        gsap.from(Array.from(copy.children), {
+          opacity: 0, y: 48,
+          duration: 0.9, stagger: 0.1, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 75%', once: true },
+        });
+
+        gsap.from(phoneCol, {
+          opacity: 0, y: 64, scale: 0.95,
+          duration: 1.1, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 75%', once: true },
+        });
+      }
+    } else {
+      setScreen(0);
+      startCycle();
+    }
   })();
 })();
