@@ -1,6 +1,51 @@
 (() => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Reflective navbar — adds .nav--scrolled once user scrolls past the utility bar
+  const navEl = document.querySelector('.nav');
+  if (navEl) {
+    const syncNav = () => navEl.classList.toggle('nav--scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', syncNav, { passive: true });
+    syncNav();
+  }
+
+  // Mobile nav menu — toggle open/close
+  const navToggle = document.getElementById('nav-toggle');
+  const navMobileMenu = document.getElementById('nav-mobile-menu');
+  if (navToggle && navMobileMenu) {
+    const iconMenu  = navToggle.querySelector('.icon-menu');
+    const iconClose = navToggle.querySelector('.icon-close');
+
+    const openMenu = () => {
+      navMobileMenu.classList.add('is-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      navMobileMenu.setAttribute('aria-hidden', 'false');
+      if (iconMenu)  iconMenu.style.display  = 'none';
+      if (iconClose) iconClose.style.display = 'block';
+    };
+    const closeMenu = () => {
+      navMobileMenu.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navMobileMenu.setAttribute('aria-hidden', 'true');
+      if (iconMenu)  iconMenu.style.display  = 'block';
+      if (iconClose) iconClose.style.display = 'none';
+    };
+
+    navToggle.addEventListener('click', () => {
+      navMobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    // Close on any nav link click
+    navMobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!navEl.contains(e.target)) closeMenu();
+    });
+  }
+
   // Rotating hero word
   const rotator = document.querySelector('.rotator');
   if (rotator && !prefersReducedMotion) {
