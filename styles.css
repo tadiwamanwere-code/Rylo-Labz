@@ -324,25 +324,31 @@ p  { margin: 0; }
 /* =========================================================
    Nav
    ========================================================= */
+/* Liquid-glass nav — dark translucent over hero, flips to white once scrolled past */
 .nav {
   display: block; /* override Bootstrap's .nav { display:flex } */
   position: sticky;
   top: 0;
   z-index: 50;
-  background: linear-gradient(180deg, rgba(255,255,255,.86) 0%, rgba(255,255,255,.76) 100%);
-  backdrop-filter: saturate(200%) blur(24px) brightness(1.04);
-  -webkit-backdrop-filter: saturate(200%) blur(24px) brightness(1.04);
-  border-bottom: 1px solid rgba(255,255,255,.55);
+  background:
+    linear-gradient(180deg, rgba(20,20,22,.42) 0%, rgba(10,10,12,.28) 100%);
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
   box-shadow:
-    0 1px 0 rgba(255,255,255,.92) inset,
-    0 4px 24px -4px rgba(10,7,6,.05);
-  transition: background .4s ease, box-shadow .4s ease, border-color .4s ease;
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.18),
+    0 8px 32px -12px rgba(0,0,0,.35);
+  transition:
+    background .55s cubic-bezier(.4,0,.2,1),
+    box-shadow .55s cubic-bezier(.4,0,.2,1),
+    border-color .55s cubic-bezier(.4,0,.2,1);
 }
 .nav.nav--scrolled {
-  background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.92) 100%);
-  border-bottom: 1px solid rgba(229,229,229,.65);
+  background: linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.88) 100%);
+  border-bottom: 1px solid rgba(229,229,229,.6);
   box-shadow:
-    0 1px 0 rgba(255,255,255,.95) inset,
+    inset 0 1px 0 rgba(255,255,255,.95),
     0 8px 32px -8px rgba(10,7,6,.09);
 }
 .nav-inner {
@@ -362,7 +368,13 @@ p  { margin: 0; }
   font-weight: 700;
   font-size: 19px;
   letter-spacing: -0.015em;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+  transition: color .4s ease, text-shadow .4s ease;
+}
+.nav.nav--scrolled .brand {
   color: var(--text);
+  text-shadow: none;
 }
 .brand-mark {
   width: 32px; height: 32px;
@@ -382,20 +394,28 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .nav-links a {
   font-size: var(--fs-small);
   font-weight: 500;
-  color: var(--text-2);
+  color: rgba(255,255,255,.86);
   padding: 8px 2px;
   position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.2);
+  transition: color .4s ease, text-shadow .4s ease;
 }
-.nav-links a:hover { color: var(--text); }
+.nav.nav--scrolled .nav-links a {
+  color: var(--text-2);
+  text-shadow: none;
+}
+.nav-links a:hover { color: #fff; }
+.nav.nav--scrolled .nav-links a:hover { color: var(--text); }
 .nav-links a::after {
   content: "";
   position: absolute;
   left: 0; right: 100%;
   bottom: 0;
   height: 2px;
-  background: var(--c-ink);
-  transition: right .25s var(--ease-out);
+  background: rgba(255,255,255,.85);
+  transition: right .25s var(--ease-out), background .4s ease;
 }
+.nav.nav--scrolled .nav-links a::after { background: var(--c-ink); }
 .nav-links a:hover::after { right: 0; }
 
 .nav-actions { margin-left: auto; display: flex; align-items: center; gap: var(--s-2); }
@@ -428,6 +448,27 @@ img.brand-mark { background: transparent; box-shadow: none; }
   color: #fff;
   transform: translateY(-1px);
 }
+/* Liquid-glass nav: flip outline button to white over dark hero glass */
+.nav:not(.nav--scrolled) .btn--outline-ink {
+  color: #fff;
+  border-color: rgba(255,255,255,.6);
+}
+.nav:not(.nav--scrolled) .btn--outline-ink:hover {
+  background: #fff;
+  color: var(--c-ink);
+  border-color: #fff;
+}
+/* Primary ink button gets a glassy white treatment when over dark hero */
+.nav:not(.nav--scrolled) .btn--ink {
+  background: rgba(255,255,255,.94);
+  color: var(--c-ink);
+  border-color: transparent;
+  backdrop-filter: blur(8px);
+}
+.nav:not(.nav--scrolled) .btn--ink:hover {
+  background: #fff;
+  color: var(--c-ink);
+}
 
 /* Outlined light CTA — used over dark photo backgrounds */
 .btn--outline-light {
@@ -446,10 +487,16 @@ img.brand-mark { background: transparent; box-shadow: none; }
   display: none;
   margin-left: auto;
   background: transparent;
-  border: 1px solid var(--border-strong);
+  border: 1px solid rgba(255,255,255,.32);
   border-radius: var(--r-sm);
   padding: 8px 10px;
   cursor: pointer;
+  color: #fff;
+  transition: color .4s ease, border-color .4s ease;
+}
+.nav.nav--scrolled .nav-toggle {
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 
 /* =========================================================

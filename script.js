@@ -63,11 +63,20 @@
 
   counters.forEach((counter) => counterObserver.observe(counter));
 
-  // Reflective navbar — adds .nav--scrolled once user scrolls past the utility bar
+  // Reflective navbar — liquid glass over the dark hero, flips to white once
+  // the user scrolls into the light content below it.
   const navEl = document.querySelector('.nav');
   if (navEl) {
-    const syncNav = () => navEl.classList.toggle('nav--scrolled', window.scrollY > 60);
+    const heroEl = document.querySelector('.hero');
+    const getThreshold = () => {
+      if (heroEl) return Math.max(60, heroEl.offsetHeight - navEl.offsetHeight - 40);
+      return 60;
+    };
+    const syncNav = () => {
+      navEl.classList.toggle('nav--scrolled', window.scrollY > getThreshold());
+    };
     window.addEventListener('scroll', syncNav, { passive: true });
+    window.addEventListener('resize', syncNav, { passive: true });
     syncNav();
   }
 
