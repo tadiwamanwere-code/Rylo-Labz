@@ -327,10 +327,10 @@ p  { margin: 0; }
 /* =========================================================
    Nav
    ========================================================= */
-/* Dense transparent glass — no white sheens, no gray tint. Just heavy blur
-   and saturation so colors behind the nav get visibly distorted and
-   magnified. Over pure black the nav reads as truly invisible glass; over
-   imagery the nav shows the content behind it as thick frosted glass. */
+/* Dense glass with chromatic aberration — fully transparent on black, but
+   over content the heavy blur magnifies/distorts and prismatic edges split
+   light into a pink/red fringe on top and a cyan/blue fringe on bottom,
+   mimicking how real thick glass refracts. */
 .nav {
   display: block; /* override Bootstrap's .nav { display:flex } */
   position: sticky;
@@ -339,13 +339,28 @@ p  { margin: 0; }
   height: var(--nav-h);
   isolation: isolate;
   background: transparent;
-  backdrop-filter: saturate(220%) blur(64px) contrast(1.04);
-  -webkit-backdrop-filter: saturate(220%) blur(64px) contrast(1.04);
+  backdrop-filter: saturate(280%) blur(54px) contrast(1.1);
+  -webkit-backdrop-filter: saturate(280%) blur(54px) contrast(1.1);
   border-bottom: 0;
   box-shadow: none;
 }
-/* Thin top shimmer — the only solid mark of glass against black, like a
-   polished rim on the very top edge */
+/* Chromatic aberration — prismatic color fringes on the top + bottom edges.
+   Uses screen blend mode so on pure black the gradients vanish (screen of
+   black with anything = the gradient color, but at this opacity barely
+   perceptible), while on bright/colored content underneath the fringes
+   visibly tint the spilled-over light at the glass edges. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(236,72,153,0.08) 0%, transparent 18%),
+    linear-gradient(180deg, transparent 82%, rgba(80,170,255,0.08) 100%);
+  mix-blend-mode: screen;
+}
+/* Top hairline shimmer — polished glass rim catching ambient light */
 .nav::after {
   content: "";
   position: absolute;
@@ -355,16 +370,15 @@ p  { margin: 0; }
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(255,255,255,.18) 30%,
-    rgba(255,255,255,.45) 50%,
-    rgba(255,255,255,.18) 70%,
+    rgba(255,255,255,.22) 28%,
+    rgba(255,255,255,.6) 50%,
+    rgba(255,255,255,.22) 72%,
     transparent 100%);
-  opacity: .55;
+  opacity: .65;
   pointer-events: none;
   z-index: -1;
 }
-/* Scrolled: still fully transparent — just keep the same dense blur so
-   text remains readable when the nav is over busy/colorful content. */
+/* Scrolled: same transparent dense glass — consistent everywhere */
 .nav.nav--scrolled {
   background: transparent;
   border-bottom: 0;
@@ -388,7 +402,7 @@ p  { margin: 0; }
   font-size: 19px;
   letter-spacing: -0.015em;
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,.5), 0 0 12px rgba(0,0,0,.35);
 }
 .brand-mark {
   width: 32px; height: 32px;
@@ -408,10 +422,10 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .nav-links a {
   font-size: var(--fs-small);
   font-weight: 500;
-  color: rgba(255,255,255,.86);
+  color: rgba(255,255,255,.92);
   padding: 8px 2px;
   position: relative;
-  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+  text-shadow: 0 1px 2px rgba(0,0,0,.5), 0 0 10px rgba(0,0,0,.35);
   transition: color .2s var(--ease-out);
 }
 .nav-links a:hover { color: #fff; }
