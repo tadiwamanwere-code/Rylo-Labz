@@ -327,10 +327,9 @@ p  { margin: 0; }
 /* =========================================================
    Nav
    ========================================================= */
-/* Fully transparent glass nav — no tint at all. The backdrop-filter is the
-   only effect: everything that passes underneath is shown through the
-   glass, just blurred and color-amplified. A single hairline white bottom
-   border is the only solid mark of the pane. Same treatment everywhere. */
+/* Bare-minimum glass nav — fully transparent, the tiniest backdrop blur
+   so it reads as glass, and a hairline border. Whatever sits underneath
+   is clearly visible through it. */
 .nav {
   display: block; /* override Bootstrap's .nav { display:flex } */
   position: sticky;
@@ -338,14 +337,14 @@ p  { margin: 0; }
   z-index: 50;
   height: var(--nav-h);
   background: transparent;
-  backdrop-filter: saturate(180%) blur(48px);
-  -webkit-backdrop-filter: saturate(180%) blur(48px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: none;
 }
 .nav.nav--scrolled {
   background: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 .nav-inner {
   width: 100%;
@@ -2913,81 +2912,3 @@ input::placeholder, textarea::placeholder { color: var(--text-subtle); }
 /* Generic borders fall to dark */
 hr { border-color: var(--border); }
 
-/* ============================================================
-   AMBIENT GRADIENT ORBS
-   Soft, blurred, slowly-drifting glowing orbs that sit behind the
-   page content. Their only job is to give the frosted-glass nav
-   something colorful to blur and distort, so the glassmorphism
-   effect is clearly visible everywhere on the site, not only over
-   the hero photo. Pure black page, with ambient color underneath.
-   ============================================================ */
-
-.ambient-orbs {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5;             /* above section backgrounds, below nav (z-index 50) */
-  overflow: hidden;
-}
-
-.ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(110px);
-  will-change: transform;
-  opacity: .85;
-}
-
-.ambient-orb--purple {
-  width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(139, 92, 246, .55) 0%, rgba(139,92,246,0) 70%);
-  top: -8%; left: 4%;
-  animation: orbDrift1 26s ease-in-out infinite;
-}
-
-.ambient-orb--blue {
-  width: 620px; height: 620px;
-  background: radial-gradient(circle, rgba(59, 130, 246, .50) 0%, rgba(59,130,246,0) 70%);
-  top: -12%; right: 4%;
-  animation: orbDrift2 30s ease-in-out infinite;
-}
-
-.ambient-orb--green {
-  width: 460px; height: 460px;
-  background: radial-gradient(circle, rgba(74, 222, 128, .42) 0%, rgba(74,222,128,0) 70%);
-  top: 38%; left: 32%;
-  animation: orbDrift3 28s ease-in-out infinite;
-}
-
-.ambient-orb--pink {
-  width: 440px; height: 440px;
-  background: radial-gradient(circle, rgba(236, 72, 153, .35) 0%, rgba(236,72,153,0) 70%);
-  bottom: -8%; right: 22%;
-  animation: orbDrift4 32s ease-in-out infinite;
-}
-
-@keyframes orbDrift1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(80px, 60px) scale(1.10); }
-  66%      { transform: translate(-40px, 110px) scale(0.95); }
-}
-@keyframes orbDrift2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(-70px, 90px) scale(0.92); }
-  66%      { transform: translate(60px, -50px) scale(1.08); }
-}
-@keyframes orbDrift3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(50px, -60px) scale(1.10); }
-  66%      { transform: translate(-60px, 40px) scale(0.95); }
-}
-@keyframes orbDrift4 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(-60px, -50px) scale(1.05); }
-  66%      { transform: translate(60px, 70px) scale(0.95); }
-}
-
-/* Respect reduced-motion preferences — keep orbs but stop drifting */
-@media (prefers-reduced-motion: reduce) {
-  .ambient-orb { animation: none; }
-}
