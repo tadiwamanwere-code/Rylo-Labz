@@ -327,62 +327,26 @@ p  { margin: 0; }
 /* =========================================================
    Nav
    ========================================================= */
-/* Dense glass with chromatic aberration — fully transparent on black, but
-   over content the heavy blur magnifies/distorts and prismatic edges split
-   light into a pink/red fringe on top and a cyan/blue fringe on bottom,
-   mimicking how real thick glass refracts. */
+/* Frosted-glass nav — see-through with a low-opacity tint, heavy blur, and a
+   single subtle white bottom border. Anything behind the nav (the ambient
+   gradient orbs in particular) gets blurred and softly distorted as it
+   passes through the glass. No plastic sheens, no chromatic fringing. */
 .nav {
   display: block; /* override Bootstrap's .nav { display:flex } */
   position: sticky;
   top: 0;
   z-index: 50;
   height: var(--nav-h);
-  isolation: isolate;
-  background: transparent;
-  backdrop-filter: saturate(280%) blur(54px) contrast(1.1);
-  -webkit-backdrop-filter: saturate(280%) blur(54px) contrast(1.1);
-  border-bottom: 0;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: saturate(170%) blur(40px);
+  -webkit-backdrop-filter: saturate(170%) blur(40px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: none;
+  transition: background .3s ease, border-color .3s ease;
 }
-/* Chromatic aberration — prismatic color fringes on the top + bottom edges.
-   Uses screen blend mode so on pure black the gradients vanish (screen of
-   black with anything = the gradient color, but at this opacity barely
-   perceptible), while on bright/colored content underneath the fringes
-   visibly tint the spilled-over light at the glass edges. */
-.nav::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(236,72,153,0.08) 0%, transparent 18%),
-    linear-gradient(180deg, transparent 82%, rgba(80,170,255,0.08) 100%);
-  mix-blend-mode: screen;
-}
-/* Top hairline shimmer — polished glass rim catching ambient light */
-.nav::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -8%;
-  right: -8%;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,.22) 28%,
-    rgba(255,255,255,.6) 50%,
-    rgba(255,255,255,.22) 72%,
-    transparent 100%);
-  opacity: .65;
-  pointer-events: none;
-  z-index: -1;
-}
-/* Scrolled: same transparent dense glass — consistent everywhere */
 .nav.nav--scrolled {
-  background: transparent;
-  border-bottom: 0;
-  box-shadow: none;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 .nav-inner {
   width: 100%;
@@ -402,7 +366,7 @@ p  { margin: 0; }
   font-size: 19px;
   letter-spacing: -0.015em;
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,.5), 0 0 12px rgba(0,0,0,.35);
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
 }
 .brand-mark {
   width: 32px; height: 32px;
@@ -425,7 +389,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   color: rgba(255,255,255,.92);
   padding: 8px 2px;
   position: relative;
-  text-shadow: 0 1px 2px rgba(0,0,0,.5), 0 0 10px rgba(0,0,0,.35);
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
   transition: color .2s var(--ease-out);
 }
 .nav-links a:hover { color: #fff; }
@@ -2949,3 +2913,82 @@ input::placeholder, textarea::placeholder { color: var(--text-subtle); }
 
 /* Generic borders fall to dark */
 hr { border-color: var(--border); }
+
+/* ============================================================
+   AMBIENT GRADIENT ORBS
+   Soft, blurred, slowly-drifting glowing orbs that sit behind the
+   page content. Their only job is to give the frosted-glass nav
+   something colorful to blur and distort, so the glassmorphism
+   effect is clearly visible everywhere on the site, not only over
+   the hero photo. Pure black page, with ambient color underneath.
+   ============================================================ */
+
+.ambient-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;             /* above section backgrounds, below nav (z-index 50) */
+  overflow: hidden;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  will-change: transform;
+  opacity: .85;
+}
+
+.ambient-orb--purple {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(139, 92, 246, .55) 0%, rgba(139,92,246,0) 70%);
+  top: -8%; left: 4%;
+  animation: orbDrift1 26s ease-in-out infinite;
+}
+
+.ambient-orb--blue {
+  width: 620px; height: 620px;
+  background: radial-gradient(circle, rgba(59, 130, 246, .50) 0%, rgba(59,130,246,0) 70%);
+  top: -12%; right: 4%;
+  animation: orbDrift2 30s ease-in-out infinite;
+}
+
+.ambient-orb--green {
+  width: 460px; height: 460px;
+  background: radial-gradient(circle, rgba(74, 222, 128, .42) 0%, rgba(74,222,128,0) 70%);
+  top: 38%; left: 32%;
+  animation: orbDrift3 28s ease-in-out infinite;
+}
+
+.ambient-orb--pink {
+  width: 440px; height: 440px;
+  background: radial-gradient(circle, rgba(236, 72, 153, .35) 0%, rgba(236,72,153,0) 70%);
+  bottom: -8%; right: 22%;
+  animation: orbDrift4 32s ease-in-out infinite;
+}
+
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(80px, 60px) scale(1.10); }
+  66%      { transform: translate(-40px, 110px) scale(0.95); }
+}
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-70px, 90px) scale(0.92); }
+  66%      { transform: translate(60px, -50px) scale(1.08); }
+}
+@keyframes orbDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(50px, -60px) scale(1.10); }
+  66%      { transform: translate(-60px, 40px) scale(0.95); }
+}
+@keyframes orbDrift4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-60px, -50px) scale(1.05); }
+  66%      { transform: translate(60px, 70px) scale(0.95); }
+}
+
+/* Respect reduced-motion preferences — keep orbs but stop drifting */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb { animation: none; }
+}
