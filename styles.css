@@ -327,26 +327,25 @@ p  { margin: 0; }
 /* =========================================================
    Nav
    ========================================================= */
-/* Frosted-glass nav — see-through with a low-opacity tint, heavy blur, and a
-   single subtle white bottom border. Anything behind the nav (the ambient
-   gradient orbs in particular) gets blurred and softly distorted as it
-   passes through the glass. No plastic sheens, no chromatic fringing. */
+/* Fully transparent glass nav — no tint at all. The backdrop-filter is the
+   only effect: everything that passes underneath is shown through the
+   glass, just blurred and color-amplified. A single hairline white bottom
+   border is the only solid mark of the pane. Same treatment everywhere. */
 .nav {
   display: block; /* override Bootstrap's .nav { display:flex } */
   position: sticky;
   top: 0;
   z-index: 50;
   height: var(--nav-h);
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: saturate(170%) blur(40px);
-  -webkit-backdrop-filter: saturate(170%) blur(40px);
+  background: transparent;
+  backdrop-filter: saturate(180%) blur(48px);
+  -webkit-backdrop-filter: saturate(180%) blur(48px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: none;
-  transition: background .3s ease, border-color .3s ease;
 }
 .nav.nav--scrolled {
-  background: rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .nav-inner {
   width: 100%;
