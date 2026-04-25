@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://images.pexels.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 
   <script type="application/ld+json">
     {
@@ -503,58 +503,64 @@
           </p>
         </div>
 
-        <!-- 3-step numbered cards -->
-        <div class="hiw-steps mb-5">
+        <!-- 3-step process -->
+        <div class="hiw3-grid mb-5">
 
-          <div class="hiw-step-card reveal">
-            <span class="hiw-step-num" aria-hidden="true">01</span>
-            <div class="hiw-step-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="hiw-step-icon">
-                <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                <path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v9a2 2 0 01-2 2H7l-4 4V7z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
-              </svg>
+          <div class="hiw3-step reveal">
+            <div class="hiw3-icon-col">
+              <span class="hiw3-step-num">01</span>
+              <div class="hiw3-icon-circle">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                  <path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v9a2 2 0 01-2 2H7l-4 4V7z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="hiw3-connector"></div>
             </div>
-            <h4 class="hiw-step-title">Tell us the problem</h4>
-            <p class="hiw-step-desc">No deck needed. One message, a call, a rough idea. We ask the right questions and get to work.</p>
-            <a href="#contact" class="hiw-step-cta">Start a project <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-
-          <div class="hiw-step-arrow" aria-hidden="true">
-            <svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path d="M1 8h27M22 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-
-          <div class="hiw-step-card hiw-step-card--2 reveal">
-            <span class="hiw-step-num" aria-hidden="true">02</span>
-            <div class="hiw-step-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="hiw-step-icon">
-                <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.75"/>
-                <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.75"/>
-                <rect x="8.5" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.75"/>
-                <path d="M6.5 10v1.5a1 1 0 001 1h8a1 1 0 001-1V10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                <line x1="12" y1="11.5" x2="12" y2="14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-              </svg>
+            <div class="hiw3-text-col">
+              <h4 class="hiw3-step-title">Tell us the problem</h4>
+              <p class="hiw3-step-body">No deck needed. One message, a call, a rough idea. We ask the right questions and get to work.</p>
+              <a href="#contact" class="hiw3-step-link">Start a project →</a>
             </div>
-            <h4 class="hiw-step-title">We map the system</h4>
-            <p class="hiw-step-desc">Architecture, data flow, model selection. Scoped to your constraints — not a template.</p>
-            <a href="#solutions" class="hiw-step-cta">See how it works <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
 
-          <div class="hiw-step-arrow" aria-hidden="true">
-            <svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path d="M1 8h27M22 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-
-          <div class="hiw-step-card hiw-step-card--3 reveal">
-            <span class="hiw-step-num" aria-hidden="true">03</span>
-            <div class="hiw-step-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="hiw-step-icon">
-                <circle cx="7.5" cy="15.5" r="4.5" stroke="currentColor" stroke-width="1.75"/>
-                <path d="M12 12l9 9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                <path d="M18 14l2 2M16 16l2 2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-              </svg>
+          <div class="hiw3-step reveal">
+            <div class="hiw3-icon-col">
+              <span class="hiw3-step-num">02</span>
+              <div class="hiw3-icon-circle hiw3-icon-circle--mid">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.75"/>
+                  <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.75"/>
+                  <rect x="8.5" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.75"/>
+                  <path d="M6.5 10v1.5a1 1 0 001 1h8a1 1 0 001-1V10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                  <line x1="12" y1="11.5" x2="12" y2="14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="hiw3-connector"></div>
             </div>
-            <h4 class="hiw-step-title">You own everything</h4>
-            <p class="hiw-step-desc">The code, the IP, every byte of the data. Handoff-ready — or we stay on as your embedded team.</p>
-            <a href="#contact" class="hiw-step-cta">Get in touch <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <div class="hiw3-text-col">
+              <h4 class="hiw3-step-title">We map the system</h4>
+              <p class="hiw3-step-body">Architecture, data flow, model selection. Scoped to your constraints — not a template.</p>
+              <a href="#solutions" class="hiw3-step-link">See how it works →</a>
+            </div>
+          </div>
+
+          <div class="hiw3-step reveal">
+            <div class="hiw3-icon-col">
+              <span class="hiw3-step-num">03</span>
+              <div class="hiw3-icon-circle hiw3-icon-circle--last">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="7.5" cy="15.5" r="4.5" stroke="currentColor" stroke-width="1.75"/>
+                  <path d="M12 12l9 9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                  <path d="M18 14l2 2M16 16l2 2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="hiw3-text-col">
+              <h4 class="hiw3-step-title">You own everything</h4>
+              <p class="hiw3-step-body">The code, the IP, every byte of the data. Handoff-ready — or we stay on as your embedded team.</p>
+              <a href="#contact" class="hiw3-step-link">Get in touch →</a>
+            </div>
           </div>
 
         </div>
