@@ -327,11 +327,10 @@ p  { margin: 0; }
 /* =========================================================
    Nav
    ========================================================= */
-/* True glass morphism — mostly transparent, colors below get magnified + spread.
-   This recreates the Leonardo.AI / iOS 26 effect: a very light dark tint
-   combined with extreme backdrop saturation, blur and a contrast boost so
-   anything sitting underneath the nav appears blurred, vivid and "smeared"
-   upward through the glass. */
+/* Dense transparent glass — no white sheens, no gray tint. Just heavy blur
+   and saturation so colors behind the nav get visibly distorted and
+   magnified. Over pure black the nav reads as truly invisible glass; over
+   imagery the nav shows the content behind it as thick frosted glass. */
 .nav {
   display: block; /* override Bootstrap's .nav { display:flex } */
   position: sticky;
@@ -339,50 +338,37 @@ p  { margin: 0; }
   z-index: 50;
   height: var(--nav-h);
   isolation: isolate;
-  background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.32) 100%);
-  backdrop-filter: saturate(300%) blur(44px) contrast(1.08);
-  -webkit-backdrop-filter: saturate(300%) blur(44px) contrast(1.08);
-  border-bottom: 1px solid rgba(255,255,255,.05);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.22),     /* top reflective edge */
-    inset 0 4px 18px rgba(255,255,255,.05),  /* soft top diffuse glow */
-    inset 0 -1px 0 rgba(255,255,255,.04),    /* faint bottom edge */
-    0 8px 30px -12px rgba(0,0,0,.4);
-  transition: background .45s cubic-bezier(.4,0,.2,1), box-shadow .45s cubic-bezier(.4,0,.2,1);
+  background: transparent;
+  backdrop-filter: saturate(220%) blur(64px) contrast(1.04);
+  -webkit-backdrop-filter: saturate(220%) blur(64px) contrast(1.04);
+  border-bottom: 0;
+  box-shadow: none;
 }
-/* Wet-glass top sheen — wider, brighter highlight on the upper portion */
-.nav::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 40% 0;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 100%);
-  pointer-events: none;
-  z-index: -1;
-}
-/* Hairline shimmer band on the very top edge — "alive" plastic reflection */
+/* Thin top shimmer — the only solid mark of glass against black, like a
+   polished rim on the very top edge */
 .nav::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -10%;
-  right: -10%;
+  left: -8%;
+  right: -8%;
   height: 1px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(255,255,255,.45) 20%,
-    rgba(255,255,255,.85) 50%,
-    rgba(255,255,255,.45) 80%,
+    rgba(255,255,255,.18) 30%,
+    rgba(255,255,255,.45) 50%,
+    rgba(255,255,255,.18) 70%,
     transparent 100%);
-  opacity: .7;
+  opacity: .55;
   pointer-events: none;
   z-index: -1;
 }
-/* Scrolled: keep transparent glassy treatment — only a tiny opacity bump
-   so text readability over busy content stays comfortable. */
+/* Scrolled: still fully transparent — just keep the same dense blur so
+   text remains readable when the nav is over busy/colorful content. */
 .nav.nav--scrolled {
-  background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.42) 100%);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
 }
 .nav-inner {
   width: 100%;
