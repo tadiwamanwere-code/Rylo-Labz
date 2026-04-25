@@ -1692,6 +1692,58 @@ img.brand-mark { background: transparent; box-shadow: none; }
   padding: var(--s-24) var(--s-8) var(--s-16);
 }
 .scrollstory-head .eyebrow { justify-content: center; display: inline-flex; }
+
+/* Instrument Serif section headline */
+.lux-section-headline {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(36px, 5.5vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-top: var(--s-4);
+  color: var(--text);
+}
+
+.lux-headline-accent {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Story frame word-by-word animation */
+.story-frame-heading {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  margin: 0 0 var(--s-4);
+}
+
+.story-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+  will-change: transform, opacity;
+}
+
+.story-frame.is-active .story-word {
+  /* GSAP drives this — fallback for reduced-motion / no-JS */
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-word { opacity: 1 !important; transform: none !important; }
+}
+
 .scrollstory-head h2 {
   font-family: var(--font-serif);
   font-weight: 550;
@@ -2505,6 +2557,109 @@ img.brand-mark { background: transparent; box-shadow: none; }
 
 .why-cell:hover {
   transform: translateX(6px);
+}
+
+/* =========================================================
+   Lux Finale — full-viewport snap section
+   ========================================================= */
+
+.lux-finale {
+  min-height: 100vh;
+  background: #0c0818;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--s-24) var(--s-8);
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.lux-finale::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 1000px;
+  height: 90vw;
+  max-height: 1000px;
+  background: radial-gradient(ellipse at center, rgba(139,92,246,.22) 0%, rgba(59,130,246,.08) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.lux-finale-content {
+  position: relative;
+  z-index: 1;
+  max-width: 840px;
+  width: 100%;
+}
+
+.lux-finale-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(167,139,250,.65);
+  display: block;
+  margin-bottom: var(--s-8);
+}
+
+.lux-finale-heading {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(52px, 8vw, 108px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0 0 var(--s-8);
+  display: flex;
+  flex-direction: column;
+  gap: 0.05em;
+}
+
+.lux-finale-line {
+  display: block;
+  overflow: hidden;
+}
+
+.lux-finale-sub {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-lg);
+  line-height: 1.7;
+  color: rgba(255,255,255,.45);
+  margin: 0 auto var(--s-12);
+  max-width: 540px;
+}
+
+.lux-finale-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.18);
+  padding: var(--s-4) var(--s-10);
+  border-radius: var(--r-pill);
+  transition: background .25s, border-color .25s;
+  letter-spacing: 0.01em;
+}
+
+.lux-finale-cta:hover {
+  background: rgba(139,92,246,.18);
+  border-color: rgba(167,139,250,.5);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .lux-finale-heading { font-size: clamp(40px, 11vw, 64px); }
+  .lux-finale-sub     { font-size: var(--fs-body); }
 }
 
 /* Service cards — Bootstrap .card override */

@@ -221,6 +221,18 @@
       return;
     }
 
+    const animateFrameWords = (idx) => {
+      if (typeof gsap === 'undefined') return;
+      const frame = frames[idx];
+      if (!frame) return;
+      const words = frame.querySelectorAll('.story-word');
+      if (!words.length) return;
+      gsap.fromTo(words,
+        { opacity: 0, y: 28, filter: 'blur(6px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.06, ease: 'power3.out', delay: 0.08 }
+      );
+    };
+
     let current = -1;
     const setActive = (idx) => {
       if (idx === current) return;
@@ -235,6 +247,7 @@
         for (let n = 1; n <= 5; n++) accent.classList.remove(`accent-${n}`);
         accent.classList.add(`accent-${idx + 1}`);
       }
+      animateFrameWords(idx);
     };
 
     let raf = null;
@@ -266,5 +279,32 @@
         compute();
       }
     });
+  })();
+
+  // Lux Finale — GSAP ScrollTrigger staggered reveal
+  (function initFinale() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const finale = document.querySelector('.lux-finale');
+    if (!finale) return;
+
+    const lines = finale.querySelectorAll('.lux-finale-line');
+    const sub   = finale.querySelector('.lux-finale-sub');
+    const cta   = finale.querySelector('.lux-finale-cta');
+    const eyebrow = finale.querySelector('.lux-finale-eyebrow');
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: finale,
+        start: 'top 75%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    tl.from(eyebrow, { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' })
+      .from(lines,   { opacity: 0, y: 70, duration: 1, stagger: 0.18, ease: 'power4.out' }, '-=0.2')
+      .from(sub,     { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+      .from(cta,     { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' }, '-=0.4');
   })();
 })();
