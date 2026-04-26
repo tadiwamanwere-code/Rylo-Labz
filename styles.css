@@ -2939,9 +2939,9 @@ hr { border-color: var(--border); }
 .feaster-spotlight-img {
   position: relative;
   border-radius: 18px;
-  overflow: hidden;
+  overflow: visible;
   aspect-ratio: 4 / 5;
-  background: #0a0a0a;
+  background: transparent;
 }
 
 .feaster-spotlight-img img {
@@ -2949,35 +2949,10 @@ hr { border-color: var(--border); }
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.feaster-spotlight-img-tag {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.feaster-spotlight-img-tag::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: #4ade80;
-  box-shadow: 0 0 10px #4ade80;
+  border-radius: 18px;
+  transform: rotate(-8deg);
+  transform-origin: center;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
 }
 
 .feaster-spotlight-text {
