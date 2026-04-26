@@ -2784,10 +2784,10 @@ img.brand-mark { background: transparent; box-shadow: none; }
    forms, and other components that hardcoded light colors.
    ============================================================ */
 
-/* Page background: Feaster Background.jpg fixed behind everything, with
-   no overlay so the image reads at full intensity. */
+/* Page background: solid dark gray matching the studio backdrop tone of
+   the Feaster product photo. */
 html, body {
-  background: url('/images/Feaster%20Background.jpg') center center / cover no-repeat fixed #000;
+  background: #181818;
   color: var(--text);
 }
 
