@@ -2784,15 +2784,14 @@ img.brand-mark { background: transparent; box-shadow: none; }
    forms, and other components that hardcoded light colors.
    ============================================================ */
 
-/* Page background: solid dark gray that matches the gray studio backdrop
-   in the Feaster product photo, so the spotlight card sits on the same
-   tone as its image. */
+/* Page background: Feaster Background.jpg fixed behind everything, with
+   no overlay so the image reads at full intensity. */
 html, body {
-  background: #181818;
+  background: url('/images/Feaster%20Background.jpg') center center / cover no-repeat fixed #000;
   color: var(--text);
 }
 
-/* Sections — transparent so the body's gray reads everywhere */
+/* Sections — transparent so the page bg image shows through */
 .section,
 .section--alt,
 .section--white {
@@ -2928,18 +2927,10 @@ hr { border-color: var(--border); }
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 72px);
-  padding: clamp(28px, 4vw, 56px);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
   margin: 0 0 clamp(48px, 6vw, 96px);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.025);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 24px 64px -32px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
+  /* Image stands free now — no card, no border, no padding, no glass */
 }
 
 .feaster-spotlight-img {
@@ -2947,24 +2938,16 @@ hr { border-color: var(--border); }
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Portrait container — phone reads upright after image rotation */
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #181818;
 }
 
 .feaster-spotlight-img img {
-  /* Source jpg is a landscape product shot; size to a fraction of the
-     container width so the image's natural proportions are preserved
-     (no stretching), then rotate -90deg so the phone reads upright. */
-  width: 78%;
+  /* Medium-sized standalone image; rotated so the phone reads upright. */
+  width: 100%;
+  max-width: 540px;
   height: auto;
   display: block;
   transform: rotate(-90deg);
   transform-origin: center;
-  border-radius: 14px;
-  box-shadow: 0 30px 80px -25px rgba(0, 0, 0, 0.85);
 }
 
 .feaster-spotlight-text {
@@ -2974,85 +2957,67 @@ hr { border-color: var(--border); }
   gap: clamp(14px, 2vw, 22px);
 }
 
-/* Each line is a colored tag/block with text sitting on top. The whole
-   tag slides in from one side on scroll. */
+/* Each line slides in from the left or right on scroll. No colored
+   block — text sits plain. */
 .fs-line {
   position: relative;
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   align-self: flex-start;
-  padding: 8px 16px;
-  border-radius: 10px;
   opacity: 0;
-  /* Initial off-screen position is set inline by JS based on direction */
+  padding: 0;
   will-change: transform, opacity;
 }
 
-.fs-line-block {
-  position: absolute;
-  inset: 0;
-  background: var(--fs-color, #f97316);
-  border-radius: 10px;
-  z-index: 0;
-  pointer-events: none;
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
-}
+/* Block element kept in DOM for backwards compat but invisible */
+.fs-line-block { display: none; }
 
 .fs-line-content {
   display: inline-block;
-  position: relative;
-  z-index: 1;
-  color: #fff;
   margin: 0;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  color: #fff;
 }
 
-/* Text variants — colors stay white because they're sitting on a colored block */
+/* Smaller text variants */
 .fs-eyebrow {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #fff;
+  color: #f97316;
 }
 
 .fs-heading {
   font-family: var(--font-serif);
-  font-size: clamp(34px, 4.2vw, 52px);
+  font-size: clamp(24px, 2.8vw, 36px);
   font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: #fff;
 }
 
 .fs-body {
-  font-size: var(--fs-body-lg);
+  font-size: 15px;
   line-height: 1.55;
-  color: #fff;
-  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 44ch;
 }
 
 .fs-stat {
-  font-size: 22px;
-  line-height: 1.4;
-  color: #fff;
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
 }
 .fs-stat strong {
   font-family: var(--font-serif);
-  font-weight: 800;
-  font-size: 30px;
+  font-weight: 700;
+  font-size: 22px;
   color: #fff;
   margin-right: 6px;
 }
 
 .fs-cta {
   margin-top: 6px;
-  background: #0a0a0a;
-  color: #fff;
-}
-.fs-cta:hover {
-  background: #1a1a1a;
-  color: #fff;
+  font-size: 13px;
 }
 
 /* Reduced motion: just show, no slide */
