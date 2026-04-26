@@ -2784,28 +2784,15 @@ img.brand-mark { background: transparent; box-shadow: none; }
    forms, and other components that hardcoded light colors.
    ============================================================ */
 
-/* Page background: Feaster image fixed behind everything, with a heavy
-   dark overlay so the page still reads as black-dominant and content stays
-   legible. Sections set to transparent so the bg image shows through. */
+/* Page background: solid dark gray that matches the gray studio backdrop
+   in the Feaster product photo, so the spotlight card sits on the same
+   tone as its image. */
 html, body {
-  background: #000;
+  background: #181818;
   color: var(--text);
 }
-body {
-  position: relative;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)),
-    url('/images/Feaster.jpg') center / cover no-repeat fixed;
-  pointer-events: none;
-}
 
-/* Sections — transparent so the page bg image shows through */
+/* Sections — transparent so the body's gray reads everywhere */
 .section,
 .section--alt,
 .section--white {
@@ -2960,23 +2947,23 @@ hr { border-color: var(--border); }
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Portrait container — phone reads upright after image rotation */
   aspect-ratio: 4 / 5;
-  overflow: visible;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #181818;
 }
 
 .feaster-spotlight-img img {
-  /* Source image is captured in landscape; rotate -90deg so the phone reads
-     as a normal upright portrait shot. After rotation the image's natural
-     wide axis becomes vertical, so we size by height to keep it inside the
-     container. */
-  height: 100%;
-  width: auto;
-  max-width: none;
-  object-fit: contain;
+  /* Source jpg is a landscape product shot; size to a fraction of the
+     container width so the image's natural proportions are preserved
+     (no stretching), then rotate -90deg so the phone reads upright. */
+  width: 78%;
+  height: auto;
   display: block;
-  border-radius: 22px;
   transform: rotate(-90deg);
   transform-origin: center;
+  border-radius: 14px;
   box-shadow: 0 30px 80px -25px rgba(0, 0, 0, 0.85);
 }
 
