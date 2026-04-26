@@ -290,9 +290,9 @@
     });
   })();
 
-  // Feaster spotlight — colored block sweeps in over each line, then sweeps
-  // out the other side, revealing the text underneath. Direction (left or
-  // right) is set per line via .fs-line--from-left / .fs-line--from-right.
+  // Feaster spotlight — each line is a colored tag (block + text together)
+  // that slides in from the left or right on scroll. Text sits on top of
+  // the block so they animate as one unit.
   (function initFeasterSpotlight() {
     const lines = document.querySelectorAll('.feaster-spotlight .fs-line');
     if (!lines.length) return;
@@ -302,32 +302,27 @@
     gsap.registerPlugin(ScrollTrigger);
 
     lines.forEach((line, i) => {
-      const block   = line.querySelector('.fs-line-block');
-      const content = line.querySelector('.fs-line-content');
-      const color   = line.dataset.color;
-      if (!block || !content) return;
-
-      if (color) block.style.background = color;
+      const block = line.querySelector('.fs-line-block');
+      const color = line.dataset.color;
+      if (block && color) block.style.background = color;
 
       const fromLeft = line.classList.contains('fs-line--from-left');
-      const enterFrom = fromLeft ? -101 : 101;
-      const exitTo    = fromLeft ?  101 : -101;
+      const startX   = fromLeft ? -120 : 120;
 
-      gsap.set(block,   { xPercent: enterFrom });
-      gsap.set(content, { opacity: 0 });
+      gsap.set(line, { xPercent: startX, opacity: 0 });
 
-      const tl = gsap.timeline({
+      gsap.to(line, {
+        xPercent: 0,
+        opacity: 1,
+        duration: 0.85,
+        ease: 'power3.out',
+        delay: i * 0.12,
         scrollTrigger: {
           trigger: line,
           start: 'top 88%',
           once: true,
         },
-        delay: i * 0.08,
       });
-
-      tl.to(block,   { xPercent: 0,      duration: 0.42, ease: 'power3.inOut' })
-        .set(content, { opacity: 1 })
-        .to(block,   { xPercent: exitTo, duration: 0.42, ease: 'power3.inOut' });
     });
   })();
 
