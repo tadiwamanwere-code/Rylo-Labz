@@ -2912,3 +2912,172 @@ input::placeholder, textarea::placeholder { color: var(--text-subtle); }
 /* Generic borders fall to dark */
 hr { border-color: var(--border); }
 
+/* ============================================================
+   FEASTER SPOTLIGHT — frosted glass card with scroll-revealing
+   text lines. Each line has a colored block that sweeps in to
+   cover the line, then sweeps out to reveal the text underneath.
+   ============================================================ */
+
+.feaster-spotlight {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  padding: clamp(28px, 4vw, 56px);
+  margin: 0 0 clamp(48px, 6vw, 96px);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 64px -32px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.feaster-spotlight-img {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #0a0a0a;
+}
+
+.feaster-spotlight-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feaster-spotlight-img-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feaster-spotlight-img-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #4ade80;
+  box-shadow: 0 0 10px #4ade80;
+}
+
+.feaster-spotlight-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 22px);
+}
+
+/* Each scroll-revealing line */
+.fs-line {
+  position: relative;
+  display: inline-block;
+  align-self: flex-start;
+  overflow: hidden;
+  vertical-align: top;
+  /* Slight padding to make sure the colored block fully covers */
+  padding: 2px 0;
+}
+
+.fs-line-block {
+  position: absolute;
+  inset: 0;
+  background: var(--fs-color, #f97316);
+  transform: translateX(-101%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fs-line-content {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  color: #fff;
+  margin: 0;
+}
+
+/* Text variants */
+.fs-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f97316;
+  padding: 2px 6px;
+}
+
+.fs-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+  padding: 4px 8px;
+}
+
+.fs-body {
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 46ch;
+  padding: 4px 8px;
+}
+
+.fs-stat {
+  font-size: 22px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+}
+.fs-stat strong {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 32px;
+  background: linear-gradient(90deg, #4ade80, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-right: 4px;
+}
+
+.fs-cta {
+  margin-top: 6px;
+}
+
+/* Reduced motion: skip the swipe, just show */
+@media (prefers-reduced-motion: reduce) {
+  .fs-line-content { opacity: 1; }
+  .fs-line-block { display: none; }
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  .feaster-spotlight {
+    grid-template-columns: 1fr;
+  }
+  .feaster-spotlight-img {
+    aspect-ratio: 16 / 11;
+  }
+}
+

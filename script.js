@@ -290,4 +290,45 @@
     });
   })();
 
+  // Feaster spotlight — colored block sweeps in over each line, then sweeps
+  // out the other side, revealing the text underneath. Direction (left or
+  // right) is set per line via .fs-line--from-left / .fs-line--from-right.
+  (function initFeasterSpotlight() {
+    const lines = document.querySelectorAll('.feaster-spotlight .fs-line');
+    if (!lines.length) return;
+    if (prefersReducedMotion) return;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    lines.forEach((line, i) => {
+      const block   = line.querySelector('.fs-line-block');
+      const content = line.querySelector('.fs-line-content');
+      const color   = line.dataset.color;
+      if (!block || !content) return;
+
+      if (color) block.style.background = color;
+
+      const fromLeft = line.classList.contains('fs-line--from-left');
+      const enterFrom = fromLeft ? -101 : 101;
+      const exitTo    = fromLeft ?  101 : -101;
+
+      gsap.set(block,   { xPercent: enterFrom });
+      gsap.set(content, { opacity: 0 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: line,
+          start: 'top 88%',
+          once: true,
+        },
+        delay: i * 0.08,
+      });
+
+      tl.to(block,   { xPercent: 0,      duration: 0.42, ease: 'power3.inOut' })
+        .set(content, { opacity: 1 })
+        .to(block,   { xPercent: exitTo, duration: 0.42, ease: 'power3.inOut' });
+    });
+  })();
+
 })();
