@@ -2929,8 +2929,8 @@ hr { border-color: var(--border); }
   grid-template-columns: 1fr 1fr;
   gap: clamp(32px, 5vw, 80px);
   align-items: center;
-  margin: 0 0 clamp(48px, 6vw, 96px);
-  /* Image stands free now — no card, no border, no padding, no glass */
+  margin: clamp(20px, 3vw, 40px) 0 clamp(48px, 6vw, 96px);
+  /* Image stands free — no card, no border, no padding, no glass */
 }
 
 .feaster-spotlight-img {
@@ -2938,16 +2938,22 @@ hr { border-color: var(--border); }
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Reserve enough vertical space so the rotated image doesn't overflow
+     into the section header above. */
+  aspect-ratio: 4 / 5;
 }
 
 .feaster-spotlight-img img {
-  /* Medium-sized standalone image; rotated so the phone reads upright. */
-  width: 100%;
-  max-width: 540px;
+  /* Medium-sized standalone image; rotated so the phone reads upright.
+     Radial mask fades the studio backdrop into the page gray seamlessly. */
+  width: 92%;
+  max-width: 460px;
   height: auto;
   display: block;
   transform: rotate(-90deg);
   transform-origin: center;
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at center, #000 45%, rgba(0,0,0,0.6) 70%, transparent 100%);
+          mask-image: radial-gradient(ellipse 75% 75% at center, #000 45%, rgba(0,0,0,0.6) 70%, transparent 100%);
 }
 
 .feaster-spotlight-text {
@@ -3016,8 +3022,16 @@ hr { border-color: var(--border); }
 }
 
 .fs-cta {
-  margin-top: 6px;
+  margin-top: 10px;
   font-size: 13px;
+  /* Override .fs-line-content's color: #fff so the white-pill ink button
+     reads with its proper black label. */
+  color: #000;
+  background: #fff;
+}
+.fs-cta:hover {
+  color: #000;
+  background: #f0f0f0;
 }
 
 /* Reduced motion: just show, no slide */
