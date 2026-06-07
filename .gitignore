@@ -1,3 +1,6 @@
 .vercel
 node_modules
 design-research/.raw/
+.env
+.env.*
+!.env.example
