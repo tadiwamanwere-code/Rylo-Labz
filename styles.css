@@ -41,9 +41,11 @@
   --c-success:       #2d7a4a;
 
   /* Typography */
-  --font-serif: "Playfair Display", "Palatino Linotype", Georgia, serif;
-  --font-sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
-  --font-mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Single typeface site-wide — Inter Tight (the font Ocoya uses).
+     All three tokens map to it so there is no other font anywhere. */
+  --font-serif: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-sans:  "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono:  "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
   /* Type scale — bigger than v2, HubSpot-family */
   --fs-micro:    12px;
@@ -1717,9 +1719,9 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 .scrollstory-head .eyebrow { justify-content: center; display: inline-flex; }
 
-/* Instrument Serif section headline */
+/* Large section headline */
 .lux-section-headline {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   font-style: normal;
   font-size: clamp(36px, 5.5vw, 72px);
@@ -1730,7 +1732,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 
 .lux-headline-accent {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: var(--font-sans);
   font-style: italic;
   background: var(--grad-brand);
   -webkit-background-clip: text;
@@ -1740,7 +1742,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 
 /* Story frame word-by-word animation */
 .story-frame-heading {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: clamp(28px, 3.2vw, 44px);
   line-height: 1.15;
@@ -2628,7 +2630,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 
 .lux-finale-heading {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: clamp(52px, 8vw, 108px);
   line-height: 1.05;
