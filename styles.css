@@ -1511,10 +1511,10 @@ img.brand-mark { background: transparent; box-shadow: none; }
 
 .team-name {
   font-family: var(--font-serif);
-  font-size: clamp(40px, 6vw, 72px);
-  line-height: 1.05;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.08;
   letter-spacing: -0.02em;
-  margin: 0 0 var(--s-3);
+  margin: 0 0 var(--s-2);
 }
 
 .name-white  { color: #EDE1BF; }
@@ -1522,19 +1522,19 @@ img.brand-mark { background: transparent; box-shadow: none; }
 
 .team-role {
   font-family: var(--font-sans);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255,255,255,.40);
-  margin: 0 0 var(--s-6);
+  margin: 0 0 var(--s-4);
 }
 
 .team-bio {
   color: rgba(255,255,255,.68);
-  font-size: var(--fs-body-lg);
-  line-height: 1.75;
-  max-width: 58ch;
+  font-size: var(--fs-small);
+  line-height: 1.65;
+  max-width: 54ch;
 }
 
 @media (max-width: 600px) {
@@ -3056,13 +3056,13 @@ hr { border-color: var(--border); }
   width: 100%;
   max-width: 440px;
   aspect-ratio: 4 / 5;
-  border-radius: var(--r-xl);
+  border-radius: var(--r-2xl);     /* more rounded */
   background: var(--surface);
   border: 1px solid var(--border);
   box-shadow:
     0 1px 0 rgba(255,255,255,.05) inset,
     0 18px 50px -24px rgba(0,0,0,.85);
-  padding: clamp(16px, 2vw, 24px);
+  padding: clamp(18px, 2.2vw, 26px);
   display: flex;
   flex-direction: column;
   gap: var(--s-4);
@@ -3073,43 +3073,25 @@ hr { border-color: var(--border); }
   color: var(--text);
   letter-spacing: -0.01em;
 }
-.feaster-tile-screen {
+.feaster-tile-qr {
   flex: 1;
-  border-radius: var(--r-lg);
-  background:
-    radial-gradient(120% 80% at 72% 8%, rgba(249,115,22,.40), transparent 56%),
-    linear-gradient(180deg, #2a1a0e 0%, #140b06 100%);
-  border: 1px solid rgba(255,255,255,.08);
-  padding: clamp(18px, 2.4vw, 28px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--s-3);
-  overflow: hidden;
+  border-radius: var(--r-xl);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  padding: clamp(20px, 3vw, 34px);
 }
-.feaster-tile-copy { display: flex; flex-direction: column; line-height: 1.04; }
-.feaster-tile-kicker { font-size: clamp(26px, 3.2vw, 36px); font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-.feaster-tile-head   { font-size: clamp(26px, 3.2vw, 36px); font-weight: 800; color: #f59e0b; letter-spacing: -0.02em; }
-.feaster-tile-sub    { margin-top: 10px; font-size: var(--fs-small); color: rgba(255,255,255,.62); line-height: 1.5; }
-.feaster-tile-cta {
-  margin-top: var(--s-2);
+.feaster-tile-qr svg {
+  width: 100%;
+  max-width: 230px;
+  height: auto;
+}
+.feaster-tile-caption {
   text-align: center;
-  background: #f59e0b;
-  color: #1a1008;
-  font-weight: 700;
   font-size: var(--fs-small);
-  padding: 12px;
-  border-radius: var(--r-pill);
-}
-.feaster-tile-ghost {
-  text-align: center;
-  background: rgba(255,255,255,.06);
-  color: rgba(255,255,255,.85);
-  border: 1px solid rgba(255,255,255,.12);
   font-weight: 600;
-  font-size: var(--fs-small);
-  padding: 12px;
-  border-radius: var(--r-pill);
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
 }
 
 .feaster-spotlight-text {
@@ -3141,7 +3123,7 @@ hr { border-color: var(--border); }
 
 /* Smaller text variants */
 .fs-eyebrow {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -3150,36 +3132,36 @@ hr { border-color: var(--border); }
 
 .fs-heading {
   font-family: var(--font-serif);
-  font-size: clamp(24px, 2.8vw, 36px);
+  font-size: clamp(36px, 4.4vw, 60px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.08;
   letter-spacing: -0.02em;
   color: #fff;
 }
 
 .fs-body {
-  font-size: 15px;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.78);
-  max-width: 44ch;
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.80);
+  max-width: 46ch;
 }
 
 .fs-stat {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.45;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
 }
 .fs-stat strong {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 30px;
   color: #fff;
   margin-right: 6px;
 }
 
 .fs-cta {
-  margin-top: 10px;
-  font-size: 13px;
+  margin-top: 12px;
+  font-size: 16px;
   /* Override .fs-line-content's color: #fff so the white-pill ink button
      reads with its proper black label. */
   color: #000;
