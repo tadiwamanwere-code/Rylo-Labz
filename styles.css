@@ -11,8 +11,8 @@
   --bg-3:         #000000;
   --bg-dark:      #000000;
   --bg-darker:    #000000;
-  --surface:      #0a0a0a;
-  --surface-alt:  #111111;
+  --surface:      #1a1a1c;  /* Ocoya-style charcoal card — pops off pure black */
+  --surface-alt:  #202023;  /* slightly lighter elevated / hover surface */
 
   /* Sticky-nav height (used by hero to slide its image up under the nav) */
   --nav-h:        72px;
@@ -25,11 +25,11 @@
   --text-on-dark: #ffffff;
   --text-on-dark-muted: #c4c4c4;
 
-  /* Borders — subtle dark */
-  --border:       #1f1f1f;
-  --border-strong:#2a2a2a;
-  --border-soft:  #161616;
-  --border-dark:  #1f1f1f;
+  /* Borders — subtle white hairlines that read on both #000 and the gray cards */
+  --border:       rgba(255,255,255,.07);
+  --border-strong:rgba(255,255,255,.13);
+  --border-soft:  rgba(255,255,255,.05);
+  --border-dark:  rgba(255,255,255,.07);
 
   /* Brand — black primary, gradient as secondary signature */
   --c-ink:           #0a0706;
@@ -2812,7 +2812,9 @@ html, body {
 /* Lux headline accent stays gradient — fine on dark */
 .lux-headline-accent { color: inherit; }
 
-/* Generic card / tile surfaces */
+/* Generic card / tile surfaces — Ocoya-style charcoal panels on black:
+   gray fill, soft radius, hairline border, 1px top inner highlight, and a
+   low drop shadow for quiet elevation. */
 .tile,
 .insight-card,
 .hiw-service-card,
@@ -2822,7 +2824,20 @@ html, body {
 .why-card {
   background: var(--surface);
   border: 1px solid var(--border);
+  border-radius: var(--r-lg);
   color: var(--text);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.05) inset,
+    0 12px 32px -20px rgba(0,0,0,.8);
+}
+.tile:hover,
+.insight-card:hover,
+.hiw-service-card:hover,
+.solution-card:hover,
+.value-card:hover,
+.why-card:hover {
+  background: var(--surface-alt);
+  border-color: var(--border-strong);
 }
 .tile h3, .tile h4, .tile p,
 .insight-card h3, .insight-card p,
