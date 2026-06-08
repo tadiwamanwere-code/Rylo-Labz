@@ -3238,3 +3238,92 @@ hr { border-color: var(--border); }
   }
 }
 
+/* =========================================================
+   Custom-software CTA banner — full-bleed background image
+   with a dark overlay and centered headline + buttons.
+   ========================================================= */
+.build-banner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 78vh;
+  padding: clamp(80px, 12vw, 170px) var(--s-8);
+  overflow: hidden;
+  background-color: #050505;
+  background-image: url("/images/Portfolio/gemini-2.5-flash-image_create_an_8k_image_from_the_refrence_with_better_looking_stacked_websites-0.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.build-banner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 90% 80% at 50% 38%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.68) 60%, rgba(0,0,0,.9) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.55) 100%);
+}
+.build-banner-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.build-banner-eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.72);
+  margin-bottom: var(--s-5);
+}
+.build-banner-title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(36px, 6vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 24px rgba(0,0,0,.5);
+}
+.build-banner-sub {
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.55;
+  color: rgba(255,255,255,.86);
+  max-width: 60ch;
+  margin: var(--s-6) auto var(--s-8);
+}
+.build-banner-actions {
+  display: flex;
+  gap: var(--s-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.build-banner-primary {
+  background: #3b82f6;
+  color: #fff;
+  border: 1px solid #3b82f6;
+  box-shadow: 0 10px 30px -10px rgba(59,130,246,.6);
+}
+.build-banner-primary:hover { background: #2f6fe0; border-color: #2f6fe0; }
+.build-banner-secondary {
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.24);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.build-banner-secondary:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.4); }
+
+@media (max-width: 600px) {
+  .build-banner { min-height: 0; }
+  .build-banner-actions .btn { width: 100%; max-width: 340px; justify-content: center; }
+}
+
