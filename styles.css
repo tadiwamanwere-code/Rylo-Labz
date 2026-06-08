@@ -383,7 +383,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 .nav-links a {
   font-family: var(--font-serif);
-  font-size: var(--fs-h6);
+  font-size: var(--fs-small);
   font-weight: 500;
   color: rgba(255,255,255,.92);
   padding: 8px 2px;
@@ -508,7 +508,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 .nav-mobile-links a {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #fff;
   padding: var(--s-4) 0;
