@@ -391,7 +391,7 @@
       const to = adj[from][Math.floor(Math.random() * adj[from].length)];
       return {
         from, to, t: 0,
-        speed: 0.006 + Math.random() * 0.011,
+        speed: 0.024 + Math.random() * 0.030,   // fast — like electricity
         color: BRAND[Math.floor(Math.random() * BRAND.length)],
         trail: [],
       };
@@ -439,22 +439,23 @@
       for (const p of pulses) {
         const point = pos(p);
         p.trail.unshift(point);
-        if (p.trail.length > 16) p.trail.pop();
+        if (p.trail.length > 9) p.trail.pop();        // short, snappy trail
+        const flick = 0.5 + Math.random() * 0.5;       // electric flicker
         for (let i = 0; i < p.trail.length - 1; i++) {
           const t0 = p.trail[i], t1 = p.trail[i + 1];
           const f = 1 - i / p.trail.length;
-          ctx.strokeStyle = hexToRgba(p.color, f * 0.6);
-          ctx.lineWidth = f * 2.4 + 0.4;
+          ctx.strokeStyle = hexToRgba(p.color, f * 0.85 * flick);
+          ctx.lineWidth = f * 2.2 + 0.5;
           ctx.beginPath();
           ctx.moveTo(t0.x, t0.y);
           ctx.lineTo(t1.x, t1.y);
           ctx.stroke();
         }
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 14 * flick;
         ctx.shadowColor = p.color;
-        ctx.fillStyle = p.color;
+        ctx.fillStyle = hexToRgba(p.color, 0.6 + 0.4 * flick);
         ctx.beginPath();
-        ctx.arc(point.x, point.y, 2.6, 0, Math.PI * 2);
+        ctx.arc(point.x, point.y, 2.0 + flick * 1.4, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
         step(p);
