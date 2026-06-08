@@ -326,4 +326,174 @@
     });
   })();
 
+  // ========== Hero hexagonal network with flowing current ==========
+  (function initHeroHexNetwork() {
+    const canvas = document.getElementById('hero-hex');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const host = canvas.parentElement; // .hero-bg
+
+    const BRAND = ['#3b82f6', '#8b5cf6', '#ec4899', '#67e8f9'];
+    const HEX = 58;                 // hexagon radius (px)
+    let W = 0, H = 0, dpr = 1;
+    let nodes = [], edges = [], adj = [], pulses = [];
+    let raf = null;
+
+    const hexToRgba = (hex, a) => {
+      const n = parseInt(hex.slice(1), 16);
+      return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+    };
+
+    function buildGrid() {
+      nodes = []; edges = []; adj = [];
+      const map = new Map();
+      const round = (v) => Math.round(v / 2) * 2;
+      const key = (x, y) => round(x) + ',' + round(y);
+      const addNode = (x, y) => {
+        const k = key(x, y);
+        if (map.has(k)) return map.get(k);
+        const id = nodes.length;
+        nodes.push({ x, y }); adj.push([]); map.set(k, id);
+        return id;
+      };
+      const r = HEX;
+      const w = Math.sqrt(3) * r;   // pointy-top horizontal spacing
+      const vstep = 1.5 * r;        // vertical spacing
+      const cols = Math.ceil(W / w) + 2;
+      const rows = Math.ceil(H / vstep) + 2;
+      const eset = new Set();
+      for (let row = -1; row < rows; row++) {
+        for (let col = -1; col < cols; col++) {
+          const cx = col * w + (Math.abs(row % 2) === 1 ? w / 2 : 0);
+          const cy = row * vstep;
+          const corners = [];
+          for (let i = 0; i < 6; i++) {
+            const ang = (Math.PI / 180) * (60 * i - 90);
+            corners.push(addNode(cx + r * Math.cos(ang), cy + r * Math.sin(ang)));
+          }
+          for (let i = 0; i < 6; i++) {
+            const a = corners[i], b = corners[(i + 1) % 6];
+            if (a === b) continue;
+            const ek = a < b ? a + '-' + b : b + '-' + a;
+            if (eset.has(ek)) continue;
+            eset.add(ek);
+            edges.push([a, b]);
+            adj[a].push(b); adj[b].push(a);
+          }
+        }
+      }
+    }
+
+    const spawnPulse = () => {
+      if (!nodes.length) return null;
+      const from = Math.floor(Math.random() * nodes.length);
+      if (!adj[from] || !adj[from].length) return null;
+      const to = adj[from][Math.floor(Math.random() * adj[from].length)];
+      return {
+        from, to, t: 0,
+        speed: 0.006 + Math.random() * 0.011,
+        color: BRAND[Math.floor(Math.random() * BRAND.length)],
+        trail: [],
+      };
+    };
+
+    const step = (p) => {
+      p.t += p.speed;
+      if (p.t >= 1) {
+        p.t -= 1;
+        const prev = p.from;
+        p.from = p.to;
+        const nb = adj[p.from];
+        let choices = nb.filter((n) => n !== prev);
+        if (!choices.length) choices = nb;
+        p.to = choices[Math.floor(Math.random() * choices.length)];
+      }
+    };
+
+    const pos = (p) => {
+      const a = nodes[p.from], b = nodes[p.to];
+      return { x: a.x + (b.x - a.x) * p.t, y: a.y + (b.y - a.y) * p.t };
+    };
+
+    function drawStatic() {
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+      ctx.beginPath();
+      for (const [a, b] of edges) {
+        ctx.moveTo(nodes[a].x, nodes[a].y);
+        ctx.lineTo(nodes[b].x, nodes[b].y);
+      }
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,0.09)';
+      for (const n of nodes) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 1.3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, W, H);
+      drawStatic();
+      ctx.lineCap = 'round';
+      for (const p of pulses) {
+        const point = pos(p);
+        p.trail.unshift(point);
+        if (p.trail.length > 16) p.trail.pop();
+        for (let i = 0; i < p.trail.length - 1; i++) {
+          const t0 = p.trail[i], t1 = p.trail[i + 1];
+          const f = 1 - i / p.trail.length;
+          ctx.strokeStyle = hexToRgba(p.color, f * 0.6);
+          ctx.lineWidth = f * 2.4 + 0.4;
+          ctx.beginPath();
+          ctx.moveTo(t0.x, t0.y);
+          ctx.lineTo(t1.x, t1.y);
+          ctx.stroke();
+        }
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = p.color;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 2.6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        step(p);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = host.clientWidth;
+      H = host.clientHeight;
+      if (!W || !H) return;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildGrid();
+      const count = Math.max(7, Math.min(18, Math.round((W * H) / 85000)));
+      pulses = [];
+      for (let i = 0; i < count; i++) {
+        const p = spawnPulse();
+        if (p) pulses.push(p);
+      }
+    }
+
+    let resizeT;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(resize, 200);
+    });
+
+    resize();
+    if (prefersReducedMotion) {
+      ctx.clearRect(0, 0, W, H);
+      drawStatic();
+    } else if (W && H) {
+      frame();
+    }
+  })();
+
 })();
