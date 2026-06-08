@@ -359,15 +359,18 @@ p  { margin: 0; }
   align-items: center;
   gap: var(--s-10);
   border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(20px) saturate(190%) brightness(1.08);
-  -webkit-backdrop-filter: blur(20px) saturate(190%) brightness(1.08);
+  /* See-through: almost no tint and only a hair of blur, so the text and
+     everything beneath stays readable THROUGH the bar. The saturate +
+     brightness act as a thin lens that "liquid-glass" morphs whatever
+     scrolls underneath, without frosting it opaque. */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(2px) saturate(180%) brightness(1.06);
+  -webkit-backdrop-filter: blur(2px) saturate(180%) brightness(1.06);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.40),   /* top specular highlight */
-    inset 0 -1px 1px rgba(255, 255, 255, 0.06),/* bottom inner edge */
-    inset 0 0 24px rgba(255, 255, 255, 0.04),  /* soft internal glow */
-    0 10px 34px -10px rgba(0, 0, 0, 0.55);     /* lift off the page */
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),   /* top specular highlight */
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),/* bottom inner edge */
+    0 10px 34px -14px rgba(0, 0, 0, 0.45);     /* lift off the page */
 }
 /* Diagonal moving sheen — the "liquid" light sweep across the glass */
 .nav-inner::before {
@@ -1855,9 +1858,8 @@ img.brand-mark { background: transparent; box-shadow: none; }
   top: 0;
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: var(--s-12);
-  align-items: center;
+  grid-template-columns: 1fr;
+  place-items: center;
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 0 var(--s-8);
@@ -1974,8 +1976,12 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .scrollstory-right {
   position: relative;
   aspect-ratio: 16 / 9;        /* matches native 1366x768 screenshots */
-  width: 100%;
-  max-height: 70vh;
+  /* Enlarged + centered. Width is the smallest of: a hard cap, the viewport
+     width, and the width implied by 84vh — so the 16:9 box always fits and
+     the image (object-fit:contain) never stretches or loses colour. */
+  width: min(1240px, 94vw, calc(84vh * 16 / 9));
+  max-height: 84vh;
+  margin: 0 auto;
 }
 /* Irregular colored accent block behind the screenshot. clip-path varies per frame. */
 .scrollstory-accent {
