@@ -3086,16 +3086,14 @@ hr { border-color: var(--border); }
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Reserve enough vertical space so the rotated image doesn't overflow
-     into the section header above. */
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4.4;
 }
 
 /* Rounded Feaster tile — replaces the phone photo with a clean designed card */
 .feaster-tile {
   width: 100%;
-  max-width: 440px;
-  aspect-ratio: 4 / 5;
+  max-width: 400px;
+  aspect-ratio: 3 / 4.4;           /* taller, more rectangular */
   border-radius: var(--r-2xl);     /* more rounded */
   background: var(--surface);
   border: 1px solid var(--border);
@@ -3122,9 +3120,10 @@ hr { border-color: var(--border); }
   padding: clamp(20px, 3vw, 34px);
 }
 .feaster-tile-qr svg {
-  width: 100%;
-  max-width: 230px;
-  height: auto;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 380px;
 }
 .feaster-tile-caption {
   text-align: center;
@@ -3132,6 +3131,18 @@ hr { border-color: var(--border); }
   font-weight: 600;
   color: var(--text-muted);
   letter-spacing: 0.01em;
+}
+/* Red scanner line sweeps up and down across the QR */
+.feaster-scan-line {
+  animation: feaster-scan 2.6s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes feaster-scan {
+  from { transform: translateY(-22px); }
+  to   { transform: translateY(22px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feaster-scan-line { animation: none; }
 }
 
 .feaster-spotlight-text {
