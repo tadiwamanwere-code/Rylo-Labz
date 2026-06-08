@@ -333,29 +333,90 @@ p  { margin: 0; }
    so it reads as glass, and a hairline border. Whatever sits underneath
    is clearly visible through it. */
 .nav {
-  display: block; /* override Bootstrap's .nav { display:flex } */
+  display: flex;            /* center the floating glass pill vertically */
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 50;
   height: var(--nav-h);
   background: transparent;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: none;
   box-shadow: none;
+  padding: 0 var(--s-6);
 }
 .nav.nav--scrolled {
   background: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
+/* Liquid-glass pill: transparent, refracts the black hero through heavy
+   blur + saturation, with a specular top edge and a chromatic rim. */
 .nav-inner {
+  position: relative;
   width: 100%;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: var(--s-4) var(--s-8);
+  padding: 10px var(--s-6);
   display: flex;
   align-items: center;
   gap: var(--s-10);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(190%) brightness(1.08);
+  -webkit-backdrop-filter: blur(20px) saturate(190%) brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.40),   /* top specular highlight */
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),/* bottom inner edge */
+    inset 0 0 24px rgba(255, 255, 255, 0.04),  /* soft internal glow */
+    0 10px 34px -10px rgba(0, 0, 0, 0.55);     /* lift off the page */
+}
+/* Diagonal moving sheen — the "liquid" light sweep across the glass */
+.nav-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 30%,
+    rgba(255, 255, 255, 0.02) 46%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-position: 120% 0;
+  mix-blend-mode: screen;
+  animation: glass-sheen 9s ease-in-out infinite;
+}
+/* Chromatic rim — light bending at the edge (refraction/diffraction) */
+.nav-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    rgba(59, 130, 246, 0.55),
+    rgba(139, 92, 246, 0.30),
+    rgba(236, 72, 153, 0.50),
+    rgba(59, 130, 246, 0.40)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.45;
+}
+@keyframes glass-sheen {
+  0%   { background-position: 130% 0; }
+  55%  { background-position: -30% 0; }
+  100% { background-position: -30% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-inner::before { animation: none; }
 }
 .brand {
   display: inline-flex;
@@ -378,10 +439,14 @@ p  { margin: 0; }
 }
 img.brand-mark { background: transparent; box-shadow: none; }
 .nav-links {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   gap: var(--s-8);
-  margin-left: var(--s-20);
+  z-index: 2;
 }
 .nav-links a {
   font-family: var(--font-serif);
