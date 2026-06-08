@@ -3260,49 +3260,58 @@ hr { border-color: var(--border); }
 .build-banner-eyebrow {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: var(--fs-small);
+  font-size: var(--fs-micro);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(237, 225, 191, 0.62);
-  margin-bottom: var(--s-4);
+  color: rgba(237, 225, 191, 0.55);
+  margin-bottom: var(--s-3);
 }
 .build-banner-title {
   font-family: var(--font-sans);
   font-weight: 800;
-  font-size: clamp(26px, 3.4vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
   color: #EDE1BF;
   margin: 0 auto;
-  max-width: 22ch;
+  max-width: 16ch;
+  text-wrap: balance;
 }
 .build-banner-sub {
-  font-size: clamp(15px, 1.3vw, 18px);
+  font-size: clamp(15px, 1.25vw, 18px);
   line-height: 1.6;
-  color: rgba(237, 225, 191, 0.75);
-  max-width: 56ch;
-  margin: var(--s-5) auto var(--s-7);
+  color: rgba(237, 225, 191, 0.7);
+  max-width: 50ch;
+  margin: var(--s-4) auto 0;
+  text-wrap: balance;
 }
 .build-banner-actions {
   display: flex;
   gap: var(--s-3);
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  margin-top: var(--s-8);
+}
+.build-banner-actions .btn {
+  min-width: 180px;
+  justify-content: center;
+  font-weight: 600;
 }
 .build-banner-primary {
   background: #3b82f6;
   color: #fff;
   border: 1px solid #3b82f6;
-  box-shadow: 0 10px 30px -10px rgba(59,130,246,.6);
+  box-shadow: 0 12px 32px -12px rgba(59,130,246,.7);
 }
 .build-banner-primary:hover { background: #2f6fe0; border-color: #2f6fe0; }
 .build-banner-secondary {
-  background: rgba(255,255,255,.08);
+  background: rgba(255,255,255,.07);
   color: #fff;
-  border: 1px solid rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.2);
 }
-.build-banner-secondary:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.4); }
+.build-banner-secondary:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.38); }
 
 /* The image sits below the intro text */
 .build-banner-media {
