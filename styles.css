@@ -1436,19 +1436,31 @@ img.brand-mark { background: transparent; box-shadow: none; }
    ========================================================= */
 .team-section {
   background: #000000;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two executives side by side */
+  align-items: start;
+  gap: clamp(32px, 5vw, 80px);
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(64px, 9vw, 120px) var(--s-8);
 }
 
 .team-page {
-  min-height: 100vh;
+  min-height: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: clamp(80px, 10vw, 120px) var(--s-8);
-  background: #000000;
+  padding: 0;
+  background: transparent;
 }
 
+/* No top divider now that the profiles are columns, not stacked pages */
 .team-page--border {
-  border-top: 1px solid rgba(255,255,255,.07);
+  border-top: none;
+}
+
+@media (max-width: 760px) {
+  .team-section { grid-template-columns: 1fr; gap: clamp(48px, 12vw, 80px); }
 }
 
 .team-inner {
@@ -1505,8 +1517,8 @@ img.brand-mark { background: transparent; box-shadow: none; }
   margin: 0 0 var(--s-3);
 }
 
-.name-white  { color: #ffffff; }
-.name-accent { color: #b8f051; }
+.name-white  { color: #EDE1BF; }
+.name-accent { color: #EDE1BF; }
 
 .team-role {
   font-family: var(--font-sans);
@@ -3039,17 +3051,65 @@ hr { border-color: var(--border); }
   aspect-ratio: 4 / 5;
 }
 
-.feaster-spotlight-img img {
-  /* Medium-sized standalone image; rotated so the phone reads upright.
-     Radial mask fades the studio backdrop into the page gray seamlessly. */
-  width: 92%;
-  max-width: 460px;
-  height: auto;
-  display: block;
-  transform: rotate(-90deg);
-  transform-origin: center;
-  -webkit-mask-image: radial-gradient(ellipse 75% 75% at center, #000 45%, rgba(0,0,0,0.6) 70%, transparent 100%);
-          mask-image: radial-gradient(ellipse 75% 75% at center, #000 45%, rgba(0,0,0,0.6) 70%, transparent 100%);
+/* Rounded Feaster tile — replaces the phone photo with a clean designed card */
+.feaster-tile {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.05) inset,
+    0 18px 50px -24px rgba(0,0,0,.85);
+  padding: clamp(16px, 2vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.feaster-tile-brand {
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.feaster-tile-screen {
+  flex: 1;
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(120% 80% at 72% 8%, rgba(249,115,22,.40), transparent 56%),
+    linear-gradient(180deg, #2a1a0e 0%, #140b06 100%);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: clamp(18px, 2.4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--s-3);
+  overflow: hidden;
+}
+.feaster-tile-copy { display: flex; flex-direction: column; line-height: 1.04; }
+.feaster-tile-kicker { font-size: clamp(26px, 3.2vw, 36px); font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+.feaster-tile-head   { font-size: clamp(26px, 3.2vw, 36px); font-weight: 800; color: #f59e0b; letter-spacing: -0.02em; }
+.feaster-tile-sub    { margin-top: 10px; font-size: var(--fs-small); color: rgba(255,255,255,.62); line-height: 1.5; }
+.feaster-tile-cta {
+  margin-top: var(--s-2);
+  text-align: center;
+  background: #f59e0b;
+  color: #1a1008;
+  font-weight: 700;
+  font-size: var(--fs-small);
+  padding: 12px;
+  border-radius: var(--r-pill);
+}
+.feaster-tile-ghost {
+  text-align: center;
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,255,255,.12);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  padding: 12px;
+  border-radius: var(--r-pill);
 }
 
 .feaster-spotlight-text {
