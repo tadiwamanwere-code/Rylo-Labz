@@ -3238,6 +3238,11 @@ hr { border-color: var(--border); }
   }
 }
 
+/* Empty space kept where the tiles CTA strip + closer used to be */
+.tiles-empty-space {
+  height: clamp(100px, 14vw, 220px);
+}
+
 /* =========================================================
    Custom-software CTA — centered cream intro text, with the
    stacked-websites image shown BELOW it (text introduces it).
