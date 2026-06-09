@@ -7,9 +7,9 @@
   "theme_color": "#0d1117",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/images/Portfolio/rylo-logo.png",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/png"
     }
   ]
 }
