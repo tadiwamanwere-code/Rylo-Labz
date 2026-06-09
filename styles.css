@@ -720,7 +720,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 /* Plain centered eyebrow (no pill, white caps) */
 .hero-eyebrow-plain {
   display: inline-block;
-  color: #fff;
+  color: #EDE1BF;
   font-family: var(--font-sans);
   font-size: var(--fs-micro);
   font-weight: 700;
@@ -2175,6 +2175,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   position: absolute;
   inset: -36px -42px -42px 36px;
   background: #262629;
+  opacity: 0.55;
   z-index: 0;
   /* Default irregular polygon — torn-paper / notched corners */
   clip-path: polygon(
