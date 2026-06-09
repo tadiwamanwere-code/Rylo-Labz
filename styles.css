@@ -766,13 +766,12 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .rotator {
   display: inline-block;
   font-family: var(--font-serif);
-  
   position: relative;
   transition: transform .35s var(--ease-in-out), opacity .35s var(--ease-in-out), filter .35s var(--ease-in-out);
-  background: var(--grad-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: #cfcfcf;
 }
 .rotator.swap {
   transform: translateY(-12px);
