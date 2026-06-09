@@ -1583,6 +1583,9 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 @media (max-width: 900px) {
   .whyflow-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .whyflow-card { min-height: 0; padding: clamp(28px, 6vw, 40px) clamp(22px, 5vw, 30px); }
+  .whyflow-track { margin-top: var(--s-6); gap: var(--s-4); }
+  .whyflow-label { white-space: normal; }
 }
 
 /* =========================================================
@@ -2502,9 +2505,10 @@ img.brand-mark { background: transparent; box-shadow: none; }
   .scrollstory-right { margin: 0 var(--s-4) var(--s-6); }
 
   /* Team */
-  .team-page { padding: var(--s-16) var(--s-4); }
-  .team-name { font-size: clamp(32px, 10vw, 52px); }
-  .team-bio  { font-size: 15px; line-height: 1.65; }
+  .team-page { padding: var(--s-12) var(--s-4); }
+  .team-name { font-size: clamp(22px, 6vw, 30px); }
+  .team-bio  { font-size: 14px; line-height: 1.6; }
+  .team-photo-wrap, .team-photo-placeholder { width: 170px; height: 170px; }
 
   /* How it Works */
   .hiw3-step-title { font-size: 15px; }
@@ -2535,7 +2539,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   .btn--lg { padding: 14px 20px; }
   .nav-mobile-cta .btn { font-size: 14px; }
   .marquee-track { font-size: 16px; gap: var(--s-12); }
-  .team-name { font-size: 30px; }
+  .team-name { font-size: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
