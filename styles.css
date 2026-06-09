@@ -211,9 +211,9 @@ p  { margin: 0; }
   display: inline-block;
 }
 .section-title {
-  font-size: clamp(46px, 7vw, 88px);
-  letter-spacing: -0.03em;
-  line-height: 1.04;
+  font-size: clamp(30px, 3.8vw, 52px);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   width: 100%;
   overflow: hidden;
   text-align: center;
@@ -1493,12 +1493,15 @@ img.brand-mark { background: transparent; box-shadow: none; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--s-5);
+  max-width: 920px;          /* narrower overall → slimmer cards */
+  margin: 0 auto;
 }
 .whyflow-card {
   background: #262629;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--r-2xl);
-  padding: clamp(28px, 3vw, 44px) clamp(22px, 2.4vw, 34px);
+  padding: clamp(34px, 3.4vw, 52px) clamp(20px, 2vw, 28px);
+  min-height: 520px;         /* taller → more rectangular */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1530,11 +1533,13 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .whyflow-track {
   position: relative;
   width: 100%;
-  margin-top: clamp(28px, 3vw, 44px);
+  margin-top: clamp(28px, 3vw, 40px);
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--s-4);
+  justify-content: center;
+  gap: clamp(18px, 2.6vw, 34px);
 }
 /* Vertical connector line behind the chips */
 .whyflow-track::before {
@@ -3389,9 +3394,9 @@ hr { border-color: var(--border); }
   }
 }
 
-/* Empty space kept where the tiles CTA strip + closer used to be */
+/* Spacer collapsed — no extra gap above the custom-software banner */
 .tiles-empty-space {
-  height: clamp(100px, 14vw, 220px);
+  height: 0;
 }
 
 /* =========================================================
@@ -3401,7 +3406,7 @@ hr { border-color: var(--border); }
 .build-banner {
   background: #000;
   text-align: center;
-  padding: clamp(64px, 9vw, 120px) var(--s-8) 0;
+  padding: clamp(16px, 2.5vw, 40px) var(--s-8) 0;
   overflow: hidden;
 }
 .build-banner-inner {
@@ -3421,7 +3426,7 @@ hr { border-color: var(--border); }
 .build-banner-title {
   font-family: var(--font-sans);
   font-weight: 800;
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: clamp(33px, 3.2vw, 49px);
   line-height: 1.14;
   letter-spacing: -0.02em;
   color: #EDE1BF;
