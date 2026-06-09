@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://images.pexels.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css?v=46" />
+  <link rel="stylesheet" href="styles.css?v=47" />
 
   <script type="application/ld+json">
     {
@@ -592,27 +592,83 @@
           </p>
         </div>
 
-        <div class="why-grid">
-          <div class="why-cell reveal">
-            <span class="why-num">01</span>
-            <h4>Demo in 2 weeks</h4>
-            <p>Working prototype in 2 weeks. We skip the 40-slide kickoff and build the thing.</p>
-          </div>
-          <div class="why-cell reveal">
-            <span class="why-num">02</span>
-            <h4>You own everything</h4>
-            <p>The code, the data, the IP. No lock-in, no rented weights, no surprise invoices.</p>
-          </div>
-          <div class="why-cell reveal">
-            <span class="why-num">03</span>
-            <h4>We ship our own products</h4>
-            <p>LuxTutor is a product we run in production. We know what shipping looks like — not just demos.</p>
-          </div>
-          <div class="why-cell reveal">
-            <span class="why-num">04</span>
-            <h4>Built for this market</h4>
-            <p>We build for the constraints African teams actually face: bandwidth, cost, local context.</p>
-          </div>
+        <div class="whyflow-grid">
+
+          <article class="whyflow-card reveal">
+            <h3 class="whyflow-title">Demo in 2 weeks</h3>
+            <p class="whyflow-desc">From first message to working software — fast, no discovery theatre.</p>
+            <div class="whyflow-track">
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#f59e0b">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="whyflow-label">Discovery call</span>
+              </div>
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#ffffff">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4l5 5M4 20l4-1 9.5-9.5-3-3L5 16z"/></svg>
+                </span>
+                <span class="whyflow-label">Working demo · 2 weeks</span>
+              </div>
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#3b82f6">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                <span class="whyflow-label">Production · 2 months</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="whyflow-card reveal">
+            <h3 class="whyflow-title">You own everything</h3>
+            <p class="whyflow-desc">The code, the data, the IP — no lock-in, no rented weights.</p>
+            <div class="whyflow-track">
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#b8f051">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+                </span>
+                <span class="whyflow-label">Your code</span>
+              </div>
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#8b5cf6">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/></svg>
+                </span>
+                <span class="whyflow-label">Your data</span>
+              </div>
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#3b82f6">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+                </span>
+                <span class="whyflow-label">Your IP, forever</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="whyflow-card reveal">
+            <h3 class="whyflow-title">We ship our own products</h3>
+            <p class="whyflow-desc">We build at your scale, for the market you actually operate in.</p>
+            <div class="whyflow-track">
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#ec4899">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 5.6L19.5 9l-5.6 1.4L12 16l-1.9-5.6L4.5 9l5.6-1.4z"/></svg>
+                </span>
+                <span class="whyflow-label">LuxTutor live</span>
+              </div>
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#f59e0b">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 6h6zM19 7l-3 6h6z"/></svg>
+                </span>
+                <span class="whyflow-label">Built for scale</span>
+              </div>
+              <div class="whyflow-step">
+                <span class="whyflow-icon" style="background:#3b82f6">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>
+                </span>
+                <span class="whyflow-label">African context</span>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -689,11 +745,12 @@
       </p>
       <div class="final-cta-actions">
         <a href="mailto:wil@rylolabz.com" class="btn btn--ink btn--xl">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
           <span>Email us</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
         <a href="https://wa.me/263780240844" target="_blank" rel="noopener" class="btn btn--ghost btn--xl">
-          <span>WhatsApp us ↗</span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.46 9.46 0 01-4.82-1.32l-.35-.2-3.58.94.96-3.49-.23-.36a9.45 9.45 0 01-1.45-5.04c0-5.23 4.26-9.48 9.49-9.48 2.53 0 4.91.99 6.7 2.78a9.42 9.42 0 012.78 6.71c0 5.23-4.26 9.48-9.49 9.48zM20.52 3.49A11.78 11.78 0 0012.04 0C5.46 0 .11 5.35.11 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.3-1.65a11.9 11.9 0 005.73 1.46h.01c6.58 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.19-3.5-8.45z"/></svg>
+          <span>WhatsApp us</span>
         </a>
       </div>
     </section>
@@ -709,6 +766,23 @@
                         <span>Rylo Labz</span>
           </a>
           <p>Software and AI studio. We build custom systems and ship our own products. Based in Zimbabwe, serving the world. AI Automation & WhatsApp AI for business.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/263780240844" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.46 9.46 0 01-4.82-1.32l-.35-.2-3.58.94.96-3.49-.23-.36a9.45 9.45 0 01-1.45-5.04c0-5.23 4.26-9.48 9.49-9.48 2.53 0 4.91.99 6.7 2.78a9.42 9.42 0 012.78 6.71c0 5.23-4.26 9.48-9.49 9.48zM20.52 3.49A11.78 11.78 0 0012.04 0C5.46 0 .11 5.35.11 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.3-1.65a11.9 11.9 0 005.73 1.46h.01c6.58 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.19-3.5-8.45z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="https://x.com/rylolabz" target="_blank" rel="noopener" aria-label="X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.6l5.24 6.93zM17.6 20.64h2.04L6.49 3.24H4.3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 01-.9 1.38 3.7 3.7 0 01-1.38.9c-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 00-2.12 1.38A5.86 5.86 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 002.12-1.38 5.86 5.86 0 001.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.12A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 114-4 4 4 0 01-4 4zm6.41-10.85a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            </a>
+          </div>
         </div>
 
         <div class="footer-col">
