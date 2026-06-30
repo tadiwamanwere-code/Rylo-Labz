@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — Websites we've built · Rylo Labz</title>
-  <meta name="description" content="A selection of websites designed and built by Rylo Labz — hospitality, healthcare, trades and catering brands shipped to production." />
+  <meta name="description" content="Pixel-perfect live previews of websites designed and built by Rylo Labz — hospitality, healthcare, trades and catering brands shipped to production." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="Rylo Labz" />
   <meta name="theme-color" content="#f8f5ee" />
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Rylo Labz" />
   <meta property="og:title" content="Portfolio — Websites we've built · Rylo Labz" />
-  <meta property="og:description" content="Websites designed and built by Rylo Labz — shipped to production for real businesses." />
+  <meta property="og:description" content="Live previews of websites designed and built by Rylo Labz — shipped to production for real businesses." />
   <meta property="og:url" content="https://rylolabz.com/portfolio" />
 
   <link rel="icon" href="/images/Portfolio/rylo-favicon.png" type="image/png" />
@@ -27,44 +27,142 @@
   <link rel="stylesheet" href="styles.css?v=54" />
 
   <style>
-    /* Page-specific: simple hero + status chip on tiles, inherits the studio system */
-    .portfolio-hero {
-      padding: 132px 0 28px;
-      text-align: center;
+    /* ===== Portfolio showcase — bento of pixel-perfect live hero previews ===== */
+    .pf-hero {
+      position: relative; overflow: hidden;
+      padding: 150px 0 56px; text-align: center;
     }
-    .portfolio-hero .eyebrow { justify-content: center; }
-    .portfolio-hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.02;
-      margin: 14px 0 16px;
+    .pf-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .pf-hero .container { position: relative; z-index: 1; }
+    .pf-hero .eyebrow { justify-content: center; }
+    .pf-hero h1 {
+      font-size: clamp(2.5rem, 6.5vw, 4.4rem); font-weight: 800;
+      letter-spacing: -.035em; line-height: 1.0; margin: 16px 0 18px;
     }
-    .portfolio-hero p {
-      max-width: 620px; margin: 0 auto;
-      color: var(--ink-mute, #525252);
-      font-size: 1.06rem; line-height: 1.6;
+    .pf-hero h1 .grad {
+      background: linear-gradient(120deg,#2563eb,#8b5cf6 48%,#ec4899);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .tile-meta {
-      display: flex; align-items: center; gap: 8px;
-      margin-bottom: 12px; flex-wrap: wrap;
+    .pf-hero p { max-width: 600px; margin: 0 auto; color: #5b5b5b; font-size: 1.08rem; line-height: 1.6; }
+    .pf-stat-row { display: inline-flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+    .pf-stat b { display: block; font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+    .pf-stat span { font-size: .82rem; color: #888; text-transform: uppercase; letter-spacing: .06em; }
+
+    .pf-section { padding: 18px 0 90px; }
+    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+
+    .show {
+      --accent: #2563eb;
+      position: relative;
+      grid-column: span 6;
+      border-radius: 22px; overflow: hidden;
+      background: #fff; border: 1px solid #e7e7e7;
+      box-shadow: 0 18px 50px -34px rgba(0,0,0,.4);
+      opacity: 0; transform: translateY(34px);
+      transition: box-shadow .5s var(--ease,cubic-bezier(.22,1,.36,1)), transform .5s var(--ease,cubic-bezier(.22,1,.36,1)), border-color .5s;
+      will-change: transform;
     }
-    .tile-chip {
-      font-size: 11.5px; font-weight: 600; letter-spacing: .02em;
-      padding: 3px 9px; border-radius: 20px;
-      background: rgba(37,99,235,.08); color: #2563eb;
-      border: 1px solid rgba(37,99,235,.14);
+    .show.in { opacity: 1; transform: none; }
+    .show.feat { grid-column: span 7; }
+    .show.small { grid-column: span 5; }
+    .show:hover {
+      border-color: color-mix(in srgb, var(--accent) 50%, #e7e7e7);
+      box-shadow: 0 40px 80px -40px color-mix(in srgb, var(--accent) 60%, transparent);
     }
-    .tile-chip.sale { background: rgba(184,240,81,.18); color: #4d7c0f; border-color: rgba(132,204,22,.3); }
-    .tile-stack { font-size: 11.5px; color: #a3a3a3; font-weight: 500; }
-    .tile-link.ext::after { content: " ↗"; }
+    .show-glow {
+      position: absolute; inset: -1px; z-index: 0; pointer-events: none; opacity: 0;
+      background: radial-gradient(60% 60% at var(--gx,50%) 0%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 70%);
+      transition: opacity .5s ease;
+    }
+    .show:hover .show-glow { opacity: 1; }
+
+    .show-screen {
+      position: relative; z-index: 1; width: 100%;
+      aspect-ratio: 1440 / 860; overflow: hidden; background: #0c0c10;
+      border-bottom: 1px solid #ececec;
+    }
+    .show-bar {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 3; height: 38px;
+      display: flex; align-items: center; gap: 9px; padding: 0 14px;
+      background: rgba(20,20,24,.86); backdrop-filter: blur(6px);
+    }
+    .show-bar .dots { display: flex; gap: 6px; }
+    .show-bar .dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+    .show-bar .url {
+      flex: 1; text-align: center; font-size: 12px; color: #c9c9d2;
+      background: rgba(255,255,255,.07); border-radius: 7px; padding: 4px 10px; max-width: 320px; margin: 0 auto;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      display: inline-flex; align-items: center; gap: 6px; justify-content: center;
+    }
+    .show-bar .url svg { width: 11px; height: 11px; color: #34d399; flex: none; }
+    .show-live {
+      position: absolute; z-index: 4; top: 48px; right: 12px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      color: #052e16; background: #4ade80; padding: 3px 9px; border-radius: 20px;
+    }
+    .show-live i { width: 6px; height: 6px; border-radius: 50%; background: #052e16; animation: pfPulse 1.6s infinite; }
+    @keyframes pfPulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+    .show-vp { position: absolute; top: 38px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+    .show-vp iframe {
+      position: absolute; top: 0; left: 0;
+      width: 1440px; height: 900px;
+      border: 0; transform-origin: 0 0; pointer-events: none; background: #fff;
+      opacity: 0; transition: opacity .8s ease, transform .6s var(--ease,cubic-bezier(.22,1,.36,1));
+    }
+    .show-vp iframe.loaded { opacity: 1; }
+    .show:hover .show-vp iframe.loaded { transform: scale(calc(var(--scale,1) * 1.04)); }
+    .show-poster {
+      position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; gap: 8px; text-align: center;
+      background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 90%, #000), color-mix(in srgb, var(--accent) 55%, #000));
+      transition: opacity .8s ease; color: #fff;
+    }
+    .show-poster.hide { opacity: 0; }
+    .show-poster .pm { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; }
+    .show-poster .pl { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
+
+    .show-info { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 20px 22px 22px; background: #fff; }
+    .show-info h3 { margin: 0 0 5px; font-size: 1.28rem; font-weight: 700; letter-spacing: -.015em; }
+    .show-info p { margin: 0; font-size: .9rem; color: #6b6b6b; line-height: 1.45; }
+    .show-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+    .show-tags span { font-size: 11px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, #fff); border: 1px solid color-mix(in srgb, var(--accent) 22%, #fff); padding: 3px 9px; border-radius: 20px; }
+    .visit {
+      flex: none; display: inline-flex; align-items: center; gap: 7px;
+      font-size: .92rem; font-weight: 600; color: #fff;
+      background: var(--accent); padding: 11px 18px; border-radius: 12px;
+      transition: transform .2s var(--ease,cubic-bezier(.22,1,.36,1)), box-shadow .2s, filter .2s;
+      white-space: nowrap;
+    }
+    .visit:hover { color: #fff; transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 12px 26px -12px var(--accent); }
+    .visit svg { width: 16px; height: 16px; }
+
+    /* CTA bento cell */
+    .show-cta {
+      grid-column: span 5; border-radius: 22px; padding: 34px;
+      display: flex; flex-direction: column; justify-content: center; gap: 14px;
+      background: linear-gradient(150deg,#0a0a0a,#1a1430); color: #fff;
+      opacity: 0; transform: translateY(34px);
+      transition: opacity .5s var(--ease,cubic-bezier(.22,1,.36,1)), transform .5s var(--ease,cubic-bezier(.22,1,.36,1));
+    }
+    .show-cta.in { opacity: 1; transform: none; }
+    .show-cta h3 { margin: 0; font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; }
+    .show-cta p { margin: 0; color: #b9b9c4; font-size: .98rem; line-height: 1.55; }
+    .show-cta a { align-self: flex-start; margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; background: #fff; color: #0a0a0a; padding: 12px 22px; border-radius: 999px; transition: transform .2s, box-shadow .2s; }
+    .show-cta a:hover { color: #0a0a0a; transform: translateY(-2px); box-shadow: 0 16px 36px -14px rgba(167,139,250,.8); }
+
+    @media (max-width: 900px) {
+      .pf-hero { padding: 120px 0 36px; }
+      .bento { gap: 18px; }
+      .show, .show.feat, .show.small, .show-cta { grid-column: span 12; }
+    }
   </style>
 </head>
 <body>
   <div class="scroll-progress-bar"></div>
   <div class="cursor-glow"></div>
 
-  <!-- ============ NAV (mirrors home) ============ -->
+  <!-- ============ NAV ============ -->
   <header class="nav">
     <div class="nav-inner">
       <a href="/" class="brand"><span>Rylo Labz</span></a>
@@ -99,147 +197,138 @@
 
   <main>
     <!-- ============ HERO ============ -->
-    <section class="portfolio-hero">
+    <section class="pf-hero">
+      <canvas class="pf-hero-canvas" id="pf-hero-canvas" aria-hidden="true"></canvas>
       <div class="container">
-        <span class="eyebrow"><span class="eyebrow-dot"></span> Client Work</span>
-        <h1>Websites we've <span class="serif-italic">shipped.</span></h1>
-        <p>
-          Real brands, real businesses, real code. Each of these is designed and built
-          end-to-end by Rylo Labz — from hospitality and healthcare to trades and catering.
-        </p>
+        <span class="eyebrow"><span class="eyebrow-dot"></span> Client Work · Live in production</span>
+        <h1>Websites we've <span class="grad">shipped.</span></h1>
+        <p>Real brands, running on the open web right now. Every preview below is the actual live site — scroll, then click through to visit it.</p>
+        <div class="pf-stat-row">
+          <div class="pf-stat"><b>5</b><span>Live sites</span></div>
+          <div class="pf-stat"><b>4</b><span>Industries</span></div>
+          <div class="pf-stat"><b>100%</b><span>Shipped by Rylo</span></div>
+        </div>
       </div>
     </section>
 
-    <!-- ============ PROJECT GRID ============ -->
-    <section class="section" style="padding-top:14px">
+    <!-- ============ BENTO SHOWCASE ============ -->
+    <section class="pf-section">
       <div class="container">
-        <div class="tiles-grid">
+        <div class="bento" id="bento">
 
           <!-- Gordon's Bnb -->
-          <article class="tile reveal">
-            <div class="tile-mark" aria-hidden="true">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="40" width="150" height="120" rx="8" fill="#c8a35a"/>
-                <rect x="30" y="28" width="150" height="120" rx="8" fill="#1f3d2b"/>
-                <!-- house roof -->
-                <path d="M60 96 L105 60 L150 96 Z" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/>
-                <rect x="70" y="96" width="70" height="42" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/>
-                <rect x="82" y="108" width="18" height="30" fill="#1f3d2b"/>
-                <rect x="110" y="106" width="18" height="14" fill="#c8a35a"/>
-                <!-- stars -->
-                <circle cx="56" cy="56" r="2.5" fill="#c8a35a"/>
-                <circle cx="150" cy="54" r="2" fill="#c8a35a"/>
-              </svg>
+          <article class="show feat" style="--accent:#3f6f4f">
+            <span class="show-glow"></span>
+            <div class="show-screen">
+              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>gordons.rylolabz.com</span></div>
+              <span class="show-live"><i></i> Live</span>
+              <div class="show-vp">
+                <div class="show-poster"><span class="pm">Gordon's Bnb</span><span class="pl">Loading live hero…</span></div>
+                <iframe data-src="https://gordons.rylolabz.com" title="Gordon's Bnb — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
             </div>
-            <div class="tile-meta">
-              <span class="tile-chip">Hospitality</span>
-              <span class="tile-stack">Next.js · Booking flow</span>
+            <div class="show-info">
+              <div>
+                <h3>Gordon's Bnb</h3>
+                <p>Boutique bed &amp; breakfast — cinematic editorial design with a live booking flow.</p>
+                <div class="show-tags"><span>Hospitality</span><span>Next.js</span><span>Booking</span></div>
+              </div>
+              <a class="visit" href="https://gordons.rylolabz.com" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <h3>Gordon's Bnb</h3>
-            <p>Boutique bed &amp; breakfast site with a cinematic editorial design, gallery lightbox, and a multi-step booking flow with live pricing.</p>
-            <a href="https://gordons.rylolabz.com" target="_blank" rel="noopener" class="tile-link ext">Visit site</a>
           </article>
 
-          <!-- Long Range Pharmacies -->
-          <article class="tile reveal">
-            <div class="tile-mark" aria-hidden="true">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <rect x="22" y="34" width="148" height="132" rx="8" fill="#3b82f6"/>
-                <rect x="38" y="20" width="148" height="132" rx="8" fill="#22c55e"/>
-                <rect x="30" y="30" width="140" height="128" rx="10" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/>
-                <!-- medical cross -->
-                <rect x="88" y="58" width="24" height="72" rx="5" fill="#22c55e"/>
-                <rect x="64" y="82" width="72" height="24" rx="5" fill="#22c55e"/>
-                <!-- pill -->
-                <rect x="58" y="128" width="44" height="20" rx="10" fill="#3b82f6" transform="rotate(-20 80 138)"/>
-                <rect x="58" y="128" width="22" height="20" rx="10" fill="#fff" transform="rotate(-20 80 138)" opacity=".85"/>
-              </svg>
+          <!-- Pharmacy -->
+          <article class="show small" style="--accent:#1e7a5f">
+            <span class="show-glow"></span>
+            <div class="show-screen">
+              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>pharmacy.rylolabz.com</span></div>
+              <span class="show-live"><i></i> Live</span>
+              <div class="show-vp">
+                <div class="show-poster"><span class="pm">Long Range</span><span class="pl">Loading live hero…</span></div>
+                <iframe data-src="https://pharmacy.rylolabz.com" title="Long Range Pharmacies — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
             </div>
-            <div class="tile-meta">
-              <span class="tile-chip">Healthcare</span>
-              <span class="tile-stack">Vite · Tailwind</span>
+            <div class="show-info">
+              <div>
+                <h3>Long Range Pharmacies</h3>
+                <p>Clear, trustworthy pharmacy site built for a healthcare audience.</p>
+                <div class="show-tags"><span>Healthcare</span><span>Vite</span></div>
+              </div>
+              <a class="visit" href="https://pharmacy.rylolabz.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <h3>Long Range Pharmacies</h3>
-            <p>Clean, trustworthy pharmacy website — services, branch info and promotions presented for a healthcare audience that needs clarity fast.</p>
-            <a href="https://pharmacy.rylolabz.com" target="_blank" rel="noopener" class="tile-link ext">Visit site</a>
           </article>
 
           <!-- Diamond Plumbers -->
-          <article class="tile reveal">
-            <div class="tile-mark" aria-hidden="true">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="38" width="150" height="124" rx="8" fill="#0ea5e9"/>
-                <rect x="34" y="24" width="150" height="124" rx="8" fill="#0f172a"/>
-                <!-- diamond -->
-                <path d="M105 48 L132 74 L105 124 L78 74 Z" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
-                <path d="M78 74 L132 74" stroke="#fff" stroke-width="1.5"/>
-                <path d="M105 48 L105 74" stroke="#fff" stroke-width="1"/>
-                <!-- wrench -->
-                <path d="M120 120 l24 24" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
-                <circle cx="118" cy="118" r="11" fill="none" stroke="#fff" stroke-width="7"/>
-              </svg>
+          <article class="show small" style="--accent:#9a6437">
+            <span class="show-glow"></span>
+            <div class="show-screen">
+              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>plumbers.rylolabz.com</span></div>
+              <span class="show-live"><i></i> Live</span>
+              <div class="show-vp">
+                <div class="show-poster"><span class="pm">Diamond Plumbers</span><span class="pl">Loading live hero…</span></div>
+                <iframe data-src="https://plumbers.rylolabz.com" title="Diamond Plumbers — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
             </div>
-            <div class="tile-meta">
-              <span class="tile-chip">Trades · Lead-gen</span>
-              <span class="tile-stack">Next.js · Supabase</span>
+            <div class="show-info">
+              <div>
+                <h3>Diamond Plumbers</h3>
+                <p>Premium lead-gen site for Harare's emergency plumbing team.</p>
+                <div class="show-tags"><span>Trades</span><span>Next.js</span><span>Lead-gen</span></div>
+              </div>
+              <a class="visit" href="https://plumbers.rylolabz.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <h3>Diamond Plumbers</h3>
-            <p>Premium lead-generation site for Harare's plumbing emergency team — fast quote capture, image uploads, and conversion-focused design.</p>
-            <a href="https://plumbers.rylolabz.com" target="_blank" rel="noopener" class="tile-link ext">Visit site</a>
           </article>
 
           <!-- Moemas Catering -->
-          <article class="tile reveal">
-            <div class="tile-mark" aria-hidden="true">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <rect x="22" y="36" width="148" height="128" rx="8" fill="#f59e0b"/>
-                <rect x="38" y="22" width="148" height="128" rx="8" fill="#7c2d12"/>
-                <!-- plate / cloche -->
-                <ellipse cx="105" cy="132" rx="52" ry="12" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/>
-                <path d="M62 130 A43 43 0 0 1 148 130 Z" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/>
-                <circle cx="105" cy="80" r="4" fill="#f59e0b"/>
-                <!-- fork & knife -->
-                <rect x="52" y="56" width="3.5" height="64" rx="2" fill="#7c2d12"/>
-                <rect x="156" y="56" width="3.5" height="64" rx="2" fill="#7c2d12"/>
-              </svg>
+          <article class="show feat" style="--accent:#4a5c4e">
+            <span class="show-glow"></span>
+            <div class="show-screen">
+              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>catering.rylolabz.com</span></div>
+              <span class="show-live"><i></i> Live</span>
+              <div class="show-vp">
+                <div class="show-poster"><span class="pm">Moemas Catering</span><span class="pl">Loading live hero…</span></div>
+                <iframe data-src="https://catering.rylolabz.com" title="Moemas Catering — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
             </div>
-            <div class="tile-meta">
-              <span class="tile-chip">Food · Catering</span>
-              <span class="tile-stack">React · Vite</span>
+            <div class="show-info">
+              <div>
+                <h3>Moemas Catering</h3>
+                <p>Owner-led fine catering in Cape Town — elegant, scroll-driven storytelling.</p>
+                <div class="show-tags"><span>Food</span><span>React</span><span>Static</span></div>
+              </div>
+              <a class="visit" href="https://catering.rylolabz.com" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <h3>Moemas Catering</h3>
-            <p>Owner-led fine catering in Cape Town — an elegant static site with scroll-reveal storytelling and direct email/WhatsApp enquiry hand-off.</p>
-            <a href="https://catering.rylolabz.com" target="_blank" rel="noopener" class="tile-link ext">Visit site</a>
           </article>
 
           <!-- The Smile Dentist -->
-          <article class="tile reveal">
-            <div class="tile-mark" aria-hidden="true">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <rect x="22" y="34" width="148" height="132" rx="8" fill="#8b5cf6"/>
-                <rect x="38" y="20" width="148" height="132" rx="8" fill="#06b6d4"/>
-                <rect x="30" y="30" width="140" height="128" rx="10" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/>
-                <!-- tooth -->
-                <path d="M100 60 c-18 -14 -42 -6 -42 18 c0 18 8 26 12 40 c3 10 6 16 10 16 c5 0 5 -10 8 -10 c3 0 3 10 8 10 c4 0 7 -6 10 -16 c4 -14 12 -22 12 -40 c0 -24 -24 -32 -28 -18 z" fill="#f5f5f5" stroke="#0a0a0a" stroke-width="1.5"/>
-                <!-- sparkle -->
-                <path d="M128 64 l3 -7 3 7 7 3 -7 3 -3 7 -3 -7 -7 -3z" fill="#06b6d4"/>
-              </svg>
+          <article class="show feat" style="--accent:#0891b2">
+            <span class="show-glow"></span>
+            <div class="show-screen">
+              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>dentist.rylolabz.com</span></div>
+              <span class="show-live"><i></i> Live</span>
+              <div class="show-vp">
+                <div class="show-poster"><span class="pm">The Smile Dentist</span><span class="pl">Loading live hero…</span></div>
+                <iframe data-src="https://dentist.rylolabz.com" title="The Smile Dentist — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
             </div>
-            <div class="tile-meta">
-              <span class="tile-chip sale">Available to license</span>
-              <span class="tile-stack">Vite · TypeScript</span>
+            <div class="show-info">
+              <div>
+                <h3>The Smile Dentist</h3>
+                <p>A polished dental-practice template — ready to brand. Available to license.</p>
+                <div class="show-tags"><span>Dental</span><span>Vite</span><span>For sale</span></div>
+              </div>
+              <a class="visit" href="https://dentist.rylolabz.com" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <h3>The Smile Dentist</h3>
-            <p>A polished dental-practice template — appointments, services and blog — ready to brand and launch. Available to buy or license through Rylo Labz.</p>
-            <a href="https://dentist.rylolabz.com" target="_blank" rel="noopener" class="tile-link ext">View template</a>
           </article>
 
-          <!-- CTA tile -->
-          <article class="tile reveal" style="display:flex;flex-direction:column;justify-content:center;background:var(--grad-soft, linear-gradient(135deg,rgba(37,99,235,.08),rgba(139,92,246,.08),rgba(236,72,153,.08)))">
-            <h3 style="margin-top:0">Your site, next.</h3>
+          <!-- CTA cell -->
+          <div class="show-cta">
+            <h3>Your site, next.</h3>
             <p>Send us your business. We design, build and ship a site like these — usually a working demo within two weeks.</p>
-            <a href="/#contact" class="tile-link">Start a project →</a>
-          </article>
+            <a href="/#contact">Start a project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
 
         </div>
       </div>
@@ -306,6 +395,122 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
   <script src="script.js?v=54"></script>
+
+  <!-- ===== Portfolio showcase motion ===== -->
+  <script>
+  (function () {
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- Scale each live iframe to fit its frame (responsive, crisp) ----
+    var screens = Array.prototype.slice.call(document.querySelectorAll('.show-vp'));
+    function fit() {
+      screens.forEach(function (vp) {
+        var f = vp.querySelector('iframe');
+        if (!f) return;
+        var scale = vp.clientWidth / 1440;
+        f.style.setProperty('--scale', scale);
+        f.style.transform = 'scale(' + scale + ')';
+      });
+    }
+    fit();
+    window.addEventListener('resize', fit);
+
+    // ---- Lazy-mount the real sites ----
+    function mount(vp) {
+      var f = vp.querySelector('iframe');
+      if (!f || f.dataset.mounted) return;
+      f.dataset.mounted = '1';
+      var poster = vp.querySelector('.show-poster');
+      var reveal = function () { f.classList.add('loaded'); if (poster) poster.classList.add('hide'); };
+      f.addEventListener('load', reveal);
+      f.src = f.getAttribute('data-src');
+      setTimeout(reveal, 3200); // safety net for cross-origin loads
+    }
+    if ('IntersectionObserver' in window) {
+      var mo = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { mount(e.target); mo.unobserve(e.target); } });
+      }, { rootMargin: '500px' });
+      screens.forEach(function (s) { mo.observe(s); });
+    } else { screens.forEach(mount); }
+
+    // ---- Reveal cards on scroll + pointer glow ----
+    var cells = Array.prototype.slice.call(document.querySelectorAll('.show, .show-cta'));
+    if (prefersReduced) {
+      cells.forEach(function (c) { c.classList.add('in'); });
+    } else if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      cells.forEach(function (c, i) {
+        ScrollTrigger.create({
+          trigger: c, start: 'top 86%', once: true,
+          onEnter: function () { gsap.to(c, { opacity: 1, y: 0, duration: 0.7, delay: (i % 2) * 0.08, ease: 'power3.out', onStart: function(){ c.classList.add('in'); } }); }
+        });
+      });
+    } else {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      cells.forEach(function (c) { io.observe(c); });
+    }
+    // glow follows cursor x
+    document.querySelectorAll('.show').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--gx', ((e.clientX - r.left) / r.width * 100) + '%');
+      });
+    });
+
+    // ---- Three.js soft backdrop in the hero ----
+    var canvas = document.getElementById('pf-hero-canvas');
+    var hero = document.querySelector('.pf-hero');
+    if (canvas && hero && !prefersReduced && typeof THREE !== 'undefined') {
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); }
+      catch (e) { renderer = null; }
+      if (renderer) {
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        var scene = new THREE.Scene();
+        var cam = new THREE.PerspectiveCamera(55, 1, 0.1, 100); cam.position.z = 14;
+        var COLORS = [0x2563eb, 0x8b5cf6, 0xec4899, 0x22d3ee];
+        var shapes = [];
+        for (var i = 0; i < 6; i++) {
+          var m = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(1.0 + Math.random() * 1.5, 0),
+            new THREE.MeshBasicMaterial({ color: COLORS[i % COLORS.length], wireframe: true, transparent: true, opacity: 0.16 })
+          );
+          m.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 9, (Math.random() - 0.5) * 6 - 2);
+          m.userData = { sx: 0.001 + Math.random() * 0.003, sy: 0.001 + Math.random() * 0.003, ph: Math.random() * 6.28 };
+          scene.add(m); shapes.push(m);
+        }
+        var pn = 260, pa = new Float32Array(pn * 3);
+        for (var j = 0; j < pn; j++) { pa[j*3]=(Math.random()-0.5)*40; pa[j*3+1]=(Math.random()-0.5)*18; pa[j*3+2]=(Math.random()-0.5)*12; }
+        var pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pa, 3));
+        var pts = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0x8b5cf6, size: 0.05, transparent: true, opacity: 0.4 }));
+        scene.add(pts);
+        var rs = function () { var w = hero.clientWidth, h = hero.clientHeight; if (!w||!h) return; renderer.setSize(w, h, false); cam.aspect = w/h; cam.updateProjectionMatrix(); };
+        rs(); window.addEventListener('resize', rs);
+        var mx = 0, my = 0;
+        window.addEventListener('mousemove', function (e) { mx = e.clientX/window.innerWidth-0.5; my = e.clientY/window.innerHeight-0.5; }, { passive: true });
+        var vis = true;
+        if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }, { threshold: 0 }).observe(hero);
+        var t = 0;
+        (function loop(){
+          requestAnimationFrame(loop);
+          if (!vis) return;
+          t += 0.01;
+          for (var k = 0; k < shapes.length; k++) { var s = shapes[k]; s.rotation.x += s.userData.sx; s.rotation.y += s.userData.sy; s.position.y += Math.sin(t + s.userData.ph) * 0.0025; }
+          pts.rotation.y += 0.0005;
+          cam.position.x += (mx*2.4 - cam.position.x) * 0.04;
+          cam.position.y += (-my*1.6 - cam.position.y) * 0.04;
+          cam.lookAt(0,0,0);
+          renderer.render(scene, cam);
+        })();
+      }
+    }
+  })();
+  </script>
 </body>
 </html>
