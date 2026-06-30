@@ -63,8 +63,8 @@
       will-change: transform;
     }
     .show.in { opacity: 1; transform: none; }
-    .show.feat { grid-column: span 8; }
-    .show.small { grid-column: span 4; }
+    .show.feat { grid-column: span 6; }
+    .show.small { grid-column: span 6; }
     .show:hover {
       border-color: color-mix(in srgb, var(--accent) 50%, #e7e7e7);
       box-shadow: 0 40px 80px -40px color-mix(in srgb, var(--accent) 60%, transparent);
@@ -78,7 +78,7 @@
 
     .show-screen {
       position: relative; z-index: 1; width: 100%;
-      aspect-ratio: 1440 / 920; overflow: hidden; background: #0c0c10;
+      aspect-ratio: 1440 / 940; overflow: hidden; background: #0c0c10;
       border-bottom: 1px solid #ececec;
     }
     .show-bar {
@@ -139,7 +139,7 @@
 
     /* CTA bento cell */
     .show-cta {
-      grid-column: span 4; border-radius: 22px; padding: 34px;
+      grid-column: span 6; border-radius: 22px; padding: 34px;
       display: flex; flex-direction: column; justify-content: center; gap: 14px;
       background: linear-gradient(150deg,#0a0a0a,#1a1430); color: #fff;
       opacity: 0; transform: translateY(34px);
