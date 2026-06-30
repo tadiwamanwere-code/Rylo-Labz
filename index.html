@@ -464,6 +464,230 @@
       </div>
     </section>
 
+    <!-- ============ CLIENT WORK SHOWCASE ============ -->
+    <style>
+      .cwork {
+        position: relative;
+        background: #07070a;
+        color: #fafafa;
+        overflow: hidden;
+        padding: 96px 0 104px;
+        isolation: isolate;
+      }
+      .cwork-canvas {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        z-index: 0; pointer-events: none;
+        opacity: .9;
+      }
+      .cwork::after { /* vignette to keep edges deep */
+        content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+        background: radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(7,7,10,.7) 100%);
+      }
+      .cwork-inner { position: relative; z-index: 2; }
+      .cwork-head { text-align: center; max-width: 720px; margin: 0 auto 44px; padding: 0 24px; }
+      .cwork-head .eyebrow {
+        display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+        font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+        color: #a78bfa; margin-bottom: 16px;
+      }
+      .cwork-head .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(135deg,#3b82f6,#ec4899); box-shadow: 0 0 12px #8b5cf6; }
+      .cwork-title {
+        font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -.03em;
+        line-height: 1.04; margin: 0 0 16px;
+      }
+      .cwork-title .grad {
+        background: linear-gradient(120deg,#60a5fa,#a78bfa 45%,#f472b6);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .cwork-sub { color: #b4b4c0; font-size: 1.05rem; line-height: 1.6; margin: 0; }
+
+      .cwork-viewport { position: relative; overflow: hidden; }
+      .cwork-track {
+        display: flex; gap: 30px; padding: 14px 6vw; width: max-content;
+        will-change: transform;
+      }
+      /* When JS pinning is off (mobile / no-gsap): swipeable scroller */
+      .cwork-viewport.is-native { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+      .cwork-viewport.is-native .cwork-track { width: max-content; }
+      .cwork-viewport.is-native .cwork-card { scroll-snap-align: center; }
+      .cwork-viewport::-webkit-scrollbar { height: 0; }
+
+      .cwork-card {
+        flex: 0 0 auto; width: 384px; display: block; color: inherit;
+        transform: translateZ(0);
+        transition: transform .5s cubic-bezier(.22,1,.36,1);
+      }
+      .cwork-frame {
+        border-radius: 16px; overflow: hidden;
+        background: #15151a; border: 1px solid rgba(255,255,255,.09);
+        box-shadow: 0 30px 60px -28px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.02) inset;
+        transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .5s;
+      }
+      .cwork-card:hover .cwork-frame {
+        transform: translateY(-10px);
+        border-color: rgba(167,139,250,.55);
+        box-shadow: 0 44px 80px -30px rgba(124,58,237,.55), 0 0 0 1px rgba(167,139,250,.25) inset;
+      }
+      .cwork-bar {
+        display: flex; align-items: center; gap: 8px;
+        padding: 11px 14px; background: #1d1d23; border-bottom: 1px solid rgba(255,255,255,.06);
+      }
+      .cwork-dots { display: flex; gap: 6px; }
+      .cwork-dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+      .cwork-url {
+        flex: 1; text-align: center; font-size: 12px; color: #9a9aa6;
+        background: #0f0f13; border-radius: 7px; padding: 4px 10px;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        display: inline-flex; align-items: center; gap: 6px; justify-content: center;
+      }
+      .cwork-url svg { width: 11px; height: 11px; flex: none; color: #34d399; }
+      .cwork-shot {
+        position: relative; width: 384px; height: 256px; overflow: hidden; background: #0c0c10;
+      }
+      .cwork-shot iframe {
+        position: absolute; top: 0; left: 0;
+        width: 1280px; height: 853px;
+        transform: scale(.3); transform-origin: 0 0;
+        border: 0; pointer-events: none; background: #fff;
+        opacity: 0; transition: opacity .7s ease;
+      }
+      .cwork-shot iframe.loaded { opacity: 1; }
+      .cwork-poster {
+        position: absolute; inset: 0; display: grid; place-items: center; gap: 6px;
+        text-align: center; transition: opacity .7s ease;
+      }
+      .cwork-poster.hide { opacity: 0; }
+      .cwork-poster .pmark { font-size: 26px; font-weight: 800; letter-spacing: -.02em; color: #fff; }
+      .cwork-poster .pload { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+      .cwork-live {
+        position: absolute; top: 10px; right: 10px; z-index: 3;
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+        color: #052e16; background: #4ade80; padding: 3px 9px; border-radius: 20px;
+      }
+      .cwork-live i { width: 6px; height: 6px; border-radius: 50%; background: #052e16; animation: cwPulse 1.6s infinite; }
+      @keyframes cwPulse { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+      .cwork-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 16px 4px 0; }
+      .cwork-meta h3 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+      .cwork-meta span { font-size: 12.5px; color: #8b8b96; white-space: nowrap; }
+      .cwork-open { display: inline-flex; align-items: center; gap: 5px; margin-top: 6px; padding: 0 4px; font-size: 13px; font-weight: 600; color: #a78bfa; }
+
+      .cwork-foot { text-align: center; margin-top: 48px; padding: 0 24px; }
+      .cwork-cta {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-weight: 600; font-size: 16px; color: #07070a;
+        background: #fff; padding: 15px 28px; border-radius: 999px;
+        transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s;
+        will-change: transform;
+      }
+      .cwork-cta:hover { box-shadow: 0 18px 40px -14px rgba(167,139,250,.7); color: #07070a; }
+      .cwork-cta svg { width: 18px; height: 18px; }
+      .cwork-hint { display: block; margin-top: 16px; font-size: 12.5px; color: #6c6c78; letter-spacing: .02em; }
+
+      @media (max-width: 900px) {
+        .cwork { padding: 72px 0 80px; }
+        .cwork-track { gap: 18px; padding: 14px 20px; }
+        .cwork-card { width: 300px; }
+        .cwork-shot { width: 300px; height: 200px; }
+        .cwork-shot iframe { transform: scale(.234375); } /* 300/1280 */
+        .cwork-hint { display: none; }
+      }
+    </style>
+
+    <section class="cwork" id="client-work" aria-label="Client work portfolio">
+      <canvas class="cwork-canvas" id="cwork-canvas" aria-hidden="true"></canvas>
+      <div class="cwork-inner">
+        <div class="cwork-head reveal">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> Client Work · Live in production</span>
+          <h2 class="cwork-title">Real brands. Real sites. <span class="grad">Shipped &amp; live.</span></h2>
+          <p class="cwork-sub">
+            Not mockups — these are real businesses running on sites we designed and built,
+            live right now on the open web. Scroll through the work.
+          </p>
+        </div>
+
+        <div class="cwork-viewport" id="cwork-viewport">
+          <div class="cwork-track" id="cwork-track">
+
+            <a class="cwork-card" href="https://gordons.rylolabz.com" target="_blank" rel="noopener" data-mark="G" data-tint="#1f3d2b">
+              <div class="cwork-frame">
+                <div class="cwork-bar"><span class="cwork-dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="cwork-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>gordons.rylolabz.com</span></div>
+                <div class="cwork-shot">
+                  <span class="cwork-live"><i></i> Live</span>
+                  <div class="cwork-poster"><span class="pmark">Gordon's Bnb</span><span class="pload">Loading preview…</span></div>
+                  <iframe data-src="https://gordons.rylolabz.com" title="Gordon's Bnb live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                </div>
+              </div>
+              <div class="cwork-meta"><h3>Gordon's Bnb</h3><span>Hospitality · Next.js</span></div>
+              <span class="cwork-open">Visit live site ↗</span>
+            </a>
+
+            <a class="cwork-card" href="https://pharmacy.rylolabz.com" target="_blank" rel="noopener" data-mark="P" data-tint="#0e7490">
+              <div class="cwork-frame">
+                <div class="cwork-bar"><span class="cwork-dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="cwork-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>pharmacy.rylolabz.com</span></div>
+                <div class="cwork-shot">
+                  <span class="cwork-live"><i></i> Live</span>
+                  <div class="cwork-poster"><span class="pmark">Long Range</span><span class="pload">Loading preview…</span></div>
+                  <iframe data-src="https://pharmacy.rylolabz.com" title="Long Range Pharmacies live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                </div>
+              </div>
+              <div class="cwork-meta"><h3>Long Range Pharmacies</h3><span>Healthcare · Vite</span></div>
+              <span class="cwork-open">Visit live site ↗</span>
+            </a>
+
+            <a class="cwork-card" href="https://plumbers.rylolabz.com" target="_blank" rel="noopener" data-mark="D" data-tint="#0369a1">
+              <div class="cwork-frame">
+                <div class="cwork-bar"><span class="cwork-dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="cwork-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>plumbers.rylolabz.com</span></div>
+                <div class="cwork-shot">
+                  <span class="cwork-live"><i></i> Live</span>
+                  <div class="cwork-poster"><span class="pmark">Diamond Plumbers</span><span class="pload">Loading preview…</span></div>
+                  <iframe data-src="https://plumbers.rylolabz.com" title="Diamond Plumbers live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                </div>
+              </div>
+              <div class="cwork-meta"><h3>Diamond Plumbers</h3><span>Trades · Next.js</span></div>
+              <span class="cwork-open">Visit live site ↗</span>
+            </a>
+
+            <a class="cwork-card" href="https://catering.rylolabz.com" target="_blank" rel="noopener" data-mark="M" data-tint="#92400e">
+              <div class="cwork-frame">
+                <div class="cwork-bar"><span class="cwork-dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="cwork-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>catering.rylolabz.com</span></div>
+                <div class="cwork-shot">
+                  <span class="cwork-live"><i></i> Live</span>
+                  <div class="cwork-poster"><span class="pmark">Moemas Catering</span><span class="pload">Loading preview…</span></div>
+                  <iframe data-src="https://catering.rylolabz.com" title="Moemas Catering live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                </div>
+              </div>
+              <div class="cwork-meta"><h3>Moemas Catering</h3><span>Food · React</span></div>
+              <span class="cwork-open">Visit live site ↗</span>
+            </a>
+
+            <a class="cwork-card" href="https://dentist.rylolabz.com" target="_blank" rel="noopener" data-mark="S" data-tint="#155e75">
+              <div class="cwork-frame">
+                <div class="cwork-bar"><span class="cwork-dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="cwork-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>dentist.rylolabz.com</span></div>
+                <div class="cwork-shot">
+                  <span class="cwork-live"><i></i> Live</span>
+                  <div class="cwork-poster"><span class="pmark">The Smile Dentist</span><span class="pload">Loading preview…</span></div>
+                  <iframe data-src="https://dentist.rylolabz.com" title="The Smile Dentist live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                </div>
+              </div>
+              <div class="cwork-meta"><h3>The Smile Dentist</h3><span>Dental · Template</span></div>
+              <span class="cwork-open">Visit live site ↗</span>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="cwork-foot reveal">
+          <a class="cwork-cta" id="cwork-cta" href="/portfolio">
+            <span>Explore all client work</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="cwork-hint">Scroll to slide through the work →</span>
+        </div>
+      </div>
+    </section>
+
     <!-- How-it-works section removed -->
 
     <!-- ============ WHY RYLO ============ -->
@@ -725,6 +949,144 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
   <script src="script.js?v=16"></script>
+
+  <!-- ============ CLIENT WORK SHOWCASE — motion ============ -->
+  <script>
+  (function () {
+    var section = document.getElementById('client-work');
+    if (!section) return;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cards = Array.prototype.slice.call(section.querySelectorAll('.cwork-card'));
+
+    // ---- Lazy-mount live iframe previews ----
+    function mount(card) {
+      var f = card.querySelector('iframe');
+      if (!f || f.dataset.mounted) return;
+      f.dataset.mounted = '1';
+      var poster = card.querySelector('.cwork-poster');
+      var reveal = function () { f.classList.add('loaded'); if (poster) poster.classList.add('hide'); };
+      f.addEventListener('load', reveal);
+      f.src = f.getAttribute('data-src');
+      setTimeout(reveal, 3000); // safety net: cross-origin load events can be unreliable
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { mount(e.target); io.unobserve(e.target); } });
+      }, { rootMargin: '400px' });
+      cards.forEach(function (c) { io.observe(c); });
+    } else {
+      cards.forEach(mount);
+    }
+
+    // ---- GSAP pinned horizontal scroll (desktop, motion on) ----
+    var viewport = document.getElementById('cwork-viewport');
+    var track = document.getElementById('cwork-track');
+    var canPin = !prefersReduced
+      && window.matchMedia('(min-width: 901px)').matches
+      && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+    if (canPin) {
+      gsap.registerPlugin(ScrollTrigger);
+      var dist = function () { return Math.max(0, track.scrollWidth - viewport.clientWidth); };
+      gsap.to(track, {
+        x: function () { return -dist(); },
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: function () { return '+=' + (dist() + window.innerHeight * 0.5); },
+          pin: true,
+          scrub: 0.7,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+      window.addEventListener('load', function () { setTimeout(function () { ScrollTrigger.refresh(); }, 400); });
+    } else {
+      viewport.classList.add('is-native');
+    }
+
+    // ---- Magnetic CTA ----
+    var cta = document.getElementById('cwork-cta');
+    if (cta && !prefersReduced && window.matchMedia('(pointer:fine)').matches) {
+      cta.addEventListener('mousemove', function (e) {
+        var r = cta.getBoundingClientRect();
+        cta.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.3 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.45 + 'px)';
+      });
+      cta.addEventListener('mouseleave', function () { cta.style.transform = ''; });
+    }
+
+    // ---- Three.js floating backdrop ----
+    var canvas = document.getElementById('cwork-canvas');
+    if (canvas && !prefersReduced && typeof THREE !== 'undefined') {
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); }
+      catch (err) { renderer = null; }
+      if (renderer) {
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+        camera.position.z = 14;
+
+        var COLORS = [0x3b82f6, 0x8b5cf6, 0xec4899, 0x22d3ee];
+        var shapes = [];
+        for (var i = 0; i < 7; i++) {
+          var mesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(1.1 + Math.random() * 1.6, 0),
+            new THREE.MeshBasicMaterial({ color: COLORS[i % COLORS.length], wireframe: true, transparent: true, opacity: 0.3 })
+          );
+          mesh.position.set((Math.random() - 0.5) * 22, (Math.random() - 0.5) * 12, (Math.random() - 0.5) * 8 - 2);
+          mesh.userData = { sx: 0.001 + Math.random() * 0.004, sy: 0.001 + Math.random() * 0.004, ph: Math.random() * 6.28, amp: 0.4 + Math.random() * 0.9 };
+          scene.add(mesh); shapes.push(mesh);
+        }
+        var pn = 320, posArr = new Float32Array(pn * 3);
+        for (var j = 0; j < pn; j++) { posArr[j * 3] = (Math.random() - 0.5) * 42; posArr[j * 3 + 1] = (Math.random() - 0.5) * 26; posArr[j * 3 + 2] = (Math.random() - 0.5) * 16; }
+        var pgeo = new THREE.BufferGeometry();
+        pgeo.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
+        var points = new THREE.Points(pgeo, new THREE.PointsMaterial({ color: 0xa78bfa, size: 0.06, transparent: true, opacity: 0.65 }));
+        scene.add(points);
+
+        var resize = function () {
+          var w = section.clientWidth, h = section.clientHeight;
+          if (!w || !h) return;
+          renderer.setSize(w, h, false);
+          camera.aspect = w / h; camera.updateProjectionMatrix();
+        };
+        resize();
+        window.addEventListener('resize', resize);
+
+        var mx = 0, my = 0;
+        window.addEventListener('mousemove', function (e) {
+          mx = e.clientX / window.innerWidth - 0.5;
+          my = e.clientY / window.innerHeight - 0.5;
+        }, { passive: true });
+
+        var visible = true;
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0 }).observe(section);
+        }
+
+        var t = 0;
+        (function loop() {
+          requestAnimationFrame(loop);
+          if (!visible) return;
+          t += 0.01;
+          for (var k = 0; k < shapes.length; k++) {
+            var m = shapes[k];
+            m.rotation.x += m.userData.sx; m.rotation.y += m.userData.sy;
+            m.position.y += Math.sin(t + m.userData.ph) * 0.003 * m.userData.amp;
+          }
+          points.rotation.y += 0.0006;
+          camera.position.x += (mx * 3 - camera.position.x) * 0.04;
+          camera.position.y += (-my * 2 - camera.position.y) * 0.04;
+          camera.lookAt(0, 0, 0);
+          renderer.render(scene, camera);
+        })();
+      }
+    }
+  })();
+  </script>
 </body>
 </html>
