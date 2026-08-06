@@ -7,13 +7,13 @@
   <meta name="description" content="Twenty live websites designed and built by Rylo Labz — hospitality, healthcare, construction, trades, professional services, retail and food brands shipped to production across Zimbabwe and beyond." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="Rylo Labz" />
-  <meta name="theme-color" content="#f8f5ee" />
+  <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://rylolabz.com/portfolio" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Rylo Labz" />
   <meta property="og:title" content="Portfolio — Websites we've built · Rylo Labz" />
-  <meta property="og:description" content="Live previews of 20 websites designed and built by Rylo Labz — shipped to production for real businesses." />
+  <meta property="og:description" content="Live previews and case studies for 20 websites designed and built by Rylo Labz — shipped to production for real businesses." />
   <meta property="og:url" content="https://rylolabz.com/portfolio" />
 
   <link rel="icon" href="/images/Portfolio/rylo-favicon.png" type="image/png" />
@@ -24,154 +24,275 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css?v=54" />
+  <link rel="stylesheet" href="styles.css?v=55" />
 
   <style>
-    /* ===== Portfolio showcase — bento of pixel-perfect live hero previews ===== */
-    .pf-hero {
-      position: relative; overflow: hidden;
-      padding: 150px 0 48px; text-align: center;
-    }
-    .pf-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-    .pf-hero .container { position: relative; z-index: 1; }
-    .pf-hero .eyebrow { justify-content: center; }
-    .pf-hero h1 {
-      font-size: clamp(2.5rem, 6.5vw, 4.4rem); font-weight: 800;
-      letter-spacing: -.035em; line-height: 1.0; margin: 16px 0 18px;
-    }
-    .pf-hero h1 .grad {
-      background: linear-gradient(120deg,#2563eb,#8b5cf6 48%,#ec4899);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .pf-hero p { max-width: 620px; margin: 0 auto; color: #5b5b5b; font-size: 1.08rem; line-height: 1.6; }
-    .pf-stat-row { display: inline-flex; gap: 40px; margin-top: 32px; flex-wrap: wrap; justify-content: center; }
-    .pf-stat b { display: block; font-size: 1.9rem; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
-    .pf-stat span { display: block; margin-top: 6px; font-size: .78rem; color: #888; text-transform: uppercase; letter-spacing: .08em; }
+    /* =========================================================
+       PORTFOLIO — hero panel · filter · case list · case study
+       ========================================================= */
 
-    /* Filter chips */
+    /* ---------- HERO PANEL ---------- */
+    .pf-hero { padding: 104px 0 56px; }
+    .pf-panel {
+      position: relative; overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(900px 480px at 88% -10%, rgba(139,92,246,.20), transparent 62%),
+        radial-gradient(700px 420px at 4% 108%, rgba(59,130,246,.16), transparent 60%),
+        linear-gradient(160deg, #16161a 0%, #0c0c0e 60%, #0a0a0c 100%);
+      box-shadow: 0 40px 120px -60px rgba(139,92,246,.55);
+      padding: 66px 62px 70px;
+      display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+      gap: 56px; align-items: center;
+    }
+    .pf-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12.5px; font-weight: 600; letter-spacing: .02em;
+      color: #e9e9ee; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 7px 15px 7px 12px; border-radius: 999px;
+    }
+    .pf-badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--grad-brand); display: block; }
+    .pf-panel h1 {
+      font-size: clamp(2.5rem, 4.6vw, 4rem); font-weight: 700;
+      letter-spacing: -.035em; line-height: 1.02; margin: 22px 0 20px;
+    }
+    .pf-panel h1 .dim { color: #86868f; }
+    .pf-copy > p {
+      max-width: 46ch; color: #b6b6be; font-size: 1.03rem; line-height: 1.62; font-weight: 500;
+    }
+    .pf-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .pf-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: .98rem; font-weight: 600; padding: 15px 26px; border-radius: 999px;
+      background: #fff; color: #0a0a0c;
+      transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+    }
+    .pf-cta:hover { color: #0a0a0c; transform: translateY(-2px); box-shadow: 0 18px 40px -16px rgba(255,255,255,.45); }
+    .pf-cta svg { width: 15px; height: 15px; }
+    .pf-cta--ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.22); }
+    .pf-cta--ghost:hover { color: #fff; background: rgba(255,255,255,.06); box-shadow: none; }
+
+    /* ---------- HERO STACK (live device previews) ---------- */
+    .pf-stack { position: relative; aspect-ratio: 1 / .82; min-height: 340px; }
+    .pf-tile {
+      position: absolute; overflow: hidden; border-radius: 12px;
+      background: #0c0c10; border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 40px 80px -34px rgba(0,0,0,.9);
+    }
+    .pf-tile-bar { position: absolute; inset: 0 0 auto 0; height: 22px; z-index: 2; display: flex; align-items: center; gap: 4px; padding: 0 8px; background: #17171b; }
+    .pf-tile-bar i { width: 6px; height: 6px; border-radius: 50%; display: block; }
+    .pf-tile-vp { position: absolute; inset: 22px 0 0 0; overflow: hidden; }
+    /* 1000px tall, not 900 — taller than any box it scales into, so the frame
+       always overflows rather than leaving a gap under the rendered page. */
+    .pf-tile iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 1000px; border: 0; transform-origin: 0 0; pointer-events: none; background: #fff; opacity: 0; transition: opacity .9s ease; }
+    .pf-tile iframe.loaded { opacity: 1; }
+    .pf-tile-a { left: 0; top: 8%; width: 76%; aspect-ratio: 16/10; z-index: 2; }
+    .pf-tile-b { right: 0; top: 0; width: 44%; aspect-ratio: 16/11; z-index: 3; }
+    .pf-tile-c { right: 5%; bottom: 0; width: 54%; aspect-ratio: 16/11; z-index: 4; }
+
+    .pf-chip {
+      position: absolute; z-index: 5;
+      display: flex; align-items: baseline; gap: 9px;
+      padding: 12px 17px; border-radius: 14px;
+      background: rgba(18,18,22,.84); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 20px 50px -22px rgba(0,0,0,.9);
+    }
+    .pf-chip b { font-size: 1.42rem; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+    .pf-chip span { font-size: .78rem; color: #b6b6be; line-height: 1.25; max-width: 13ch; }
+    .pf-chip-1 { top: 1%; left: 3%; }
+    .pf-chip-2 { bottom: 10%; left: 0; }
+
+    /* ---------- FILTER ---------- */
     .pf-filter {
-      display: flex; flex-wrap: wrap; gap: 9px; justify-content: center;
-      margin: 0 auto 36px; max-width: 900px;
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      max-width: 940px; margin: 0 auto 44px;
     }
     .pf-filter button {
-      font: inherit; font-size: .88rem; font-weight: 600; color: #4a4a4a;
-      background: #fff; border: 1px solid #e3e3e3; padding: 9px 18px;
-      border-radius: 999px; cursor: pointer;
+      font: inherit; font-size: .9rem; font-weight: 600; color: #cfcfd6;
+      background: transparent; border: 1px solid rgba(255,255,255,.14);
+      padding: 11px 22px; border-radius: 999px; cursor: pointer;
       transition: background .2s, color .2s, border-color .2s, transform .2s;
     }
-    .pf-filter button:hover { border-color: #b9b9b9; transform: translateY(-1px); }
-    .pf-filter button.on { background: #0a0a0a; border-color: #0a0a0a; color: #fff; }
-    .pf-filter button .n { opacity: .5; font-weight: 500; margin-left: 5px; font-variant-numeric: tabular-nums; }
+    .pf-filter button:hover { border-color: rgba(255,255,255,.34); transform: translateY(-1px); }
+    .pf-filter button.on { background: #fff; border-color: #fff; color: #0a0a0c; }
+    .pf-filter button .n { opacity: .5; font-weight: 500; margin-left: 6px; font-variant-numeric: tabular-nums; }
 
-    .pf-section { padding: 6px 0 90px; }
-    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; }
+    /* ---------- CASE LIST ---------- */
+    .pf-list { padding: 0 0 96px; }
+    .cases { display: flex; flex-direction: column; gap: 26px; }
+    .case {
+      --accent: #8b5cf6;
+      display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+      gap: 40px; align-items: center;
+      padding: 22px; border-radius: 28px;
+      background: #121214; border: 1px solid rgba(255,255,255,.08);
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .6s var(--ease-out), transform .6s var(--ease-out), border-color .35s, box-shadow .35s;
+    }
+    .case.in { opacity: 1; transform: none; }
+    .case.hidden { display: none; }
+    .case:hover { border-color: color-mix(in srgb, var(--accent) 46%, rgba(255,255,255,.08)); box-shadow: 0 40px 90px -50px color-mix(in srgb, var(--accent) 85%, transparent); }
 
-    .show {
-      --accent: #2563eb;
-      position: relative;
-      grid-column: span 6;
-      border-radius: 22px; overflow: hidden;
-      background: #fff; border: 1px solid #e7e7e7;
-      box-shadow: 0 18px 50px -34px rgba(0,0,0,.4);
-      opacity: 0; transform: translateY(34px);
-      transition: box-shadow .5s var(--ease,cubic-bezier(.22,1,.36,1)), transform .5s var(--ease,cubic-bezier(.22,1,.36,1)), border-color .5s;
-      will-change: transform;
+    .case-shot {
+      position: relative; overflow: hidden; border-radius: 18px;
+      aspect-ratio: 4 / 3; background: #0c0c10; border: 1px solid rgba(255,255,255,.07);
     }
-    .show.in { opacity: 1; transform: none; }
-    .show.feat { grid-column: span 6; }
-    .show.small { grid-column: span 6; }
-    .show.hidden, .show-cta.hidden { display: none; }
-    .show:hover {
-      border-color: color-mix(in srgb, var(--accent) 50%, #e7e7e7);
-      box-shadow: 0 40px 80px -40px color-mix(in srgb, var(--accent) 60%, transparent);
+    .case-shot .vp { position: absolute; inset: 0; overflow: hidden; }
+    .case-shot iframe {
+      position: absolute; top: 0; left: 0; width: 1440px; height: 1120px; border: 0;
+      transform-origin: 0 0; pointer-events: none; background: #fff;
+      opacity: 0; transition: opacity .8s ease, transform .6s var(--ease-out);
     }
-    .show-glow {
-      position: absolute; inset: -1px; z-index: 0; pointer-events: none; opacity: 0;
-      background: radial-gradient(60% 60% at var(--gx,50%) 0%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 70%);
-      transition: opacity .5s ease;
+    .case-shot iframe.loaded { opacity: 1; }
+    .case:hover .case-shot iframe.loaded { transform: scale(calc(var(--scale, 1) * 1.05)); }
+    .case-poster {
+      position: absolute; inset: 0; z-index: 2; display: grid; align-content: center; justify-items: center; gap: 8px;
+      text-align: center; padding: 0 24px; color: #fff;
+      background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 92%, #000), color-mix(in srgb, var(--accent) 46%, #000));
+      transition: opacity .8s ease;
     }
-    .show:hover .show-glow { opacity: 1; }
-
-    .show-screen {
-      position: relative; z-index: 1; width: 100%;
-      aspect-ratio: 1440 / 940; overflow: hidden; background: #0c0c10;
-      border-bottom: 1px solid #ececec;
-    }
-    .show-bar {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 3; height: 38px;
-      display: flex; align-items: center; gap: 9px; padding: 0 14px;
-      background: rgba(20,20,24,.86); backdrop-filter: blur(6px);
-    }
-    .show-bar .dots { display: flex; gap: 6px; }
-    .show-bar .dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
-    .show-bar .url {
-      flex: 1; text-align: center; font-size: 12px; color: #c9c9d2;
-      background: rgba(255,255,255,.07); border-radius: 7px; padding: 4px 10px; max-width: 320px; margin: 0 auto;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      display: inline-flex; align-items: center; gap: 6px; justify-content: center;
-    }
-    .show-bar .url svg { width: 11px; height: 11px; color: #34d399; flex: none; }
-    .show-live {
-      position: absolute; z-index: 4; top: 48px; right: 12px;
+    .case-poster.hide { opacity: 0; }
+    .case-poster .pm { font-size: 1.3rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+    .case-poster .pl { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; opacity: .78; }
+    .case-live {
+      position: absolute; z-index: 3; top: 12px; left: 12px;
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      color: #052e16; background: #4ade80; padding: 3px 9px; border-radius: 20px;
+      font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      color: #052e16; background: #4ade80; padding: 4px 10px; border-radius: 999px;
     }
-    .show-live i { width: 6px; height: 6px; border-radius: 50%; background: #052e16; animation: pfPulse 1.6s infinite; }
-    @keyframes pfPulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .case-live i { width: 6px; height: 6px; border-radius: 50%; background: #052e16; animation: pfPulse 1.7s infinite; }
+    @keyframes pfPulse { 0%,100% { opacity: 1 } 50% { opacity: .22 } }
 
-    .show-vp { position: absolute; top: 38px; left: 0; right: 0; bottom: 0; overflow: hidden; }
-    .show-vp iframe {
-      position: absolute; top: 0; left: 0;
-      width: 1440px; height: 900px;
-      border: 0; transform-origin: 0 0; pointer-events: none; background: #fff;
-      opacity: 0; transition: opacity .8s ease, transform .6s var(--ease,cubic-bezier(.22,1,.36,1));
+    .case-body { padding: 8px 26px 8px 0; }
+    .tagrow { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .tagrow span {
+      font-size: 12px; font-weight: 600; color: #d3d3da;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.09);
+      padding: 5px 13px; border-radius: 999px;
     }
-    .show-vp iframe.loaded { opacity: 1; }
-    .show:hover .show-vp iframe.loaded { transform: scale(calc(var(--scale,1) * 1.04)); }
-    .show-poster {
-      position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; gap: 8px; text-align: center;
-      background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 90%, #000), color-mix(in srgb, var(--accent) 55%, #000));
-      transition: opacity .8s ease; color: #fff; padding: 0 22px;
+    .case-body h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.12; margin-bottom: 14px; }
+    .case-body p { color: #a4a4ad; font-size: .97rem; line-height: 1.62; }
+    .case-body p + p { margin-top: 12px; }
+    .case-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 26px; }
+    .readmore {
+      display: inline-flex; align-items: center; gap: 9px;
+      font: inherit; font-size: .95rem; font-weight: 600; cursor: pointer;
+      background: #fff; color: #0a0a0c; border: 0;
+      padding: 14px 26px; border-radius: 999px;
+      transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
     }
-    .show-poster.hide { opacity: 0; }
-    .show-poster .pm { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
-    .show-poster .pl { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
+    .readmore:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -16px rgba(255,255,255,.5); }
+    .readmore svg { width: 15px; height: 15px; }
+    .case-visit {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .93rem; font-weight: 600; color: #cfcfd6;
+      border: 1px solid rgba(255,255,255,.16); padding: 13px 22px; border-radius: 999px;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .case-visit:hover { color: #fff; border-color: rgba(255,255,255,.36); background: rgba(255,255,255,.05); }
+    .case-visit svg { width: 14px; height: 14px; }
 
-    .show-info { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 20px 22px 22px; background: #fff; }
-    .show-info h3 { margin: 0 0 6px; font-size: 1.42rem; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
-    .show-info p { margin: 0; font-size: .9rem; color: #6b6b6b; line-height: 1.45; }
-    .show-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-    .show-tags span { font-size: 11px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, #fff); border: 1px solid color-mix(in srgb, var(--accent) 22%, #fff); padding: 3px 9px; border-radius: 20px; }
-    .visit {
-      flex: none; display: inline-flex; align-items: center; gap: 7px;
-      font-size: .92rem; font-weight: 600; color: #fff;
-      background: var(--accent); padding: 11px 18px; border-radius: 12px;
-      transition: transform .2s var(--ease,cubic-bezier(.22,1,.36,1)), box-shadow .2s, filter .2s;
-      white-space: nowrap;
+    /* CTA row inside the list */
+    .case-cta {
+      display: grid; gap: 14px; justify-items: start;
+      padding: 46px 48px; border-radius: 28px;
+      background: linear-gradient(140deg, #17132c 0%, #0d0d10 62%);
+      border: 1px solid rgba(255,255,255,.1);
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
     }
-    .visit:hover { color: #fff; transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 12px 26px -12px var(--accent); }
-    .visit svg { width: 16px; height: 16px; }
+    .case-cta.in { opacity: 1; transform: none; }
+    .case-cta h3 { font-size: 1.9rem; font-weight: 700; letter-spacing: -.03em; }
+    .case-cta p { color: #a9a9b4; max-width: 56ch; line-height: 1.6; }
 
-    /* CTA bento cell */
-    .show-cta {
-      grid-column: span 6; border-radius: 22px; padding: 34px;
-      display: flex; flex-direction: column; justify-content: center; gap: 14px;
-      background: linear-gradient(150deg,#0a0a0a,#1a1430); color: #fff;
-      opacity: 0; transform: translateY(34px);
-      transition: opacity .5s var(--ease,cubic-bezier(.22,1,.36,1)), transform .5s var(--ease,cubic-bezier(.22,1,.36,1));
+    /* ---------- CASE STUDY OVERLAY ---------- */
+    .pf-detail {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(6,6,8,.96); backdrop-filter: blur(10px);
+      overflow-y: auto; overscroll-behavior: contain;
+      opacity: 0; pointer-events: none; transition: opacity .35s ease;
+      padding: 28px 0 90px;
     }
-    .show-cta.in { opacity: 1; transform: none; }
-    .show-cta h3 { margin: 0; font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; }
-    .show-cta p { margin: 0; color: #b9b9c4; font-size: .98rem; line-height: 1.55; }
-    .show-cta a { align-self: flex-start; margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; background: #fff; color: #0a0a0a; padding: 12px 22px; border-radius: 999px; transition: transform .2s, box-shadow .2s; }
-    .show-cta a:hover { color: #0a0a0a; transform: translateY(-2px); box-shadow: 0 16px 36px -14px rgba(167,139,250,.8); }
+    .pf-detail.open { opacity: 1; pointer-events: auto; }
+    .pf-detail-close {
+      position: sticky; top: 0; z-index: 4;
+      display: grid; place-items: center; margin: 0 auto 26px;
+      width: 54px; height: 54px; border-radius: 50%; cursor: pointer;
+      background: #2a2a30; border: 1px solid rgba(255,255,255,.14); color: #fff;
+      transition: background .2s, transform .2s;
+    }
+    .pf-detail-close:hover { background: #3a3a44; transform: scale(1.06); }
+    .pf-detail-close svg { width: 20px; height: 20px; }
+    .pf-detail-inner { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .pf-detail h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.04; margin: 6px 0 20px; }
+    .pf-detail .lede p { color: #b1b1ba; font-size: 1.06rem; line-height: 1.68; max-width: 68ch; }
+    .pf-detail .lede p + p { margin-top: 14px; }
+    .pf-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 34px 0 10px; }
+    .pf-fact {
+      display: flex; gap: 11px; align-items: flex-start;
+      padding: 16px 18px; border-radius: 16px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      font-size: .93rem; color: #d0d0d8; line-height: 1.5;
+    }
+    .pf-fact svg { width: 17px; height: 17px; flex: none; margin-top: 2px; color: #4ade80; }
 
-    @media (max-width: 900px) {
-      .pf-hero { padding: 120px 0 32px; }
-      .pf-stat-row { gap: 28px; }
-      .bento { gap: 18px; }
-      .show, .show.feat, .show.small, .show-cta { grid-column: span 12; }
+    .hiw { margin-top: 66px; text-align: center; }
+    .hiw h3 { font-size: clamp(1.7rem, 3.2vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; }
+    .hiw > p { margin: 12px auto 30px; color: #98989f; font-size: .96rem; max-width: 52ch; }
+    .hiw-frame {
+      position: relative; overflow: hidden;
+      border-radius: 16px; background: #0c0c10;
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: 0 50px 110px -50px rgba(0,0,0,.95);
+      text-align: left;
+    }
+    .hiw-bar {
+      position: relative; z-index: 2; height: 40px;
+      display: flex; align-items: center; gap: 9px; padding: 0 14px;
+      background: #17171b; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .hiw-bar .dots { display: flex; gap: 6px; }
+    .hiw-bar .dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+    .hiw-bar .url {
+      flex: 1; max-width: 380px; margin: 0 auto;
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      font-size: 12.5px; color: #c9c9d2; background: rgba(255,255,255,.07);
+      border-radius: 8px; padding: 5px 12px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .hiw-bar .url svg { width: 11px; height: 11px; color: #34d399; flex: none; }
+    .hiw-vp { position: relative; width: 100%; aspect-ratio: 1440 / 900; overflow: hidden; background: #fff; }
+    .hiw-vp iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; background: #fff; }
+    .hiw-vp .fallback { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 10px; text-align: center; padding: 0 30px; background: #101014; color: #cfcfd6; }
+    .hiw-vp .fallback strong { font-size: 1.3rem; letter-spacing: -.02em; }
+    .hiw-hint { margin-top: 14px; font-size: .82rem; color: #7c7c86; }
+    .hiw-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1080px) {
+      .pf-panel { padding: 52px 40px 56px; grid-template-columns: 1fr; gap: 44px; }
+      .pf-chip-2 { bottom: 4%; }
+      .case { grid-template-columns: 1fr; gap: 22px; }
+      .case-body { padding: 2px 8px 12px; }
+    }
+    @media (max-width: 720px) {
+      .pf-hero { padding: 88px 0 40px; }
+      .pf-panel { padding: 38px 24px 42px; border-radius: 26px; }
+      .pf-stack { aspect-ratio: 1 / .78; min-height: 260px; }
+      .pf-chip { padding: 10px 13px; }
+      .pf-chip b { font-size: 1.15rem; }
+      .pf-chip span { font-size: .72rem; }
+      .case { padding: 14px; border-radius: 22px; }
+      .case-cta { padding: 32px 24px; }
+      .pf-detail { padding: 18px 0 70px; }
+      .hiw { margin-top: 48px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case, .case-cta { opacity: 1; transform: none; transition: none; }
+      .case-live i { animation: none; }
     }
   </style>
 </head>
@@ -186,6 +307,7 @@
       <nav class="nav-links" aria-label="Primary">
         <a href="/#products">Products</a>
         <a href="/portfolio" class="active">Client Work</a>
+        <a href="/reviews">Reviews</a>
         <a href="/#why">Why Rylo</a>
         <a href="/#team">Executives</a>
       </nav>
@@ -202,6 +324,7 @@
       <nav class="nav-mobile-links" aria-label="Mobile navigation">
         <a href="/#products">Products</a>
         <a href="/portfolio">Client Work</a>
+        <a href="/reviews">Reviews</a>
         <a href="/#why">Why Rylo</a>
         <a href="/#team">Executives</a>
       </nav>
@@ -213,26 +336,50 @@
   </header>
 
   <main>
-    <!-- ============ HERO ============ -->
+    <!-- ============ HERO PANEL ============ -->
     <section class="pf-hero">
       <div class="container">
-        <span class="eyebrow"><span class="eyebrow-dot"></span> Client Work · Live in production</span>
-        <h1>Websites we've <span class="grad">shipped.</span></h1>
-        <p>Real brands, running on the open web right now. Every preview below is the actual live site — scroll, then click through to visit it.</p>
-        <div class="pf-stat-row">
-          <div class="pf-stat"><b>20</b><span>Sites live</span></div>
-          <div class="pf-stat"><b>6</b><span>Industries</span></div>
-          <div class="pf-stat"><b>100%</b><span>In production</span></div>
+        <div class="pf-panel">
+          <div class="pf-copy">
+            <span class="pf-badge"><i></i> Portfolio</span>
+            <h1>Client Website<br /><span class="dim">Portfolio</span></h1>
+            <p>Rylo Labz is a software and AI studio in Zimbabwe with 20 custom websites shipped to production for real businesses. Every preview below is the live site — read the case study, then open the real thing.</p>
+            <div class="pf-cta-row">
+              <a href="/#contact" class="pf-cta">Start a project
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+              <a href="https://wa.me/263715079192" target="_blank" rel="noopener" class="pf-cta pf-cta--ghost">WhatsApp us
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="pf-stack" aria-hidden="true">
+            <div class="pf-tile pf-tile-a">
+              <div class="pf-tile-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+              <div class="pf-tile-vp"><iframe data-src="https://safewayfurniture.co.zw" title="Safeway Furnitures preview" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+            </div>
+            <div class="pf-tile pf-tile-b">
+              <div class="pf-tile-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+              <div class="pf-tile-vp"><iframe data-src="https://catering.rylolabz.com" title="Moemas Catering preview" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+            </div>
+            <div class="pf-tile pf-tile-c">
+              <div class="pf-tile-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+              <div class="pf-tile-vp"><iframe data-src="https://gordons.rylolabz.com" title="Gordon's Bnb preview" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+            </div>
+            <div class="pf-chip pf-chip-1"><b>20</b><span>Websites shipped</span></div>
+            <div class="pf-chip pf-chip-2"><b>6</b><span>Industries served</span></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ BENTO SHOWCASE ============ -->
-    <section class="pf-section">
+    <!-- ============ CASE LIST ============ -->
+    <section class="pf-list">
       <div class="container">
 
         <div class="pf-filter" id="pf-filter" role="group" aria-label="Filter portfolio by industry">
-          <button type="button" class="on" data-cat="all">All work <span class="n">20</span></button>
+          <button type="button" class="on" data-cat="all">All <span class="n">20</span></button>
           <button type="button" data-cat="hospitality">Hospitality <span class="n">2</span></button>
           <button type="button" data-cat="healthcare">Healthcare <span class="n">3</span></button>
           <button type="button" data-cat="construction">Construction <span class="n">5</span></button>
@@ -241,433 +388,553 @@
           <button type="button" data-cat="retail">Retail &amp; Food <span class="n">3</span></button>
         </div>
 
-        <div class="bento" id="bento">
+        <div class="cases" id="cases">
 
           <!-- Gordon's Bnb -->
-          <article class="show feat" data-cat="hospitality" style="--accent:#3f6f4f">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>gordons.rylolabz.com</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Gordon's Bnb</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://gordons.rylolabz.com" title="Gordon's Bnb — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="hospitality" data-url="https://gordons.rylolabz.com" data-domain="gordons.rylolabz.com"
+                   data-facts="Cinematic hero and editorial room pages|Three-step booking wizard with direct enquiry|Gallery lightbox and warm quiet-luxury design system"
+                   style="--accent:#3f6f4f">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Gordon's Bnb</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://gordons.rylolabz.com" title="Gordon's Bnb — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Gordon's Bnb</h3>
-                <p>Boutique bed &amp; breakfast — cinematic editorial design with a live booking flow.</p>
-                <div class="show-tags"><span>Hospitality</span><span>Next.js</span><span>Booking</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Hospitality</span><span>Booking</span></div>
+              <h2>Gordon's Bnb</h2>
+              <p>Gordon's Bnb is a boutique bed &amp; breakfast that needed a website with the same feeling as the property itself — warm, unhurried and quietly premium.</p>
+              <p>We built a cinematic editorial site around the rooms and the setting, then wired a direct booking flow into it so guests can enquire without going through a third-party platform.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://gordons.rylolabz.com" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://gordons.rylolabz.com" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Safeway Furnitures -->
-          <article class="show feat" data-cat="construction" style="--accent:#1d4ed8">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>safewayfurniture.co.zw</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Safeway Furnitures</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://safewayfurniture.co.zw" title="Safeway Furnitures — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="construction" data-url="https://safewayfurniture.co.zw" data-domain="safewayfurniture.co.zw"
+                   data-facts="Live component-level pricing estimator|Admin dashboard for managing material and labour rates|Filterable project gallery and WhatsApp-first contact layer"
+                   style="--accent:#1d4ed8">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Safeway Furnitures</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://safewayfurniture.co.zw" title="Safeway Furnitures — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Safeway Furnitures</h3>
-                <p>Fitted kitchens, wardrobes and office furniture in Harare — with a live component-level quote estimator.</p>
-                <div class="show-tags"><span>Joinery</span><span>Next.js</span><span>Estimator</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Joinery</span><span>Construction</span><span>Estimator</span></div>
+              <h2>Safeway Furnitures</h2>
+              <p>Safeway Furnitures builds fitted kitchens, wardrobes and office furniture in Harare. Most of their enquiries used to stall at the same point: what does it cost?</p>
+              <p>So the site carries a live estimator that prices a job from boards, hardware, worktops, labour and transport — with an admin dashboard behind it so the team can keep every rate current without touching code.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://safewayfurniture.co.zw" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://safewayfurniture.co.zw" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Arygyle Chartered Accountants -->
-          <article class="show feat" data-cat="professional" style="--accent:#0f766e">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>arygyle.co.zw</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Arygyle</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://arygyle.co.zw" title="Arygyle Chartered Accountants — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="professional" data-url="https://arygyle.co.zw" data-domain="arygyle.co.zw"
+                   data-facts="Service pages for company formation, tax and audit|Credibility-first layout built for professional buyers|Enquiry capture wired straight to the practice"
+                   style="--accent:#0f766e">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Arygyle</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://arygyle.co.zw" title="Arygyle Chartered Accountants — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Arygyle Chartered Accountants</h3>
-                <p>Company formation, ZIMRA tax clearance and audit — a credibility-first site for a Zimbabwean practice.</p>
-                <div class="show-tags"><span>Finance</span><span>Vite</span><span>Lead-gen</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Professional</span><span>Finance</span><span>Lead-gen</span></div>
+              <h2>Arygyle Chartered Accountants</h2>
+              <p>Arygyle is a Zimbabwean chartered accounting practice handling company formation, ZIMRA tax clearance, bookkeeping and audit work.</p>
+              <p>Their clients are choosing who to trust with their books, so the site leads with credibility: clear service pages, plain explanations of each engagement, and a short path from reading to enquiring.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://arygyle.co.zw" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://arygyle.co.zw" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Long Range Pharmacies -->
-          <article class="show small" data-cat="healthcare" style="--accent:#1e7a5f">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>pharmacy.rylolabz.com</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Long Range</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://pharmacy.rylolabz.com" title="Long Range Pharmacies — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="healthcare" data-url="https://pharmacy.rylolabz.com" data-domain="pharmacy.rylolabz.com"
+                   data-facts="Product catalogue pulled from a backend ERP|Cart, checkout and customer order history|Calm, high-legibility design for a health audience"
+                   style="--accent:#1e7a5f">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Long Range Pharmacies</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://pharmacy.rylolabz.com" title="Long Range Pharmacies — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Long Range Pharmacies</h3>
-                <p>Clear, trustworthy pharmacy site built for a healthcare audience.</p>
-                <div class="show-tags"><span>Healthcare</span><span>Vite</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Healthcare</span><span>Retail</span><span>Storefront</span></div>
+              <h2>Long Range Pharmacies</h2>
+              <p>A pharmacy storefront where the whole job is trust and legibility — people arrive looking for a specific product or a specific answer, often in a hurry.</p>
+              <p>We built a clean catalogue-led storefront with a straightforward cart and checkout, so the online counter behaves the way the physical one does.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://pharmacy.rylolabz.com" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://pharmacy.rylolabz.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Diamon Contractors -->
-          <article class="show small" data-cat="trades" style="--accent:#9a6437">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>plumbers.rylolabz.com</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Diamon Contractors</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://plumbers.rylolabz.com" title="Diamon Contractors — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="trades" data-url="https://plumbers.rylolabz.com" data-domain="plumbers.rylolabz.com"
+                   data-facts="Emergency call-out messaging above the fold|Service breakdown for domestic and commercial work|Click-to-call and WhatsApp on every screen"
+                   style="--accent:#9a6437">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Diamon Contractors</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://plumbers.rylolabz.com" title="Diamon Contractors — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Diamon Contractors</h3>
-                <p>Premium lead-gen site for Harare's emergency plumbing team.</p>
-                <div class="show-tags"><span>Trades</span><span>Next.js</span><span>Lead-gen</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Trades</span><span>Plumbing</span><span>Lead-gen</span></div>
+              <h2>Diamon Contractors</h2>
+              <p>Diamon Contractors handle emergency and scheduled plumbing across Harare. Their customers are usually mid-problem, on a phone, and not in a browsing mood.</p>
+              <p>The site is built for that: what they fix, who they fix it for, and a call or WhatsApp button never more than a thumb away.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://plumbers.rylolabz.com" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://plumbers.rylolabz.com" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Moemas Catering -->
-          <article class="show feat" data-cat="retail" style="--accent:#4a5c4e">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>catering.rylolabz.com</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Moemas Catering</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://catering.rylolabz.com" title="Moemas Catering — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="retail" data-url="https://catering.rylolabz.com" data-domain="catering.rylolabz.com"
+                   data-facts="Scroll-driven storytelling around the food|Menu and event-type pages for enquiry qualification|Owner-led brand voice carried through the whole site"
+                   style="--accent:#4a5c4e">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Moemas Catering</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://catering.rylolabz.com" title="Moemas Catering — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Moemas Catering</h3>
-                <p>Owner-led fine catering in Cape Town — elegant, scroll-driven storytelling.</p>
-                <div class="show-tags"><span>Food</span><span>React</span><span>Static</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Food</span><span>Events</span><span>Editorial</span></div>
+              <h2>Moemas Catering</h2>
+              <p>Moemas is owner-led fine catering in Cape Town, where the sell is the food and the person behind it — not a price list.</p>
+              <p>We gave it an elegant, scroll-driven site that lets the plates do the talking, with event types and menus organised so an enquiry arrives already half-qualified.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://catering.rylolabz.com" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://catering.rylolabz.com" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-          </article>
-
-          <!-- Hove Construction -->
-          <article class="show small" data-cat="construction" style="--accent:#b45309">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>hove-construction.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Hove Construction</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://hove-construction.vercel.app" title="Hove Construction — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
-              </div>
-            </div>
-            <div class="show-info">
-              <div>
-                <h3>Hove Construction</h3>
-                <p>Premium design-build contractors in Harare — portfolio-led with a quote flow.</p>
-                <div class="show-tags"><span>Construction</span><span>Vite</span></div>
-              </div>
-              <a class="visit" href="https://hove-construction.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-          </article>
-
-          <!-- Tower Construction -->
-          <article class="show small" data-cat="construction" style="--accent:#334155">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>tower-construction-ten.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Tower Construction</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://tower-construction-ten.vercel.app" title="Tower Construction — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
-              </div>
-            </div>
-            <div class="show-info">
-              <div>
-                <h3>Tower Construction</h3>
-                <p>Building and civil engineering contractor, Harare — heavyweight capability site.</p>
-                <div class="show-tags"><span>Construction</span><span>Vite</span></div>
-              </div>
-              <a class="visit" href="https://tower-construction-ten.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-          </article>
-
-          <!-- Alstyle Construction -->
-          <article class="show small" data-cat="construction" style="--accent:#7c3aed">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>alstyle-construction.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Alstyle Construction</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://alstyle-construction.vercel.app" title="Alstyle Construction — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
-              </div>
-            </div>
-            <div class="show-info">
-              <div>
-                <h3>Alstyle Construction</h3>
-                <p>Ceiling installation and renovation specialists across Zimbabwe.</p>
-                <div class="show-tags"><span>Construction</span><span>Vite</span></div>
-              </div>
-              <a class="visit" href="https://alstyle-construction.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-          </article>
-
-          <!-- Grazeon Thatchers -->
-          <article class="show small" data-cat="construction" style="--accent:#a16207">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>grazeon-thatchers.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Grazeon Thatchers</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://grazeon-thatchers.vercel.app" title="Grazeon Thatchers — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
-              </div>
-            </div>
-            <div class="show-info">
-              <div>
-                <h3>Grazeon Thatchers</h3>
-                <p>Thatching and gum-pole structures — craft-led gallery for a Zimbabwean specialist.</p>
-                <div class="show-tags"><span>Construction</span><span>Vite</span></div>
-              </div>
-              <a class="visit" href="https://grazeon-thatchers.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-          </article>
-
-          <!-- Sitcha Electric Services -->
-          <article class="show small" data-cat="trades" style="--accent:#ca8a04">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>sitcha-electric-services.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Sitcha Electric</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://sitcha-electric-services.vercel.app" title="Sitcha Electric Services — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
-              </div>
-            </div>
-            <div class="show-info">
-              <div>
-                <h3>Sitcha Electric Services</h3>
-                <p>Electrical and solar installations in Masvingo — built to convert enquiries.</p>
-                <div class="show-tags"><span>Trades</span><span>Solar</span><span>Vite</span></div>
-              </div>
-              <a class="visit" href="https://sitcha-electric-services.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-          </article>
-
-          <!-- Blessing Professional Plumbers -->
-          <article class="show small" data-cat="trades" style="--accent:#0369a1">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>blessing-professional-plumbers.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Blessing Plumbers</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://blessing-professional-plumbers.vercel.app" title="Blessing Professional Plumbers — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
-              </div>
-            </div>
-            <div class="show-info">
-              <div>
-                <h3>Blessing Professional Plumbers</h3>
-                <p>Harare plumbing outfit — fast, mobile-first booking and callback flow.</p>
-                <div class="show-tags"><span>Trades</span><span>Next.js</span></div>
-              </div>
-              <a class="visit" href="https://blessing-professional-plumbers.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- The Smile Dentist -->
-          <article class="show feat" data-cat="healthcare" style="--accent:#0891b2">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>dentist.rylolabz.com</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">The Smile Dentist</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://dentist.rylolabz.com" title="The Smile Dentist — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="healthcare" data-url="https://dentist.rylolabz.com" data-domain="dentist.rylolabz.com"
+                   data-facts="Treatment pages written for nervous patients|Appointment request flow ready to connect|Fully re-brandable — available to license"
+                   style="--accent:#0891b2">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">The Smile Dentist</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://dentist.rylolabz.com" title="The Smile Dentist — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>The Smile Dentist</h3>
-                <p>A polished dental-practice template — ready to brand. Available to license.</p>
-                <div class="show-tags"><span>Dental</span><span>Vite</span><span>For sale</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Healthcare</span><span>Dental</span><span>For sale</span></div>
+              <h2>The Smile Dentist</h2>
+              <p>A polished dental-practice site built as a working product rather than a mockup — treatments, team, patient information and an appointment request flow, all in production.</p>
+              <p>Any practice can take it, drop in their own brand and content, and be live quickly. It's available to license.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://dentist.rylolabz.com" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://dentist.rylolabz.com" target="_blank" rel="noopener">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Hove Construction -->
+          <article class="case" data-cat="construction" data-url="https://hove-construction.vercel.app" data-domain="hove-construction.vercel.app"
+                   data-facts="Portfolio-led structure built around finished work|Quote request flow for new projects|Capability pages for design-build clients"
+                   style="--accent:#b45309">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Hove Construction</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://hove-construction.vercel.app" title="Hove Construction — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="tagrow"><span>Construction</span><span>Design-build</span></div>
+              <h2>Hove Construction</h2>
+              <p>Hove are design-build contractors in Harare working on residential and commercial projects where the client is comparing several firms at once.</p>
+              <p>The site is portfolio-led — completed work first, capability second — with a quote request flow for people who have already decided they like what they see.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://hove-construction.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tower Construction -->
+          <article class="case" data-cat="construction" data-url="https://tower-construction-ten.vercel.app" data-domain="tower-construction-ten.vercel.app"
+                   data-facts="Capability-first structure for tender audiences|Sector pages across building and civils|Project evidence organised by discipline"
+                   style="--accent:#334155">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Tower Construction</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://tower-construction-ten.vercel.app" title="Tower Construction — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="tagrow"><span>Construction</span><span>Civils</span></div>
+              <h2>Tower Construction</h2>
+              <p>Tower is a building and civil engineering contractor in Harare whose website has to hold up in front of procurement teams, not just homeowners.</p>
+              <p>We built a heavyweight capability site: what they can execute, at what scale, across which disciplines — with the project evidence to back it.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://tower-construction-ten.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Alstyle Construction -->
+          <article class="case" data-cat="construction" data-url="https://alstyle-construction.vercel.app" data-domain="alstyle-construction.vercel.app"
+                   data-facts="Specialist ceiling and renovation service pages|Project gallery led by finished work|Nationwide coverage messaging"
+                   style="--accent:#7c3aed">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Alstyle Construction</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://alstyle-construction.vercel.app" title="Alstyle Construction — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="tagrow"><span>Construction</span><span>Renovation</span></div>
+              <h2>Alstyle Construction</h2>
+              <p>Alstyle are ceiling installation and renovation specialists working across Zimbabwe, in a category customers judge almost entirely on finish quality.</p>
+              <p>The site puts the work first — installation types, renovation scope and a gallery that shows the difference — so an enquiry starts from evidence.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://alstyle-construction.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Grazeon Thatchers -->
+          <article class="case" data-cat="construction" data-url="https://grazeon-thatchers.vercel.app" data-domain="grazeon-thatchers.vercel.app"
+                   data-facts="Craft-led gallery built around finished structures|Service pages for thatching and gum-pole builds|Enquiry flow tuned for project briefs"
+                   style="--accent:#a16207">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Grazeon Thatchers</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://grazeon-thatchers.vercel.app" title="Grazeon Thatchers — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="tagrow"><span>Construction</span><span>Craft</span></div>
+              <h2>Grazeon Thatchers</h2>
+              <p>Grazeon build thatched roofs and gum-pole structures — lapas, decks and outdoor spaces where the craft is the product.</p>
+              <p>We built a gallery-driven site that treats each completed structure as a portfolio piece, then routes serious enquiries into a brief the team can actually quote from.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://grazeon-thatchers.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sitcha Electric Services -->
+          <article class="case" data-cat="trades" data-url="https://sitcha-electric-services.vercel.app" data-domain="sitcha-electric-services.vercel.app"
+                   data-facts="Electrical and solar service pages side by side|Built to convert enquiries on mobile|Coverage and contact clear on every page"
+                   style="--accent:#ca8a04">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Sitcha Electric</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://sitcha-electric-services.vercel.app" title="Sitcha Electric Services — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="tagrow"><span>Trades</span><span>Solar</span><span>Electrical</span></div>
+              <h2>Sitcha Electric Services</h2>
+              <p>Sitcha handle electrical installations and solar systems in Masvingo — two very different buying conversations under one brand.</p>
+              <p>The site separates them cleanly, so a customer with a tripping DB board and a customer pricing a solar backup both land somewhere that speaks to them.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://sitcha-electric-services.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blessing Professional Plumbers -->
+          <article class="case" data-cat="trades" data-url="https://blessing-professional-plumbers.vercel.app" data-domain="blessing-professional-plumbers.vercel.app"
+                   data-facts="Mobile-first layout for on-the-go customers|Callback and booking request flow|Fast-loading pages on low-bandwidth connections"
+                   style="--accent:#0369a1">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Blessing Plumbers</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://blessing-professional-plumbers.vercel.app" title="Blessing Professional Plumbers — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="tagrow"><span>Trades</span><span>Plumbing</span></div>
+              <h2>Blessing Professional Plumbers</h2>
+              <p>A Harare plumbing outfit whose customers almost all arrive on a phone, often on a patchy connection.</p>
+              <p>We kept the site light and mobile-first, with a booking and callback flow that takes seconds rather than a full contact form.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://blessing-professional-plumbers.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
+              </div>
             </div>
           </article>
 
           <!-- Brice Pharmacy -->
-          <article class="show small" data-cat="healthcare" style="--accent:#059669">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>brice-pharmacy.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Brice Pharmacy</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://brice-pharmacy.vercel.app" title="Brice Pharmacy — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="healthcare" data-url="https://brice-pharmacy.vercel.app" data-domain="brice-pharmacy.vercel.app"
+                   data-facts="Services, stock enquiries and directions up front|Clear opening hours and contact details|Calm, readable design for all ages"
+                   style="--accent:#059669">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Brice Pharmacy</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://brice-pharmacy.vercel.app" title="Brice Pharmacy — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Brice Pharmacy</h3>
-                <p>Community pharmacy site — services, stock enquiries and directions at a glance.</p>
-                <div class="show-tags"><span>Healthcare</span><span>Vite</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Healthcare</span><span>Community</span></div>
+              <h2>Brice Pharmacy</h2>
+              <p>A community pharmacy where most visits answer one of three questions: do you have it, are you open, and where are you?</p>
+              <p>The site answers all three immediately, then makes room for the services people don't know the pharmacy offers.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://brice-pharmacy.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://brice-pharmacy.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Kwekwe Rose Gardens -->
-          <article class="show small" data-cat="hospitality" style="--accent:#9d174d">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>kwekwe-rose-garden-lodge.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Rose Gardens</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://kwekwe-rose-garden-lodge.vercel.app" title="Kwekwe Rose Gardens Guest House — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="hospitality" data-url="https://kwekwe-rose-garden-lodge.vercel.app" data-domain="kwekwe-rose-garden-lodge.vercel.app"
+                   data-facts="Room-led structure with rates and amenities|Direct enquiry booking, no middleman|Warm photographic design of the grounds"
+                   style="--accent:#9d174d">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Kwekwe Rose Gardens</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://kwekwe-rose-garden-lodge.vercel.app" title="Kwekwe Rose Gardens Guest House — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Kwekwe Rose Gardens</h3>
-                <p>Guest house in Kwekwe — warm, room-led design with direct enquiry booking.</p>
-                <div class="show-tags"><span>Hospitality</span><span>Booking</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Hospitality</span><span>Guest house</span><span>Booking</span></div>
+              <h2>Kwekwe Rose Gardens</h2>
+              <p>A guest house in Kwekwe competing with listing platforms that take a cut of every booking.</p>
+              <p>We built a warm, room-led site that gives guests everything they'd get from a listing — photos, rates, amenities — and lets them book direct instead.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://kwekwe-rose-garden-lodge.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://kwekwe-rose-garden-lodge.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- BJ Accounting Solutions -->
-          <article class="show small" data-cat="professional" style="--accent:#15803d">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>bj-accounting-clone.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">BJ Accounting</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://bj-accounting-clone.vercel.app" title="BJ Accounting Solutions — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="professional" data-url="https://bj-accounting-clone.vercel.app" data-domain="bj-accounting-clone.vercel.app"
+                   data-facts="Services-first layout for tax and bookkeeping|Advisory offer explained in plain language|Enquiry path built for small business owners"
+                   style="--accent:#15803d">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">BJ Accounting</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://bj-accounting-clone.vercel.app" title="BJ Accounting Solutions — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>BJ Accounting Solutions</h3>
-                <p>Tax, bookkeeping and business advisory in Bulawayo — services-first layout.</p>
-                <div class="show-tags"><span>Finance</span><span>Next.js</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Professional</span><span>Finance</span></div>
+              <h2>BJ Accounting Solutions</h2>
+              <p>BJ Accounting offer tax, bookkeeping and business advisory to small businesses in Bulawayo.</p>
+              <p>Their site leads with services in plain language — no jargon, no filler — because their clients are owners deciding whether to hand over the books at all.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://bj-accounting-clone.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://bj-accounting-clone.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Mirage International College -->
-          <article class="show small" data-cat="professional" style="--accent:#db2777">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>mirage-college.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Mirage College</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://mirage-college.vercel.app" title="Mirage International College — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="professional" data-url="https://mirage-college.vercel.app" data-domain="mirage-college.vercel.app"
+                   data-facts="Course pages with intakes and requirements|Application enquiry flow for prospective students|Brand built for a beauty-industry audience"
+                   style="--accent:#db2777">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Mirage College</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://mirage-college.vercel.app" title="Mirage International College — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Mirage International College</h3>
-                <p>Skincare and beauty therapy college in Harare — courses, intakes and applications.</p>
-                <div class="show-tags"><span>Education</span><span>Next.js</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Education</span><span>Beauty</span></div>
+              <h2>Mirage International College</h2>
+              <p>Mirage train skincare and beauty therapists in Harare, and their prospective students are comparing courses, intakes and fees before they ever call.</p>
+              <p>We built course pages that answer those questions in full, then hand the student straight into an application enquiry.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://mirage-college.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://mirage-college.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Sojah Farm Management -->
-          <article class="show small" data-cat="professional" style="--accent:#4d7c0f">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>sojah-farm-management.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Sojah Farm</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://sojah-farm-management.vercel.app" title="Sojah Farm Management — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="professional" data-url="https://sojah-farm-management.vercel.app" data-domain="sojah-farm-management.vercel.app"
+                   data-facts="Records, planning and reporting in one platform|Built for day-to-day farm operations|Structured data instead of scattered notebooks"
+                   style="--accent:#4d7c0f">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Sojah Farm</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://sojah-farm-management.vercel.app" title="Sojah Farm Management — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Sojah Farm Management</h3>
-                <p>Farm operations platform — records, planning and reporting in one place.</p>
-                <div class="show-tags"><span>Agriculture</span><span>Next.js</span><span>Platform</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Agriculture</span><span>Platform</span></div>
+              <h2>Sojah Farm Management</h2>
+              <p>Sojah is a farm operations platform rather than a brochure site — records, planning and reporting pulled into one place.</p>
+              <p>It replaces the notebooks and spreadsheets a working farm accumulates, so the numbers are in one system when decisions have to be made.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://sojah-farm-management.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://sojah-farm-management.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
           <!-- Cloud Home -->
-          <article class="show small" data-cat="retail" style="--accent:#be123c">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>website-one-rho-59.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Cloud Home</span><span class="pl">Loading live hero…</span></div>
-                <iframe data-src="https://website-one-rho-59.vercel.app" title="Cloud Home — live hero" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <article class="case" data-cat="retail" data-url="https://website-one-rho-59.vercel.app" data-domain="website-one-rho-59.vercel.app"
+                   data-facts="Catalogue-driven storefront for home furniture|Product pages built for browsing and comparison|Enquiry path for showroom follow-up"
+                   style="--accent:#be123c">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Cloud Home</span><span class="pl">Loading live site…</span></div>
+                <iframe data-src="https://website-one-rho-59.vercel.app" title="Cloud Home — live preview" loading="lazy" scrolling="no" tabindex="-1"></iframe>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Cloud Home</h3>
-                <p>Chairs, sofas and home furniture in Harare — catalogue-driven retail storefront.</p>
-                <div class="show-tags"><span>Retail</span><span>Next.js</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Retail</span><span>Furniture</span></div>
+              <h2>Cloud Home</h2>
+              <p>Cloud Home sell chairs, sofas and home furniture in Harare, where customers want to see the whole range before they walk into a showroom.</p>
+              <p>The site is a catalogue-driven storefront built for browsing and comparison, with a clear path from a product page to a real conversation.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://website-one-rho-59.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://website-one-rho-59.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
-          <!-- Swan Soft Tissue Paper — upstream sends X-Frame-Options: SAMEORIGIN, so no iframe; branded poster stays -->
-          <article class="show small" data-cat="retail" style="--accent:#0ea5e9">
-            <span class="show-glow"></span>
-            <div class="show-screen">
-              <div class="show-bar"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>swan-soft-tissue-paper.vercel.app</span></div>
-              <span class="show-live"><i></i> Live</span>
-              <div class="show-vp">
-                <div class="show-poster"><span class="pm">Swan Soft Tissue Paper</span><span class="pl">Open to view live</span></div>
+          <!-- Swan Soft Tissue Paper — upstream sends X-Frame-Options: SAMEORIGIN, so the preview stays a branded poster -->
+          <article class="case" data-cat="retail" data-url="https://swan-soft-tissue-paper.vercel.app" data-domain="swan-soft-tissue-paper.vercel.app" data-noframe="1"
+                   data-facts="Product range presented for retail and wholesale|Distributor enquiry kept separate from retail|Manufacturing credibility built into the layout"
+                   style="--accent:#0ea5e9">
+            <div class="case-shot">
+              <span class="case-live"><i></i> Live</span>
+              <div class="vp">
+                <div class="case-poster"><span class="pm">Swan Soft Tissue Paper</span><span class="pl">Open to view live</span></div>
               </div>
             </div>
-            <div class="show-info">
-              <div>
-                <h3>Swan Soft Tissue Paper</h3>
-                <p>Premium 2-ply tissue manufacturer in Kwekwe — product and distributor site.</p>
-                <div class="show-tags"><span>Manufacturing</span><span>Vite</span></div>
+            <div class="case-body">
+              <div class="tagrow"><span>Manufacturing</span><span>Retail</span><span>Wholesale</span></div>
+              <h2>Swan Soft Tissue Paper</h2>
+              <p>Swan manufacture premium two-ply tissue in Kwekwe and sell to two very different audiences — retail shoppers and wholesale distributors.</p>
+              <p>The site presents the product range for both, keeping the distributor enquiry separate from the retail story so neither gets in the other's way.</p>
+              <div class="case-actions">
+                <button type="button" class="readmore">Read More
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </button>
+                <a class="case-visit" href="https://swan-soft-tissue-paper.vercel.app" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                </a>
               </div>
-              <a class="visit" href="https://swan-soft-tissue-paper.vercel.app" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
           </article>
 
-          <!-- CTA cell -->
-          <div class="show-cta">
+          <!-- CTA -->
+          <div class="case-cta">
             <h3>Your site, next.</h3>
             <p>Send us your business. We design, build and ship a site like these — usually a working demo within two weeks.</p>
-            <a href="/#contact">Start a project
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <a href="/#contact" class="pf-cta">Start a project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
             </a>
           </div>
 
@@ -692,6 +959,14 @@
       </div>
     </section>
   </main>
+
+  <!-- ============ CASE STUDY OVERLAY ============ -->
+  <div class="pf-detail" id="pf-detail" role="dialog" aria-modal="true" aria-labelledby="pf-detail-title" aria-hidden="true">
+    <button type="button" class="pf-detail-close" id="pf-detail-close" aria-label="Close case study">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="pf-detail-inner" id="pf-detail-inner"></div>
+  </div>
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
@@ -719,6 +994,7 @@
         <div class="footer-col">
           <h5>Company</h5>
           <ul>
+            <li><a href="/reviews">Client Reviews</a></li>
             <li><a href="/#products">Products</a></li>
             <li><a href="/#why">Why Rylo</a></li>
             <li><a href="/#team">Executives</a></li>
@@ -743,18 +1019,22 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="script.js?v=54"></script>
 
-  <!-- ===== Portfolio showcase motion ===== -->
+  <!-- ===== Portfolio: live previews, filter, case study overlay ===== -->
   <script>
   (function () {
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ---- Scale each live iframe to fit its frame (responsive, crisp) ----
-    var screens = Array.prototype.slice.call(document.querySelectorAll('.show-vp'));
+    /* ---------------------------------------------------------
+       Live previews — every frame renders the real site at 1440px
+       wide and is scaled down to whatever box it sits in.
+       --------------------------------------------------------- */
+    var frames = Array.prototype.slice.call(document.querySelectorAll('.pf-tile-vp, .case-shot .vp'));
+
     function fit() {
-      screens.forEach(function (vp) {
-        var f = vp.querySelector('iframe');
-        if (!f || !vp.clientWidth) return; // clientWidth is 0 while a card is filtered out
-        var scale = vp.clientWidth / 1440;
+      frames.forEach(function (box) {
+        var f = box.querySelector('iframe');
+        if (!f || !box.clientWidth) return; // 0 while the card is filtered out
+        var scale = box.clientWidth / 1440;
         f.style.setProperty('--scale', scale);
         f.style.transform = 'scale(' + scale + ')';
       });
@@ -762,72 +1042,157 @@
     fit();
     window.addEventListener('resize', fit);
 
-    // ---- Lazy-mount the real sites ----
-    function mount(vp) {
-      var f = vp.querySelector('iframe');
+    function mount(box) {
+      var f = box.querySelector('iframe');
       if (!f || f.dataset.mounted) return;
       f.dataset.mounted = '1';
-      var poster = vp.querySelector('.show-poster');
+      var poster = box.querySelector('.case-poster');
       var reveal = function () { f.classList.add('loaded'); if (poster) poster.classList.add('hide'); };
       f.addEventListener('load', reveal);
       fit();
       f.src = f.getAttribute('data-src');
-      setTimeout(reveal, 3200); // safety net for cross-origin loads
+      setTimeout(reveal, 3200); // safety net — cross-origin load events can be unreliable
     }
-    var mo = null;
-    if ('IntersectionObserver' in window) {
-      mo = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { mount(e.target); mo.unobserve(e.target); } });
-      }, { rootMargin: '300px' });
-      screens.forEach(function (s) { mo.observe(s); });
-    } else { screens.forEach(mount); }
 
-    // ---- Reveal cards on scroll + pointer glow ----
-    var cells = Array.prototype.slice.call(document.querySelectorAll('.show, .show-cta'));
-    if (prefersReduced) {
+    if ('IntersectionObserver' in window) {
+      var mo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { mount(e.target); mo.unobserve(e.target); } });
+      }, { rootMargin: '320px' });
+      frames.forEach(function (b) { mo.observe(b); });
+    } else {
+      frames.forEach(mount);
+    }
+
+    /* ---------------------------------------------------------
+       Scroll reveal
+       --------------------------------------------------------- */
+    var cells = Array.prototype.slice.call(document.querySelectorAll('.case, .case-cta'));
+    if (reduced) {
       cells.forEach(function (c) { c.classList.add('in'); });
     } else if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
-      cells.forEach(function (c, i) {
+      cells.forEach(function (c) {
         ScrollTrigger.create({
-          trigger: c, start: 'top 92%', once: true,
-          onEnter: function () { gsap.to(c, { opacity: 1, y: 0, duration: 0.7, delay: (i % 2) * 0.08, ease: 'power3.out', onStart: function(){ c.classList.add('in'); } }); }
+          trigger: c, start: 'top 90%', once: true,
+          onEnter: function () { c.classList.add('in'); }
         });
       });
     } else {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: 0.15 });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
       cells.forEach(function (c) { io.observe(c); });
     }
-    // glow follows cursor x
-    document.querySelectorAll('.show').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty('--gx', ((e.clientX - r.left) / r.width * 100) + '%');
-      });
-    });
 
-    // ---- Industry filter ----
+    /* ---------------------------------------------------------
+       Industry filter
+       --------------------------------------------------------- */
     var filter = document.getElementById('pf-filter');
     if (filter) {
-      var cards = Array.prototype.slice.call(document.querySelectorAll('.show[data-cat]'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.case[data-cat]'));
       filter.addEventListener('click', function (e) {
         var btn = e.target.closest('button[data-cat]');
         if (!btn) return;
         var cat = btn.dataset.cat;
         filter.querySelectorAll('button').forEach(function (b) { b.classList.toggle('on', b === btn); });
         cards.forEach(function (c) {
-          var show = cat === 'all' || c.dataset.cat === cat;
-          c.classList.toggle('hidden', !show);
-          // a card revealed by the filter must not stay stuck at opacity 0
-          if (show) { c.classList.add('in'); c.style.opacity = ''; c.style.transform = ''; }
+          var visible = cat === 'all' || c.dataset.cat === cat;
+          c.classList.toggle('hidden', !visible);
+          if (visible) c.classList.add('in'); // never leave a re-shown card stuck at opacity 0
         });
-        // newly-revealed cards need their iframe re-scaled (clientWidth was 0 while hidden)
-        fit();
+        fit(); // re-scale iframes that had clientWidth 0 while hidden
         if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
       });
     }
+
+    /* ---------------------------------------------------------
+       Case study overlay
+       --------------------------------------------------------- */
+    var detail      = document.getElementById('pf-detail');
+    var detailInner = document.getElementById('pf-detail-inner');
+    var detailClose = document.getElementById('pf-detail-close');
+    var lastTrigger = null;
+
+    var TICK  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+    var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>';
+    var LOCK  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+
+    function fitDetailFrame() {
+      var box = detailInner.querySelector('.hiw-vp');
+      if (!box) return;
+      var f = box.querySelector('iframe');
+      if (!f || !box.clientWidth) return;
+      f.style.transform = 'scale(' + (box.clientWidth / 1440) + ')';
+    }
+
+    function buildDetail(card) {
+      var url    = card.dataset.url;
+      var domain = card.dataset.domain;
+      var title  = card.querySelector('h2').textContent;
+      var tags   = card.querySelector('.tagrow').innerHTML;
+      var copy   = Array.prototype.map.call(card.querySelectorAll('.case-body p'), function (p) {
+        return '<p>' + p.innerHTML + '</p>';
+      }).join('');
+      var facts  = (card.dataset.facts || '').split('|').filter(Boolean).map(function (f) {
+        return '<div class="pf-fact">' + TICK + '<span>' + f + '</span></div>';
+      }).join('');
+
+      var viewport = card.dataset.noframe
+        ? '<div class="hiw-vp"><div class="fallback"><strong>' + title + '</strong>' +
+          '<span>This site blocks embedding, so open it in a new tab to see it live.</span></div></div>'
+        : '<div class="hiw-vp"><iframe src="' + url + '" title="' + title + ' — live site" loading="lazy"></iframe></div>';
+
+      detailInner.innerHTML =
+        '<div class="tagrow">' + tags + '</div>' +
+        '<h2 id="pf-detail-title">' + title + '</h2>' +
+        '<div class="lede">' + copy + '</div>' +
+        (facts ? '<div class="pf-facts">' + facts + '</div>' : '') +
+        '<section class="hiw">' +
+          '<h3>Here\'s how it looks</h3>' +
+          '<p>The live site, running right now — scroll inside the frame to explore it.</p>' +
+          '<div class="hiw-frame">' +
+            '<div class="hiw-bar">' +
+              '<span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span>' +
+              '<span class="url">' + LOCK + domain + '</span>' +
+            '</div>' + viewport +
+          '</div>' +
+          '<p class="hiw-hint">Best seen full size — open the real thing below.</p>' +
+          '<div class="hiw-actions">' +
+            '<a class="pf-cta" href="' + url + '" target="_blank" rel="noopener">Visit live site ' + ARROW + '</a>' +
+            '<a class="pf-cta pf-cta--ghost" href="/#contact">Start a project like this ' + ARROW + '</a>' +
+          '</div>' +
+        '</section>';
+
+      fitDetailFrame();
+    }
+
+    function openDetail(card, trigger) {
+      lastTrigger = trigger || null;
+      buildDetail(card);
+      detail.classList.add('open');
+      detail.setAttribute('aria-hidden', 'false');
+      detail.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+      detailClose.focus();
+    }
+
+    function closeDetail() {
+      detail.classList.remove('open');
+      detail.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      detailInner.innerHTML = ''; // unmount the live iframe so it stops running
+      if (lastTrigger) lastTrigger.focus();
+    }
+
+    document.querySelectorAll('.case .readmore').forEach(function (btn) {
+      btn.addEventListener('click', function () { openDetail(btn.closest('.case'), btn); });
+    });
+    detailClose.addEventListener('click', closeDetail);
+    detail.addEventListener('click', function (e) { if (e.target === detail) closeDetail(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && detail.classList.contains('open')) closeDetail();
+    });
+    window.addEventListener('resize', fitDetailFrame);
 
   })();
   </script>
