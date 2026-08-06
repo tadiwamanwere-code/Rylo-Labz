@@ -13,6 +13,7 @@ module.exports = async (_req, res) => {
   const baseUrl = 'https://rylolabz.com';
   const staticUrls = [
     `${baseUrl}/`,
+    `${baseUrl}/portfolio`,
     `${baseUrl}/admin`
   ];
 
