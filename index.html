@@ -7,7 +7,7 @@
   <meta name="description" content="Send us your problem. Working demo in 2 weeks. We build custom AI and software for ambitious teams — your vision, our code." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="Rylo Labz" />
-  <meta name="theme-color" content="#f8f5ee" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://rylolabz.com/" />
 
   <meta property="og:type" content="website" />
@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://images.pexels.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css?v=55" />
+  <link rel="stylesheet" href="styles.css?v=56" />
 
   <script type="application/ld+json">
     {
@@ -444,7 +444,7 @@
 
         <!-- ============ CLIENT WORK SHOWCASE ============ -->
     <style>
-      .cw2 { position: relative; background: #0a0a0d; color: #fafafa; padding: 100px 0 104px; }
+      .cw2 { position: relative; background: var(--bg-2); color: var(--text); padding: 100px 0 104px; }
       .cw2-head { text-align: center; max-width: 720px; margin: 0 auto 50px; padding: 0 24px; }
       .cw2-head .eyebrow {
         display: inline-flex; align-items: center; gap: 8px; justify-content: center;
@@ -460,20 +460,20 @@
       .cw2-card {
         --accent: #3f6f4f;
         border-radius: 24px; overflow: hidden;
-        background: #141418; border: 1px solid rgba(255,255,255,.08);
-        box-shadow: 0 34px 80px -42px rgba(0,0,0,.9);
+        background: var(--surface); border: 1px solid var(--border);
+        box-shadow: var(--sh-sm);
         transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .5s;
       }
       .cw2-card:hover {
         transform: translateY(-10px);
-        border-color: color-mix(in srgb, var(--accent) 55%, rgba(255,255,255,.08));
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
         box-shadow: 0 60px 110px -46px color-mix(in srgb, var(--accent) 75%, transparent);
       }
-      .cw2-screen { position: relative; width: 100%; aspect-ratio: 1440 / 940; overflow: hidden; background: #0c0c10; }
+      .cw2-screen { position: relative; width: 100%; aspect-ratio: 1440 / 940; overflow: hidden; background: var(--bg-3); }
       .cw2-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 3; height: 40px; display: flex; align-items: center; gap: 9px; padding: 0 15px; background: rgba(20,20,24,.88); backdrop-filter: blur(6px); }
       .cw2-bar .dots { display: flex; gap: 6px; }
       .cw2-bar .dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
-      .cw2-bar .url { flex: 1; text-align: center; font-size: 12.5px; color: #c9c9d2; background: rgba(255,255,255,.07); border-radius: 7px; padding: 5px 12px; max-width: 320px; margin: 0 auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-flex; align-items: center; gap: 6px; justify-content: center; }
+      .cw2-bar .url { flex: 1; text-align: center; font-size: 12.5px; color: var(--text-muted); background: var(--bg-3); border-radius: 7px; padding: 5px 12px; max-width: 320px; margin: 0 auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-flex; align-items: center; gap: 6px; justify-content: center; }
       .cw2-bar .url svg { width: 12px; height: 12px; color: #34d399; flex: none; }
       .cw2-live { position: absolute; z-index: 4; top: 50px; right: 14px; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #052e16; background: #4ade80; padding: 3px 10px; border-radius: 20px; }
       .cw2-live i { width: 6px; height: 6px; border-radius: 50%; background: #052e16; animation: cw2Pulse 1.6s infinite; }
@@ -491,8 +491,8 @@
       .cw2-info p { margin: 0; font-size: .98rem; color: #9c9ca8; line-height: 1.5; }
       .cw2-tags { display: flex; gap: 7px; margin-top: 12px; flex-wrap: wrap; }
       .cw2-tags span { font-size: 11.5px; font-weight: 600; color: #cbb8ff; background: rgba(139,92,246,.14); border: 1px solid rgba(139,92,246,.28); padding: 3px 10px; border-radius: 20px; }
-      .cw2-visit { flex: none; display: inline-flex; align-items: center; gap: 8px; font-size: .96rem; font-weight: 600; color: #07070a; background: #fff; padding: 12px 20px; border-radius: 12px; white-space: nowrap; transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s; }
-      .cw2-visit:hover { color: #07070a; transform: translateY(-2px); box-shadow: 0 16px 32px -14px rgba(255,255,255,.5); }
+      .cw2-visit { flex: none; display: inline-flex; align-items: center; gap: 8px; font-size: .96rem; font-weight: 600; color: #fff; background: var(--c-ink); padding: 12px 20px; border-radius: 12px; white-space: nowrap; transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s; }
+      .cw2-visit:hover { color: #fff; background: #27272a; transform: translateY(-2px); box-shadow: var(--sh-md); }
       .cw2-visit svg { width: 16px; height: 16px; }
 
       .cw2-foot { text-align: center; margin-top: 52px; }
@@ -875,7 +875,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="script.js?v=16"></script>
+  <script src="script.js?v=56"></script>
 
     <!-- ===== Client Work showcase — lightweight ===== -->
   <script>

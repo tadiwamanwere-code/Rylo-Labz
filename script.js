@@ -339,14 +339,16 @@
 
     function drawStatic() {
       ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+      // Light theme: the resting mesh is dark-on-white. The travelling pulses
+      // below keep their brand colours, which read fine either way.
+      ctx.strokeStyle = 'rgba(9,9,11,0.07)';
       ctx.beginPath();
       for (const [a, b] of edges) {
         ctx.moveTo(nodes[a].x, nodes[a].y);
         ctx.lineTo(nodes[b].x, nodes[b].y);
       }
       ctx.stroke();
-      ctx.fillStyle = 'rgba(255,255,255,0.09)';
+      ctx.fillStyle = 'rgba(9,9,11,0.13)';
       for (const n of nodes) {
         ctx.beginPath();
         ctx.arc(n.x, n.y, 1.3, 0, Math.PI * 2);

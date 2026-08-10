@@ -1,35 +1,36 @@
 /* =========================================================
-   Rylo Labz — Design System v3
-   Warm cream + espresso palette · serif display · black glossy CTAs
+   Rylo Labz — Design System v4
+   Light theme on the shadcn/ui zinc scale · single sans typeface
    Aesthetic family: HubSpot-class editorial marketing site
    ========================================================= */
 
 :root {
-  /* Surfaces — pure black family */
-  --bg:           #000000;
-  --bg-2:         #060606;
-  --bg-3:         #000000;
-  --bg-dark:      #000000;
-  --bg-darker:    #000000;
-  --surface:      #1a1a1c;  /* Ocoya-style charcoal card — pops off pure black */
-  --surface-alt:  #202023;  /* slightly lighter elevated / hover surface */
+  /* Surfaces — white with the zinc ramp for banding.
+     Mirrors shadcn's --background / --card / --muted. */
+  --bg:           #ffffff;
+  --bg-2:         #fafafa;  /* zinc-50  — alternating section band */
+  --bg-3:         #f4f4f5;  /* zinc-100 — muted band / inset wells */
+  --bg-dark:      #ffffff;
+  --bg-darker:    #fafafa;
+  --surface:      #ffffff;  /* cards sit white on the zinc bands, lifted by shadow */
+  --surface-alt:  #fafafa;  /* elevated / hover surface */
 
   /* Sticky-nav height (used by hero to slide its image up under the nav) */
-  --nav-h:        72px;
+  --nav-h:        60px;
 
-  /* Text — clean whites/grays for dark theme */
-  --text:         #ffffff;
-  --text-2:       #e8e8e8;
-  --text-muted:   #a0a0a0;
-  --text-subtle:  #6b6b6b;
+  /* Text — zinc ramp. --text-on-dark stays light for copy over photography. */
+  --text:         #09090b;  /* zinc-950 — shadcn --foreground */
+  --text-2:       #27272a;  /* zinc-800 */
+  --text-muted:   #71717a;  /* zinc-500 — shadcn --muted-foreground */
+  --text-subtle:  #a1a1aa;  /* zinc-400 */
   --text-on-dark: #ffffff;
-  --text-on-dark-muted: #c4c4c4;
+  --text-on-dark-muted: #e4e4e7;
 
-  /* Borders — subtle white hairlines that read on both #000 and the gray cards */
-  --border:       rgba(255,255,255,.07);
-  --border-strong:rgba(255,255,255,.13);
-  --border-soft:  rgba(255,255,255,.05);
-  --border-dark:  rgba(255,255,255,.07);
+  /* Borders — solid zinc hairlines; alpha-white borders vanish on white */
+  --border:       #e4e4e7;  /* zinc-200 — shadcn --border */
+  --border-strong:#d4d4d8;  /* zinc-300 */
+  --border-soft:  #f4f4f5;  /* zinc-100 */
+  --border-dark:  #e4e4e7;
 
   /* Brand — black primary, gradient as secondary signature */
   --c-ink:           #0a0706;
@@ -86,11 +87,12 @@
   --r-2xl: 40px;
   --r-pill: 999px;
 
-  /* Shadows — minimal, warm */
-  --sh-xs:    0 1px 2px rgba(26,20,16,.04);
-  --sh-sm:    0 2px 6px rgba(26,20,16,.06);
-  --sh-md:    0 8px 24px -4px rgba(26,20,16,.10);
-  --sh-lg:    0 24px 60px -20px rgba(26,20,16,.20);
+  /* Shadows — neutral zinc, shadcn elevation ramp.
+     On white these carry the depth that borders alone used to on black. */
+  --sh-xs:    0 1px 2px 0 rgba(9,9,11,.05);
+  --sh-sm:    0 1px 3px 0 rgba(9,9,11,.09), 0 1px 2px -1px rgba(9,9,11,.06);
+  --sh-md:    0 4px 12px -2px rgba(9,9,11,.09), 0 2px 6px -2px rgba(9,9,11,.05);
+  --sh-lg:    0 14px 36px -10px rgba(9,9,11,.13), 0 4px 10px -4px rgba(9,9,11,.06);
 
   /* Glossy black button */
   --sh-ink:        0 1px 0 rgba(255,255,255,.18) inset, 0 12px 30px -10px rgba(10,7,6,.55);
@@ -100,6 +102,7 @@
   --maxw: 1280px;
   --maxw-narrow: 920px;
   --maxw-tight:  760px;
+  --maxw-nav: 1040px;   /* nav pill is deliberately shorter than the content column */
 
   /* Motion */
   --ease-out: cubic-bezier(.2, .7, .2, 1);
@@ -376,45 +379,26 @@ p  { margin: 0; }
 .nav-inner {
   position: relative;
   width: 100%;
-  max-width: var(--maxw);
+  /* Deliberately shorter than the content column so the bar reads as a
+     floating control, not a full-width band. */
+  max-width: var(--maxw-nav);
   margin: 0 auto;
-  padding: 10px var(--s-6);
+  padding: 8px var(--s-5);
   display: flex;
   align-items: center;
-  gap: var(--s-10);
+  gap: var(--s-8);
   border-radius: var(--r-pill);
-  /* See-through: almost no tint and only a hair of blur, so the text and
-     everything beneath stays readable THROUGH the bar. The saturate +
-     brightness act as a thin lens that "liquid-glass" morphs whatever
-     scrolls underneath, without frosting it opaque. */
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(2px) saturate(180%) brightness(1.06);
-  -webkit-backdrop-filter: blur(2px) saturate(180%) brightness(1.06);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),   /* top specular highlight */
-    inset 0 -1px 1px rgba(255, 255, 255, 0.08),/* bottom inner edge */
-    0 10px 34px -14px rgba(0, 0, 0, 0.45);     /* lift off the page */
+  /* Light theme: a near-opaque white pill with a zinc hairline. Frosted
+     rather than see-through, so nav text stays legible over any section. */
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: var(--sh-sm);
 }
-/* Diagonal moving sheen — the "liquid" light sweep across the glass */
-.nav-inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.12) 30%,
-    rgba(255, 255, 255, 0.02) 46%,
-    transparent 60%
-  );
-  background-size: 250% 100%;
-  background-position: 120% 0;
-  mix-blend-mode: screen;
-  animation: glass-sheen 9s ease-in-out infinite;
-}
+/* Sheen removed with the glass treatment — mix-blend-mode: screen is a
+   no-op against a white pill. */
+.nav-inner::before { content: none; }
 /* Chromatic rim — light bending at the edge (refraction/diffraction) */
 .nav-inner::after {
   content: "";
@@ -435,15 +419,7 @@ p  { margin: 0; }
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
-  opacity: 0.45;
-}
-@keyframes glass-sheen {
-  0%   { background-position: 130% 0; }
-  55%  { background-position: -30% 0; }
-  100% { background-position: -30% 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .nav-inner::before { animation: none; }
+  opacity: 0.28;
 }
 .brand {
   display: inline-flex;
@@ -451,14 +427,13 @@ p  { margin: 0; }
   gap: var(--s-2);
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 19px;
+  font-size: 18px;
   letter-spacing: -0.015em;
-  color: #EDE1BF;
-  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+  color: var(--text);
 }
 .brand-mark {
   width: auto;
-  height: 34px;
+  height: 28px;
   border-radius: 8px;
   background: transparent;
   object-fit: contain;
@@ -480,20 +455,20 @@ img.brand-mark { background: transparent; box-shadow: none; }
   font-family: var(--font-serif);
   font-size: var(--fs-small);
   font-weight: 500;
-  color: rgba(255,255,255,.92);
+  color: var(--text-muted);
   padding: 8px 2px;
   position: relative;
-  text-shadow: 0 1px 2px rgba(0,0,0,.35);
   transition: color .2s var(--ease-out);
 }
-.nav-links a:hover { color: #fff; }
+.nav-links a:hover,
+.nav-links a.active { color: var(--text); }
 .nav-links a::after {
   content: "";
   position: absolute;
   left: 0; right: 100%;
   bottom: 0;
   height: 2px;
-  background: rgba(255,255,255,.85);
+  background: var(--text);
   transition: right .25s var(--ease-out);
 }
 .nav-links a:hover::after { right: 0; }
@@ -528,29 +503,26 @@ img.brand-mark { background: transparent; box-shadow: none; }
   color: #fff;
   transform: translateY(-1px);
 }
-/* Nav buttons — glassy white pill stays consistent throughout the site */
+/* Nav buttons — shadcn outline + primary, sized down with the shorter bar */
 .nav .btn--outline-ink {
-  color: #fff;
-  border-color: rgba(255,255,255,.45);
+  color: var(--text);
+  border-color: var(--border-strong);
   background: transparent;
 }
 .nav .btn--outline-ink:hover {
-  background: rgba(255,255,255,.95);
-  color: var(--c-ink);
-  border-color: #fff;
+  background: var(--bg-3);
+  color: var(--text);
+  border-color: var(--border-strong);
 }
 .nav .btn--ink {
-  background: rgba(255,255,255,.94);
-  color: var(--c-ink);
+  background: var(--c-ink);
+  color: #fff;
   border-color: transparent;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.6),
-    inset 0 -1px 0 rgba(0,0,0,.15),
-    0 6px 18px -8px rgba(0,0,0,.6);
+  box-shadow: var(--sh-xs);
 }
 .nav .btn--ink:hover {
-  background: #fff;
-  color: var(--c-ink);
+  background: #27272a;
+  color: #fff;
 }
 
 /* Outlined light CTA — used over dark photo backgrounds */
@@ -2721,14 +2693,15 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .hiw-service-card--dark .hiw-list li::before { background: rgba(255,255,255,.45); }
 
 /* ============================================================
-   GLOBAL DARK THEME OVERRIDES
-   Site-wide black with light text. Targets sections, cards,
-   forms, and other components that hardcoded light colors.
+   GLOBAL LIGHT THEME OVERRIDES
+   Site-wide white with zinc text, on the shadcn scale. Targets
+   sections, cards, forms and other components whose base rules
+   still hardcode the old dark palette.
    ============================================================ */
 
-/* Page background: solid black across the entire site. */
+/* Page background: white across the entire site. */
 html, body {
-  background: #000;
+  background: var(--bg);
   color: var(--text);
 }
 
@@ -2761,9 +2734,7 @@ html, body {
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   color: var(--text);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.05) inset,
-    0 12px 32px -20px rgba(0,0,0,.8);
+  box-shadow: var(--sh-sm);
 }
 .tile:hover,
 .insight-card:hover,
@@ -2771,8 +2742,9 @@ html, body {
 .solution-card:hover,
 .value-card:hover,
 .why-card:hover {
-  background: var(--surface-alt);
+  background: var(--surface);
   border-color: var(--border-strong);
+  box-shadow: var(--sh-md);
 }
 .tile h3, .tile h4, .tile p,
 .insight-card h3, .insight-card p,
@@ -2788,81 +2760,90 @@ html, body {
 .hiw-service-card:not(.hiw-service-card--dark) h3 { color: var(--text); }
 .hiw-service-card:not(.hiw-service-card--dark) p,
 .hiw-service-card:not(.hiw-service-card--dark) .hiw-list li { color: var(--text-muted); }
-.hiw-service-card:not(.hiw-service-card--dark) .hiw-list li::before { background: rgba(255,255,255,.45); }
+.hiw-service-card:not(.hiw-service-card--dark) .hiw-list li::before { background: var(--text-subtle); }
 .hiw-service-card:not(.hiw-service-card--dark) .hiw-service-label { color: var(--text-subtle); }
 
-/* Buttons — keep ink button as white pill on dark site */
+/* Buttons — shadcn primary (zinc-900 fill) and outline */
 .btn--ink {
-  background: #fff;
-  color: #000;
+  background: var(--c-ink);
+  color: #fff;
 }
-.btn--ink:hover { background: #f0f0f0; color: #000; }
+.btn--ink:hover { background: #27272a; color: #fff; }
 
 .btn--outline-ink {
-  color: #fff;
-  border-color: rgba(255,255,255,.45);
+  color: var(--text);
+  background: transparent;
+  border-color: var(--border-strong);
 }
 .btn--outline-ink:hover {
-  background: #fff;
-  color: #000;
-  border-color: #fff;
+  background: var(--bg-3);
+  color: var(--text);
+  border-color: var(--border-strong);
 }
 
-.btn--on-dark { color: #000; background: #fff; }
+/* Still used over dark photography, so it stays inverted */
+.btn--on-dark { color: var(--c-ink); background: #fff; }
 
 /* Inputs / form fields */
 input, textarea, select,
 .hero-widget-input,
 .contact-input {
-  background: rgba(255,255,255,.04);
+  background: var(--bg);
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
 }
 input::placeholder, textarea::placeholder { color: var(--text-subtle); }
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+  border-color: var(--text);
+}
 
-/* Footer already dark — ensure consistency */
+/* Footer — quiet zinc band, separated by a hairline rather than a colour jump */
 .footer {
   color: var(--text);
-  background-color: #262629;
-  background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1.4px);
-  background-size: 24px 24px;
+  background-color: var(--bg-2);
+  background-image: none;
+  border-top: 1px solid var(--border);
 }
-.footer p, .footer li, .footer a { color: rgba(255,255,255,.7); }
-.footer a:hover { color: #fff; }
-.footer h5 { color: #fff; }
+.footer p, .footer li, .footer a { color: var(--text-muted); }
+.footer a:hover { color: var(--text); }
+.footer h5 { color: var(--text); }
+.footer-brand-block .brand { color: var(--text); }
 
 /* Final CTA strip */
 .final-cta {
   color: var(--text);
-  background-color: #262629;
-  background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1.4px);
-  background-size: 24px 24px;
+  background-color: var(--bg-3);
+  background-image: none;
+  border-block: 1px solid var(--border);
 }
 .final-cta-actions .btn { gap: 10px; }
 .final-cta-actions .btn svg { width: 19px; height: 19px; flex-shrink: 0; }
 .final-cta .btn--ghost {
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.28);
-  color: #fff;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
 }
 .final-cta .btn--ghost:hover {
-  background: rgba(255,255,255,.15);
-  border-color: rgba(255,255,255,.5);
-  color: #fff;
+  background: var(--bg);
+  border-color: var(--text);
+  color: var(--text);
 }
 
-/* Eyebrow text on dark sections */
-.eyebrow { color: rgba(255,255,255,.6); }
+/* Eyebrow text */
+.eyebrow { color: var(--text-muted); }
 
-/* Partners section — invert any light strip backgrounds */
+/* Partners section — the brightness lift existed to rescue dark logos on
+   black; on white it washes them out. */
 .partners-section { background: transparent; }
 .partners-section .partners-track,
-.partners-section img { filter: brightness(1.1) contrast(1.05); }
+.partners-section img { filter: none; }
 
-/* Articles list / insight cards on dark */
+/* Articles list / insight cards */
 .insight-card { background: var(--surface); }
 .insight-card .insight-date { color: var(--text-subtle); }
-.insight-link { color: #fff; }
+.insight-link { color: var(--text); }
 
 /* HIW step cards & numbered counters */
 .hiw-step,
@@ -2872,8 +2853,74 @@ input::placeholder, textarea::placeholder { color: var(--text-subtle); }
 /* Why-Rylo card text */
 .why-card h4, .why-card p { color: inherit; }
 
-/* Generic borders fall to dark */
+/* Generic borders */
 hr { border-color: var(--border); }
+
+/* ---- Remaining components that hardcoded the dark palette ---- */
+
+/* Hero — white ground; the hex mesh is repainted dark in script.js */
+.hero { color: var(--text); }
+.hero-bg { background: var(--bg); }
+.hero-title, .hero-sub strong { color: var(--text); }
+.hero-sub { color: var(--text-muted); }
+.hero-eyebrow {
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: var(--bg-2);
+}
+
+/* Mobile menu + toggle */
+.nav-toggle { color: var(--text); border-color: var(--border-strong); }
+.nav-mobile-menu.is-open {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+.nav-mobile-links a { color: var(--text); border-color: var(--border); }
+
+/* Why-flow */
+.whyflow-card, .whyflow-step {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--sh-sm);
+}
+.whyflow-card:hover { border-color: var(--border-strong); box-shadow: var(--sh-md); }
+.whyflow-title, .whyflow-label { color: var(--text); }
+
+/* Team */
+.team-section { background: var(--bg-2); }
+.team-photo-wrap { border-color: var(--border); }
+.team-photo-placeholder {
+  background: var(--bg-3);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+.team-role { color: var(--text-muted); }
+.team-bio  { color: var(--text-muted); }
+
+/* Solution + HIW dark variants keep a dark card on purpose, so only the
+   plain variants are re-pointed here. */
+.solution-card:not(.solution-card--dark) h3 { color: var(--text); }
+
+/* Lux finale */
+.lux-finale { background: var(--bg-3); }
+.lux-finale-heading { color: var(--text); }
+.lux-finale-sub { color: var(--text-muted); }
+.lux-finale-cta { color: var(--text); border-color: var(--border-strong); }
+.lux-finale-cta:hover { color: var(--text); background: var(--bg); }
+
+/* Feaster tile + build banner */
+.feaster-tile { box-shadow: var(--sh-md); }
+.fs-heading, .fs-stat strong, .fs-cta { color: var(--text); }
+.fs-body, .fs-stat, .fs-line-content { color: var(--text-muted); }
+.build-banner { background: var(--bg-3); border-block: 1px solid var(--border); }
+.build-banner-primary { color: #fff; background: var(--c-ink); }
+.build-banner-primary:hover { background: #27272a; }
+.build-banner-secondary { color: var(--text); border-color: var(--border-strong); }
+
+/* Image band sits over photography — its light text is correct, but the
+   scrim needs to be explicit now the page around it is white. */
+.image-band-quote { color: #fff; }
 
 /* ============================================================
    FEASTER SPOTLIGHT — frosted glass card with scroll-revealing
