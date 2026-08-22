@@ -21,48 +21,6 @@
     }, { passive: true });
   }
 
-  // ========== Counter animation for step numbers ==========
-  const counters = document.querySelectorAll('.hiw-step-counter');
-  const animateCounter = (element) => {
-    const targetText = element.textContent;
-    const targetNum = parseInt(targetText, 10);
-    if (isNaN(targetNum) || prefersReducedMotion) return;
-
-    let current = 0;
-    const duration = 600;
-    const start = performance.now();
-
-    const animate = (now) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      current = Math.floor(progress * targetNum);
-      element.textContent = String(current).padStart(2, '0');
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        element.textContent = targetText;
-      }
-    };
-
-    requestAnimationFrame(animate);
-  };
-
-  // Observe counters and animate when they come into view
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  counters.forEach((counter) => counterObserver.observe(counter));
-
   // Reflective navbar — liquid glass over the dark hero, flips to white once
   // the user scrolls into the light content below it.
   const navEl = document.querySelector('.nav');
@@ -211,42 +169,6 @@
   }
 
   loadArticles();
-
-  // Feaster spotlight — each line is a colored tag (block + text together)
-  // that slides in from the left or right on scroll. Text sits on top of
-  // the block so they animate as one unit.
-  (function initFeasterSpotlight() {
-    const lines = document.querySelectorAll('.feaster-spotlight .fs-line');
-    if (!lines.length) return;
-    if (prefersReducedMotion) return;
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    lines.forEach((line, i) => {
-      const block = line.querySelector('.fs-line-block');
-      const color = line.dataset.color;
-      if (block && color) block.style.background = color;
-
-      const fromLeft = line.classList.contains('fs-line--from-left');
-      const startX   = fromLeft ? -120 : 120;
-
-      gsap.set(line, { xPercent: startX, opacity: 0 });
-
-      gsap.to(line, {
-        xPercent: 0,
-        opacity: 1,
-        duration: 0.85,
-        ease: 'power3.out',
-        delay: i * 0.12,
-        scrollTrigger: {
-          trigger: line,
-          start: 'top 88%',
-          once: true,
-        },
-      });
-    });
-  })();
 
   // ========== Hero hexagonal network with flowing current ==========
   (function initHeroHexNetwork() {
