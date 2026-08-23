@@ -1698,8 +1698,8 @@ img.brand-mark { background: transparent; box-shadow: none; }
   justify-content: center;
 }
 
-.name-white  { color: #EDE1BF; }
-.name-accent { color: #EDE1BF; }
+.name-white  { color: var(--text); }
+.name-accent { color: var(--c-brand-blue); }
 
 .team-role {
   font-family: var(--font-sans);
@@ -1717,6 +1717,15 @@ img.brand-mark { background: transparent; box-shadow: none; }
   line-height: 1.65;
   max-width: 54ch;
 }
+.team-linkedin {
+  display: inline-block;
+  margin-top: var(--s-4);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--c-brand-blue);
+  transition: color .15s var(--ease-out);
+}
+.team-linkedin:hover { color: var(--c-brand-purple); }
 
 @media (max-width: 600px) {
   .team-photo-wrap,
