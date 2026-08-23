@@ -21,8 +21,8 @@
     }, { passive: true });
   }
 
-  // Reflective navbar — liquid glass over the dark hero, flips to white once
-  // the user scrolls into the light content below it.
+  // Transparent over the hero photo, flips to a solid bar once the
+  // user scrolls into the light content below it.
   const navEl = document.querySelector('.nav');
   if (navEl) {
     const heroEl = document.querySelector('.hero');
