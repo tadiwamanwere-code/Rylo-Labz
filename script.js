@@ -1,6 +1,78 @@
 (() => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ========== UtahOp analytics (pageviews + intent events) ==========
+  // Publishable browser key only — origin-locked to rylolabz.com by UtahOp
+  // itself, safe to ship in client JS. Leads/bookings/messages need the
+  // secret key and must be called from a server, so they are NOT wired
+  // here — this site has no contact form yet, only mailto:/wa.me links,
+  // which carry no visitor-supplied contact data to submit as a lead.
+  (function uopAnalytics() {
+    const UOP_BASE = 'https://yuta-opp.vercel.app/api/v1';
+    const UOP_PUBLIC_KEY = 'uop_pub_R8PFozyZpR9K_8gpMaolsWjThRAr9w1uh2grBrql6jGQ2pL210vETJDO';
+
+    function visitorId() {
+      try {
+        let v = localStorage.getItem('uop_vid');
+        if (!v) {
+          v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+          localStorage.setItem('uop_vid', v);
+        }
+        return v;
+      } catch (e) { return null; }
+    }
+
+    function utmParams() {
+      try {
+        const stored = sessionStorage.getItem('uop_utm');
+        if (stored) return JSON.parse(stored);
+      } catch (e) {}
+      const q = new URLSearchParams(location.search);
+      const utm = {
+        utm_source: q.get('utm_source'),
+        utm_medium: q.get('utm_medium'),
+        utm_campaign: q.get('utm_campaign'),
+        utm_term: q.get('utm_term'),
+        utm_content: q.get('utm_content'),
+      };
+      if (Object.values(utm).some(Boolean)) {
+        try { sessionStorage.setItem('uop_utm', JSON.stringify(utm)); } catch (e) {}
+      }
+      return utm;
+    }
+
+    function track(name, meta) {
+      try {
+        const body = Object.assign({
+          name,
+          path: location.pathname,
+          referrer: document.referrer || null,
+          visitor_id: visitorId(),
+          session_id: null,
+        }, utmParams());
+        if (meta) body.meta = meta;
+
+        fetch(`${UOP_BASE}/events`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Api-Key': UOP_PUBLIC_KEY },
+          body: JSON.stringify(body),
+          keepalive: true,
+        }).catch(() => {});
+      } catch (e) {}
+    }
+
+    window.uopTrack = track;
+    track('pageview');
+
+    // Fire a lightweight intent event for every contact-facing CTA click.
+    // Fire-and-forget: keepalive lets the request survive the navigation
+    // a mailto:/wa.me/tel: link or external link triggers immediately after.
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-uop-event]');
+      if (el) track(el.getAttribute('data-uop-event'));
+    });
+  })();
+
   // ========== Scroll progress bar ==========
   const progressBar = document.querySelector('.scroll-progress-bar');
   if (progressBar) {

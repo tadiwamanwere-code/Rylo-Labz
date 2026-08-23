@@ -370,6 +370,8 @@ p  { margin: 0; }
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: 18px;
@@ -594,13 +596,6 @@ img.brand-mark { background: transparent; box-shadow: none; }
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
-}
-/* Scrim so white hero text stays legible over the photo */
-.hero-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(6,9,13,.32) 0%, rgba(6,9,13,.52) 55%, rgba(6,9,13,.68) 100%);
 }
 .hero-inner {
   position: relative;
@@ -1193,63 +1188,159 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 
 /* =========================================================
-   Services — numbered list (replaces the old product tiles)
+   What We Do — offering rows with icon points and a mockup panel
+   (replaces the old numbered services list)
    ========================================================= */
-.services-list {
+.offerings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-20);
+}
+.offer {
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-16);
+  align-items: center;
+  padding-top: var(--s-16);
   border-top: 1px solid var(--border);
 }
-.service-item {
-  display: grid;
-  grid-template-columns: 72px 1fr auto;
-  align-items: center;
-  gap: var(--s-6);
-  padding: var(--s-8) var(--s-2);
-  border-bottom: 1px solid var(--border);
-  transition: background-color .2s var(--ease-out);
+.offerings .offer:first-child { padding-top: 0; border-top: none; }
+.offer--reverse .offer-panel { order: -1; }
+
+.offer-icon-badge {
+  width: 46px; height: 46px;
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: grid; place-items: center;
+  margin-bottom: var(--s-4);
 }
-.service-item:hover { background: var(--bg-2); }
-.service-num {
-  font-family: var(--font-serif);
-  font-size: var(--fs-h3);
-  font-weight: 600;
-  color: var(--text-subtle);
-  letter-spacing: -0.02em;
+.offer-icon-badge svg { width: 22px; height: 22px; }
+
+.offer-eyebrow {
+  display: block;
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--s-3);
 }
-.service-body h3 {
+.offer-q {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: var(--fs-h4);
-  letter-spacing: -0.015em;
+  font-size: var(--fs-h3);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   color: var(--text);
-  margin: 0 0 6px;
+  margin: 0 0 var(--s-2);
 }
-.service-body p {
+.offer-pain-lede {
+  font-size: var(--fs-body-lg);
   color: var(--text-muted);
-  font-size: var(--fs-body);
-  line-height: 1.55;
-  max-width: 62ch;
-  margin: 0;
+  margin: 0 0 var(--s-5);
 }
-.service-link {
-  font-weight: 600;
-  font-size: var(--fs-small);
-  color: var(--c-brand-blue);
-  white-space: nowrap;
-  transition: color .15s var(--ease-out);
-}
-.service-link:hover { color: var(--c-brand-purple); }
 
-@media (max-width: 700px) {
-  .service-item {
-    grid-template-columns: 44px 1fr;
-    grid-template-areas: "num body" ". link";
-    padding: var(--s-6) var(--s-2);
-    row-gap: var(--s-2);
-  }
-  .service-num { grid-area: num; font-size: var(--fs-h5); }
-  .service-body { grid-area: body; }
-  .service-link { grid-area: link; justify-self: start; }
+.offer-points {
+  list-style: none;
+  margin: var(--s-5) 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-4);
+}
+.offer-points li { display: flex; gap: var(--s-3); align-items: flex-start; }
+.offer-points svg { width: 20px; height: 20px; flex: none; margin-top: 2px; color: var(--accent); }
+.offer-points div { color: var(--text-muted); font-size: var(--fs-body); line-height: 1.5; }
+.offer-points b { color: var(--text); }
+.offer-points--pain div { color: var(--text); font-weight: 500; }
+
+.offer-payoff {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--fs-h5);
+  line-height: 1.4;
+  color: var(--text);
+  margin: 0 0 var(--s-6);
+}
+
+.offer-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--s-6); }
+.offer-tags span {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+}
+
+.offer-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); }
+.offer-subtext { font-size: var(--fs-small); color: var(--text-muted); max-width: 32ch; }
+
+/* Mockup panels — flat geometric illustrations, not photos or AI art */
+.offer-frame {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: var(--sh-md);
+}
+.offer-frame-bar {
+  height: 32px;
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 12px;
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--border);
+}
+.offer-frame-bar i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+.offer-frame-body { padding: var(--s-6); aspect-ratio: 4 / 3; }
+
+/* Mock 1 — website */
+.mock-website { display: flex; flex-direction: column; gap: var(--s-5); }
+.mock-nav { display: flex; gap: var(--s-4); }
+.mock-nav span { width: 34px; height: 6px; border-radius: 3px; background: var(--border-strong); }
+.mock-hero { display: grid; gap: 8px; }
+.mock-line { height: 10px; border-radius: 3px; background: var(--border-strong); }
+.mock-line--lg { width: 72%; height: 16px; }
+.mock-line--md { width: 52%; }
+.mock-btn { width: 96px; height: 26px; border-radius: 4px; background: var(--accent); margin-top: 8px; }
+.mock-cards { display: flex; gap: var(--s-3); margin-top: auto; }
+.mock-card { flex: 1; height: 56px; border-radius: var(--r-sm); background: var(--bg-3); border: 1px solid var(--border); }
+
+/* Mock 2 — dashboard */
+.mock-dash { display: flex; gap: var(--s-5); height: 100%; }
+.mock-dash-side { display: flex; flex-direction: column; gap: 10px; width: 20%; }
+.mock-dash-side span { height: 8px; border-radius: 3px; background: var(--border-strong); }
+.mock-dash-side span:first-child { background: var(--accent); }
+.mock-dash-main { flex: 1; display: flex; flex-direction: column; gap: var(--s-4); }
+.mock-dash-stats { display: flex; gap: var(--s-3); }
+.mock-stat { flex: 1; height: 44px; border-radius: var(--r-sm); background: var(--accent-soft); }
+.mock-dash-rows { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.mock-row { height: 14px; border-radius: 3px; background: var(--bg-3); border: 1px solid var(--border); }
+.mock-row:nth-child(2) { width: 80%; }
+.mock-row:nth-child(3) { width: 60%; }
+
+/* Mock 3 — code editor */
+.offer-frame--dark { background: #0a0a0c; }
+.offer-frame-bar--dark { background: #17171b; border-bottom-color: #26262b; }
+.mock-code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #d4d4d8;
+  aspect-ratio: auto;
+  padding: var(--s-6);
+}
+.mock-code-line { white-space: pre; }
+.mc-gutter { display: inline-block; width: 20px; color: #52525b; }
+.mc-kw { color: #c084fc; }
+.mc-fn { color: #60a5fa; }
+.mc-var { color: #f472b6; }
+
+@media (max-width: 860px) {
+  .offer { grid-template-columns: 1fr; gap: var(--s-8); }
+  .offer--reverse .offer-panel { order: 0; }
+  .offerings { gap: var(--s-16); }
 }
 
 /* =========================================================
@@ -2833,14 +2924,10 @@ hr { border-color: var(--border); }
 .lux-finale-cta { color: var(--text); border-color: var(--border-strong); }
 .lux-finale-cta:hover { color: var(--text); background: var(--bg); }
 
-/* Feaster tile + build banner */
+/* Feaster tile */
 .feaster-tile { box-shadow: var(--sh-md); }
 .fs-heading, .fs-stat strong, .fs-cta { color: var(--text); }
 .fs-body, .fs-stat, .fs-line-content { color: var(--text-muted); }
-.build-banner { background: var(--bg-3); border-block: 1px solid var(--border); }
-.build-banner-primary { color: #fff; background: var(--c-ink); }
-.build-banner-primary:hover { background: #27272a; }
-.build-banner-secondary { color: var(--text); border-color: var(--border-strong); }
 
 /* Image band sits over photography — its light text is correct, but the
    scrim needs to be explicit now the page around it is white. */
@@ -3022,93 +3109,5 @@ hr { border-color: var(--border); }
 /* Spacer collapsed — no extra gap above the custom-software banner */
 .tiles-empty-space {
   height: 0;
-}
-
-/* =========================================================
-   Custom-software CTA — centered cream intro text, with the
-   stacked-websites image shown BELOW it (text introduces it).
-   ========================================================= */
-.build-banner {
-  background: #000;
-  text-align: center;
-  padding: clamp(16px, 2.5vw, 40px) var(--s-8) 0;
-  overflow: hidden;
-}
-.build-banner-inner {
-  max-width: 840px;
-  margin: 0 auto;
-}
-.build-banner-eyebrow {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: var(--fs-micro);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(237, 225, 191, 0.55);
-  margin-bottom: var(--s-3);
-}
-.build-banner-title {
-  font-family: var(--font-sans);
-  font-weight: 800;
-  font-size: clamp(33px, 3.2vw, 49px);
-  line-height: 1.14;
-  letter-spacing: -0.02em;
-  color: #EDE1BF;
-  margin: 0 auto;
-  max-width: 16ch;
-  text-wrap: balance;
-}
-.build-banner-sub {
-  font-size: clamp(15px, 1.25vw, 18px);
-  line-height: 1.6;
-  color: rgba(237, 225, 191, 0.7);
-  max-width: 50ch;
-  margin: var(--s-4) auto 0;
-  text-wrap: balance;
-}
-.build-banner-actions {
-  display: flex;
-  gap: var(--s-3);
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: var(--s-8);
-}
-.build-banner-actions .btn {
-  min-width: 180px;
-  justify-content: center;
-  font-weight: 600;
-}
-.build-banner-primary {
-  background: #3b82f6;
-  color: #fff;
-  border: 1px solid #3b82f6;
-  box-shadow: 0 12px 32px -12px rgba(59,130,246,.7);
-}
-.build-banner-primary:hover { background: #2f6fe0; border-color: #2f6fe0; }
-.build-banner-secondary {
-  background: rgba(255,255,255,.07);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.2);
-}
-.build-banner-secondary:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.38); }
-
-/* The image sits below the intro text */
-.build-banner-media {
-  max-width: var(--maxw);
-  margin: clamp(40px, 6vw, 80px) auto 0;
-}
-.build-banner-media img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: var(--r-xl) var(--r-xl) 0 0;
-  border: 1px solid var(--border);
-  border-bottom: none;
-}
-
-@media (max-width: 600px) {
-  .build-banner-actions .btn { width: 100%; max-width: 340px; justify-content: center; }
 }
 
