@@ -617,8 +617,8 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .hero--centered .hero-inner {
   text-align: center;
   justify-items: center;
-  gap: var(--s-6);
-  padding-top: clamp(120px, 14vw, 200px);
+  gap: var(--s-5);
+  padding-top: clamp(64px, 8vw, 120px);
   padding-bottom: clamp(80px, 10vw, 140px);
 }
 .hero--centered .hero-title {
@@ -697,10 +697,12 @@ img.brand-mark { background: transparent; box-shadow: none; }
   filter: blur(6px);
 }
 .hero-sub {
-  max-width: 56ch;
-  font-size: clamp(17px, 1.4vw, var(--fs-body-lg));
-  color: rgba(255,255,255,.85);
-  line-height: 1.55;
+  max-width: 52ch;
+  font-family: "Instrument Serif", var(--font-serif);
+  font-style: italic;
+  font-size: clamp(21px, 2.4vw, 28px);
+  color: #F9EFD2;
+  line-height: 1.4;
 }
 .hero-sub strong { color: #fff; font-weight: 600; }
 
@@ -733,12 +735,27 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .hero-cta-box {
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-6) var(--s-8);
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(6,8,12,.32);
+  max-width: 460px;
+}
+.hero-cta-text {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+}
+.hero-cta-buttons {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--s-3);
-  padding: var(--s-5) var(--s-6);
-  border: 1px solid rgba(255,255,255,.32);
-  background: rgba(6,8,12,.32);
 }
 .hero-cta-corner {
   position: absolute;
@@ -751,7 +768,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .hero-cta-corner--bl { bottom: -8px; left: -8px; }
 .hero-cta-corner--br { bottom: -8px; right: -8px; }
 
-.btn--rect { border-radius: var(--r-sm); }
+.btn--rect { border-radius: 0; }
 
 @media (max-width: 700px) {
   .hero-arrow { display: none; }
