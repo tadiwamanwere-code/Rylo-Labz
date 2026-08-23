@@ -14,8 +14,7 @@ module.exports = async (_req, res) => {
   const staticUrls = [
     `${baseUrl}/`,
     `${baseUrl}/portfolio`,
-    `${baseUrl}/reviews`,
-    `${baseUrl}/admin`
+    `${baseUrl}/reviews`
   ];
 
   let articleUrls = [];
