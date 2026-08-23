@@ -334,92 +334,34 @@ p  { margin: 0; }
 .btn--link:hover { color: var(--c-brand-purple); }
 
 /* =========================================================
-   Top utility bar
-   ========================================================= */
-.utility-bar {
-  background: var(--c-ink);
-  color: var(--text-on-dark);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.04em;
-  text-align: center;
-  padding: 10px var(--s-6);
-  position: relative;
-  z-index: 60;
-}
-.utility-bar a {
-  border-bottom: 1px solid rgba(255,255,255,.4);
-  margin-left: 4px;
-  font-weight: 500;
-}
-.utility-bar a:hover { border-color: #fff; }
-
-/* =========================================================
    Nav
    ========================================================= */
-/* Bare-minimum glass nav — fully transparent, the tiniest backdrop blur
-   so it reads as glass, and a hairline border. Whatever sits underneath
-   is clearly visible through it. */
+/* Plain, solid top bar — full-width band, hairline bottom border,
+   content constrained to the same container width as the rest of
+   the page. No glass, no floating pill. */
 .nav {
-  display: flex;            /* center the floating glass pill vertically */
+  display: flex;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 50;
   height: var(--nav-h);
-  background: transparent;
-  border-bottom: none;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
   box-shadow: none;
-  padding: 0 var(--s-6);
 }
 .nav.nav--scrolled {
-  background: transparent;
+  background: var(--bg);
 }
-/* Liquid-glass pill: transparent, refracts the black hero through heavy
-   blur + saturation, with a specular top edge and a chromatic rim. */
 .nav-inner {
   position: relative;
   width: 100%;
-  /* Deliberately shorter than the content column so the bar reads as a
-     floating control, not a full-width band. */
-  max-width: var(--maxw-nav);
+  max-width: var(--maxw);
   margin: 0 auto;
-  padding: 8px var(--s-5);
+  padding: 0 var(--s-8);
   display: flex;
   align-items: center;
   gap: var(--s-8);
-  border-radius: var(--r-pill);
-  /* Light theme: a near-opaque white pill with a zinc hairline. Frosted
-     rather than see-through, so nav text stays legible over any section. */
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  box-shadow: var(--sh-sm);
-}
-/* Sheen removed with the glass treatment — mix-blend-mode: screen is a
-   no-op against a white pill. */
-.nav-inner::before { content: none; }
-/* Chromatic rim — light bending at the edge (refraction/diffraction) */
-.nav-inner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  pointer-events: none;
-  background: linear-gradient(
-    115deg,
-    rgba(59, 130, 246, 0.55),
-    rgba(139, 92, 246, 0.30),
-    rgba(236, 72, 153, 0.50),
-    rgba(59, 130, 246, 0.40)
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  opacity: 0.28;
 }
 .brand {
   display: inline-flex;
@@ -615,8 +557,6 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .hero {
   position: relative;
   min-height: 92vh;
-  margin-top: calc(-1 * var(--nav-h));
-  padding-top: var(--nav-h);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -626,43 +566,19 @@ img.brand-mark { background: transparent; box-shadow: none; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: #000; /* solid black hero background */
-}
-/* Animated hexagonal network canvas */
-.hero-hex {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 0;
-  pointer-events: none;
-  /* A lit band of the network that flows horizontally: faded at the edges,
-     bright across the middle third. Animating the mask position sweeps the
-     glow left -> right -> left, so the whole mesh appears to flow. */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 33%, #000 66%, transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0%, #000 33%, #000 66%, transparent 100%);
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-size: 220% 100%;
-          mask-size: 220% 100%;
-  animation: hex-flow 6s ease-in-out infinite alternate;
-}
-@keyframes hex-flow {
-  from { -webkit-mask-position: 0% 0;   mask-position: 0% 0; }
-  to   { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-hex {
-    animation: none;
-    -webkit-mask-image: none;
-            mask-image: none;
-  }
+  background: #0a0d10; /* fallback while the image loads */
 }
 .hero-bg img {
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
+}
+/* Scrim so white hero text stays legible over the photo */
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6,9,13,.32) 0%, rgba(6,9,13,.52) 55%, rgba(6,9,13,.68) 100%);
 }
 .hero-inner {
   position: relative;
@@ -2112,9 +2028,6 @@ img.brand-mark { background: transparent; box-shadow: none; }
   .hero-title { font-size: clamp(38px, 11vw, 52px); }
   .hero-sub   { font-size: 15px; }
 
-  /* Utility bar text truncation */
-  .utility-bar { font-size: 11px; padding: 8px var(--s-4); }
-
   /* Section padding */
   .container,
   .container-narrow,
@@ -2852,17 +2765,6 @@ input:focus, textarea:focus, select:focus {
 hr { border-color: var(--border); }
 
 /* ---- Remaining components that hardcoded the dark palette ---- */
-
-/* Hero — white ground; the hex mesh is repainted dark in script.js */
-.hero { color: var(--text); }
-.hero-bg { background: var(--bg); }
-.hero-title, .hero-sub strong { color: var(--text); }
-.hero-sub { color: var(--text-muted); }
-.hero-eyebrow {
-  color: var(--text-muted);
-  border-color: var(--border);
-  background: var(--bg-2);
-}
 
 /* Mobile menu + toggle */
 .nav-toggle { color: var(--text); border-color: var(--border-strong); }
