@@ -1893,6 +1893,93 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 
 /* =========================================================
+   Contact form — real lead capture (posts to /api/lead)
+   ========================================================= */
+.contact-form-wrap {
+  max-width: 640px;
+  margin: var(--s-16) auto 0;
+  text-align: left;
+}
+.contact-form-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  text-align: center;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: var(--s-8);
+}
+.contact-form-divider::before,
+.contact-form-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-8);
+  box-shadow: var(--sh-sm);
+}
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+}
+.contact-field { display: flex; flex-direction: column; gap: 6px; }
+.contact-field--full { width: 100%; }
+.contact-field label {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text);
+}
+.contact-field label span { font-weight: 500; color: var(--text-muted); }
+.contact-field input,
+.contact-field textarea {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  resize: vertical;
+}
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: var(--c-ink);
+}
+.contact-form-hint {
+  margin: -6px 0 0;
+  font-size: var(--fs-micro);
+  color: var(--text-subtle);
+}
+.contact-form-submit { align-self: flex-start; }
+.contact-form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.contact-form-status {
+  margin: 0;
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+.contact-form-status[data-state="ok"] { color: #15803d; }
+.contact-form-status[data-state="err"] { color: #b91c1c; }
+
+@media (max-width: 600px) {
+  .contact-form-row { grid-template-columns: 1fr; }
+  .contact-form { padding: var(--s-6); }
+  .contact-form-submit { width: 100%; justify-content: center; }
+}
+
+/* =========================================================
    Footer — multi-column
    ========================================================= */
 .footer {

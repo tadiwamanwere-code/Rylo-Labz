@@ -62,6 +62,8 @@
     }
 
     window.uopTrack = track;
+    window.uopVisitorId = visitorId;
+    window.uopUtm = utmParams;
     track('pageview');
 
     // Fire a lightweight intent event for every contact-facing CTA click.
@@ -241,4 +243,70 @@
   }
 
   loadArticles();
+
+  // ========== Contact form -> /api/lead -> UtahOp ==========
+  (function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const statusEl = form.querySelector('.contact-form-status');
+    const submitBtn = form.querySelector('.contact-form-submit');
+    const submitLabel = form.querySelector('.contact-form-submit-label');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+
+      if (!name) {
+        statusEl.textContent = 'Please tell us your name.';
+        statusEl.dataset.state = 'err';
+        return;
+      }
+      if (!email && !phone) {
+        statusEl.textContent = 'Add an email or phone number so we can reply.';
+        statusEl.dataset.state = 'err';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Sending…';
+      statusEl.textContent = '';
+      statusEl.removeAttribute('data-state');
+
+      const utm = (typeof window.uopUtm === 'function') ? window.uopUtm() : {};
+
+      try {
+        const response = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            company: String(data.get('company') || '').trim(),
+            message: String(data.get('message') || '').trim(),
+            visitor_id: (typeof window.uopVisitorId === 'function') ? window.uopVisitorId() : null,
+            landing_page: location.pathname,
+            ...utm,
+          }),
+        });
+
+        if (!response.ok) throw new Error('Request failed');
+
+        statusEl.textContent = "Thanks — we've got it. We'll be in touch shortly.";
+        statusEl.dataset.state = 'ok';
+        submitLabel.textContent = 'Sent';
+        form.reset();
+        if (typeof window.uopTrack === 'function') window.uopTrack('form_submit');
+      } catch (err) {
+        statusEl.textContent = "Something went wrong sending that. Try WhatsApp or email above instead.";
+        statusEl.dataset.state = 'err';
+        submitBtn.disabled = false;
+        submitLabel.textContent = 'Send message';
+      }
+    });
+  })();
 })();

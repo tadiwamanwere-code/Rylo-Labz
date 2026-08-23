@@ -703,6 +703,42 @@
           <span>WhatsApp us</span>
         </a>
       </div>
+
+      <div class="contact-form-wrap">
+        <span class="contact-form-divider"><span>or send us the details directly</span></span>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="contact-form-row">
+            <div class="contact-field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="contact-field">
+              <label for="cf-company">Company <span>(optional)</span></label>
+              <input type="text" id="cf-company" name="company" autocomplete="organization" />
+            </div>
+          </div>
+          <div class="contact-form-row">
+            <div class="contact-field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" autocomplete="email" />
+            </div>
+            <div class="contact-field">
+              <label for="cf-phone">Phone <span>(optional)</span></label>
+              <input type="tel" id="cf-phone" name="phone" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="contact-field contact-field--full">
+            <label for="cf-message">What are you trying to build?</label>
+            <textarea id="cf-message" name="message" rows="4"></textarea>
+          </div>
+          <p class="contact-form-hint">Give us at least an email or a phone number so we can reply.</p>
+          <button type="submit" class="btn btn--ink btn--xl contact-form-submit">
+            <span class="contact-form-submit-label">Send message</span>
+          </button>
+          <p class="contact-form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </section>
 
   </main>
