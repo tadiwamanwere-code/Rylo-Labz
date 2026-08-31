@@ -4,3 +4,5 @@ design-research/.raw/
 .env
 .env.*
 !.env.example
+
+.env*
