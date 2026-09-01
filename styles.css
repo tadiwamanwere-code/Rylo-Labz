@@ -739,7 +739,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10,10,8,0) 35%, rgba(10,10,8,.55) 78%, rgba(10,10,8,.82) 100%);
+  background: linear-gradient(180deg, rgba(10,10,8,.4) 0%, rgba(10,10,8,0) 16%, rgba(10,10,8,0) 35%, rgba(10,10,8,.55) 78%, rgba(10,10,8,.82) 100%);
 }
 .photo-band-inner {
   position: relative;
