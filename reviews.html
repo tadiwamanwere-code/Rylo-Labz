@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=60" />
+  <link rel="stylesheet" href="styles.css?v=61" />
 
   <script type="application/ld+json">
     {
@@ -43,7 +43,8 @@
        Quote leads; attribution sits in a muted footer row.
        ========================================================= */
 
-    .rv-hero { padding: 96px 0 44px; text-align: center; }
+    .rv-hero.photo-band { text-align: center; }
+    .rv-hero.photo-band .photo-band-inner { display: flex; flex-direction: column; align-items: center; }
     .rv-badge {
       display: inline-flex; align-items: center; gap: 7px;
       padding: 5px 12px; border-radius: 999px;
@@ -54,14 +55,15 @@
     }
     .rv-badge svg { width: 13px; height: 13px; }
 
-    .rv-hero h1 {
-      font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 800;
-      letter-spacing: -.035em; line-height: 1.06;
-      margin: 20px 0 16px; color: var(--text);
+    .rv-hero.photo-band h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.6vw, 4rem); font-weight: 500;
+      letter-spacing: -.02em; line-height: 1.06;
+      margin: 20px 0 16px; color: #fff;
     }
-    .rv-hero p.lede {
-      max-width: 580px; margin: 0 auto; color: var(--text-muted);
-      font-size: 1.02rem; line-height: 1.62;
+    .rv-hero.photo-band p.lede {
+      max-width: 580px; margin: 0 auto; color: rgba(255,255,255,.86);
+      font-size: 1.05rem; line-height: 1.62;
     }
 
     /* ---------- Card grid ---------- */
@@ -163,7 +165,6 @@
     /* ---------- Responsive ---------- */
     @media (max-width: 1000px) { .rv-wall { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 680px) {
-      .rv-hero { padding: 78px 0 28px; }
       .rv-section { padding: 8px 0 60px; }
       .rv-wall { grid-template-columns: 1fr; }
       .rv-close { padding: 0 0 68px; }
@@ -213,8 +214,11 @@
 
   <main>
     <!-- ============ HERO ============ -->
-    <section class="rv-hero">
-      <div class="container">
+    <section class="rv-hero photo-band">
+      <div class="photo-band-bg">
+        <img src="/images/reviews-hero.jpg" alt="" aria-hidden="true" fetchpriority="high" />
+      </div>
+      <div class="photo-band-inner container">
         <span class="rv-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Testimonials
@@ -415,7 +419,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=59"></script>
+  <script src="script.js?v=60"></script>
 
   <!-- ===== Card reveal ===== -->
   <script>

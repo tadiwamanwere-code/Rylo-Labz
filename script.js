@@ -99,7 +99,7 @@
   // user scrolls into the light content below it.
   const navEl = document.querySelector('.nav');
   if (navEl) {
-    const heroEl = document.querySelector('.hero');
+    const heroEl = document.querySelector('.hero, .photo-band');
     const getThreshold = () => {
       if (heroEl) return Math.max(60, heroEl.offsetHeight - navEl.offsetHeight - 40);
       return 60;

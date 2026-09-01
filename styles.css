@@ -708,6 +708,133 @@ img.brand-mark { background: transparent; box-shadow: none; }
   margin-top: var(--s-2);
 }
 
+/* =========================================================
+   Photo band — reusable cinematic full-bleed section for
+   sub-page heroes (Reviews, Portfolio, etc). Same restrained
+   language as the homepage hero: real photography, no tint,
+   just a bottom scrim so on-photo type stays legible.
+   ========================================================= */
+.photo-band {
+  position: relative;
+  min-height: clamp(360px, 52vw, 560px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: #fff;
+  margin-top: calc(-1 * var(--nav-h));
+}
+.photo-band-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #0a0d10;
+}
+.photo-band-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.photo-band-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,8,0) 35%, rgba(10,10,8,.55) 78%, rgba(10,10,8,.82) 100%);
+}
+.photo-band-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  width: 100%;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + var(--s-16)) var(--s-8) var(--s-12);
+}
+.photo-band .rv-badge,
+.photo-band .pf-badge {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.24);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.photo-band h1 {
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0,0,0,.35);
+}
+.photo-band p.lede {
+  color: rgba(255,255,255,.86);
+  text-shadow: 0 1px 10px rgba(0,0,0,.3);
+}
+@media (max-width: 700px) {
+  .photo-band { min-height: 420px; }
+  .photo-band-inner { padding-top: calc(var(--nav-h) + var(--s-10)); }
+}
+
+/* Mid-page cinematic break — a single-mood moment between two
+   content sections. Centered content, no scrim gradient trick
+   needed since the source photo is already dark. */
+.mid-band {
+  position: relative;
+  min-height: clamp(340px, 42vw, 480px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+}
+.mid-band-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #0a0d10;
+}
+.mid-band-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.mid-band-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(10,10,12,.15), rgba(10,10,12,.5));
+}
+.mid-band-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  padding: var(--s-10) var(--s-6);
+}
+.mid-band-eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+  margin-bottom: var(--s-4);
+}
+.mid-band-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--s-4);
+}
+.mid-band-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.6;
+  color: rgba(255,255,255,.78);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
 /* Hero CTA — bordered box with corner marks (cta-3 style), adapted
    with a translucent dark fill so the border/marks stay legible over
    a photo instead of the near-invisible tint the original recipe
