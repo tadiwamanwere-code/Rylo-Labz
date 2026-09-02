@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://images.pexels.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=61" />
+  <link rel="stylesheet" href="styles.css?v=62" />
 
   <script type="application/ld+json">
     {
@@ -142,9 +142,6 @@
         <a href="#contact" class="btn btn--ink btn--sm" data-uop-event="clicked_start_project_nav">
           <span>Start a project</span>
         </a>
-        <a href="#client-work" class="btn btn--ghost btn--sm btn--outline-ink">
-          <span>See our work</span>
-        </a>
       </div>
       <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile-menu">
         <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -170,47 +167,25 @@
 
   <main>
 
-    <!-- ============ HERO (centered, photo-driven) ============ -->
-    <section class="hero hero--centered">
+    <!-- ============ HERO (bottom-bar, photo-driven) ============ -->
+    <section class="hero hero--bar">
       <div class="hero-bg">
-        <img src="/images/hero-mountains.jpg" alt="" aria-hidden="true" fetchpriority="high" />
+        <img src="/images/hero-concept-a.jpg" alt="" aria-hidden="true" fetchpriority="high" />
       </div>
 
       <div class="hero-inner">
-        <span class="hero-eyebrow-plain">For All Business Owners</span>
+        <div class="hero-bar-left">
+          <span class="hero-eyebrow-plain">For All Business Owners</span>
+          <h1 class="hero-title">Want To Scale Your Business And Run It Smoother?</h1>
+          <p class="hero-sub">With automated software that runs your business, and a high-end website that drives growth and real value.</p>
+        </div>
 
-        <h1 class="hero-title">
-          Want To Scale Your Business<br/>
-          <span class="rotator">And Run It Smoother?</span>
-        </h1>
-
-        <p class="hero-sub">
-          With automated software that runs your business, and a high-end website that drives growth and real value.
-        </p>
-
-        <div class="hero-cta-wrap">
-          <svg class="hero-arrow" viewBox="0 0 100 90" fill="none" aria-hidden="true">
-            <path d="M10 6 C 4 44, 34 76, 78 60" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 7"/>
-            <path d="M64 70 L78 60 L70 48" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-
-          <div class="hero-cta-box">
-            <svg class="hero-cta-corner hero-cta-corner--tl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            <svg class="hero-cta-corner hero-cta-corner--tr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            <svg class="hero-cta-corner hero-cta-corner--bl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            <svg class="hero-cta-corner hero-cta-corner--br" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-
-            <p class="hero-cta-text">If you want to transform your operations right now, talk to us.</p>
-
-            <div class="hero-cta-buttons">
-              <a href="https://wa.me/263715079192" target="_blank" rel="noopener" class="btn btn--ink btn--lg btn--rect" data-uop-event="clicked_book_call_hero">
-                <span>Book a call</span>
-              </a>
-              <a href="#contact" class="btn btn--outline-light btn--lg btn--rect" data-uop-event="clicked_contact_us_hero">
-                <span>Contact us</span>
-              </a>
-            </div>
-          </div>
+        <div class="hero-link-group">
+          <a href="https://wa.me/263715079192" target="_blank" rel="noopener" class="hero-link" data-uop-event="clicked_book_call_hero">
+            <span>Book a call</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="hero-link hero-link--sub" data-uop-event="clicked_contact_us_hero">Or contact us</a>
         </div>
       </div>
 
@@ -907,7 +882,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=60"></script>
+  <script src="script.js?v=62"></script>
 
     <!-- ===== Client Work showcase, lightweight ===== -->
   <script>

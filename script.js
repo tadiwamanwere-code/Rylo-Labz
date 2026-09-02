@@ -100,16 +100,20 @@
   const navEl = document.querySelector('.nav');
   if (navEl) {
     const heroEl = document.querySelector('.hero, .photo-band');
-    const getThreshold = () => {
-      if (heroEl) return Math.max(60, heroEl.offsetHeight - navEl.offsetHeight - 40);
-      return 60;
-    };
-    const syncNav = () => {
-      navEl.classList.toggle('nav--scrolled', window.scrollY > getThreshold());
-    };
-    window.addEventListener('scroll', syncNav, { passive: true });
-    window.addEventListener('resize', syncNav, { passive: true });
-    syncNav();
+    if (!heroEl) {
+      // No dark photo behind the nav on this page (article, admin) — the
+      // glass-on-photo look would be unreadable on a light background, so
+      // just render the solid pill from the start and skip the transition.
+      navEl.classList.add('nav--scrolled');
+    } else {
+      const getThreshold = () => Math.max(60, heroEl.offsetHeight - navEl.offsetHeight - 40);
+      const syncNav = () => {
+        navEl.classList.toggle('nav--scrolled', window.scrollY > getThreshold());
+      };
+      window.addEventListener('scroll', syncNav, { passive: true });
+      window.addEventListener('resize', syncNav, { passive: true });
+      syncNav();
+    }
   }
 
   // Mobile nav menu — toggle open/close
