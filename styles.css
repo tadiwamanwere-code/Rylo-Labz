@@ -15,8 +15,11 @@
   --surface:      #ffffff;  /* cards stay white for contrast against the warm bands */
   --surface-alt:  #fafafa;  /* elevated / hover surface */
 
-  /* Sticky-nav height (used by hero to slide its image up under the nav) */
-  --nav-h:        60px;
+  /* Sticky-nav height (used by hero to slide its image up under the nav).
+     The pill nav actually renders ~69px tall (16px top padding + the
+     pill's own padding/border/button height) — this must be >= that or
+     a strip of body background shows above the hero photo. */
+  --nav-h:        72px;
 
   /* Text — zinc ramp. --text-on-dark stays light for copy over photography. */
   --text:         #09090b;  /* zinc-950 — shadcn --foreground */
