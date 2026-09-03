@@ -35,13 +35,25 @@
   --border-soft:  #f4f4f5;  /* zinc-100 */
   --border-dark:  #e4e4e7;
 
-  /* Brand — black primary, gradient as secondary signature */
+  /* Brand — black primary, one warm accent as the signature.
+     The accent is the sunset gold pulled straight out of the hero photo,
+     expressed at two values so it stays legible on either ground:
+     --c-accent on light cream (passes AA), --c-accent-bright on dark. */
   --c-ink:           #0a0706;
-  --grad-brand:      linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
-  --grad-brand-soft: linear-gradient(135deg, rgba(59,130,246,.15), rgba(139,92,246,.15), rgba(236,72,153,.15));
-  --c-brand-blue:    #3b82f6;
-  --c-brand-purple:  #8b5cf6;
-  --c-brand-pink:    #ec4899;
+  --c-accent:        #8F5D0F;  /* deep bronze-amber — text/icons on cream */
+  --c-accent-mid:    #C08A28;  /* mid amber — decorative, large marks */
+  --c-accent-bright: #F0C878;  /* hero gold — on photography and dark bands */
+  --grad-brand:      linear-gradient(135deg, #8F5D0F 0%, #C08A28 50%, #F0C878 100%);
+  --grad-brand-soft: linear-gradient(135deg, rgba(143,93,15,.15), rgba(192,138,40,.15), rgba(240,200,120,.15));
+  /* Darker half of the same ramp — for gradient TEXT on the cream page,
+     where the bright gold end of --grad-brand falls below AA contrast. */
+  --grad-brand-text: linear-gradient(135deg, #6B440A 0%, #8F5D0F 55%, #A9701A 100%);
+
+  /* Deprecated names, kept so no call site orphans onto the old
+     blue/purple/pink. All three now resolve to the single warm accent. */
+  --c-brand-blue:    var(--c-accent);
+  --c-brand-purple:  var(--c-accent);
+  --c-brand-pink:    var(--c-accent-mid);
   --c-success:       #2d7a4a;
 
   /* Typography */
@@ -249,7 +261,7 @@ p  { margin: 0; }
 .section--dark .section-sub { color: var(--text-on-dark-muted); }
 
 .grad-text {
-  background: var(--grad-brand);
+  background: var(--grad-brand-text);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1006,7 +1018,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   font-family: var(--font-serif);
   font-size: 18px;
   flex-shrink: 0;
-  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 6px 16px -6px rgba(139,92,246,.5);
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 6px 16px -6px rgba(192,138,40,.5);
 }
 .hero-widget-name { font-weight: 700; font-size: var(--fs-small); }
 .hero-widget-status {
@@ -1552,7 +1564,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .cw2 { position: relative; background: var(--bg-2); color: var(--text); padding: 100px 0 104px; }
 .cw2-head { text-align: center; max-width: 720px; margin: 0 auto 50px; padding: 0 24px; }
 .cw2-title { font-family: var(--font-serif); font-size: clamp(2.1rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.03; margin: 0 0 16px; color: var(--text); }
-.cw2-title .grad { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cw2-title .grad { background: var(--grad-brand-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .cw2-sub { color: var(--text-muted); font-size: 1.08rem; line-height: 1.6; margin: 0; }
 
 .cw2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1240px; margin: 0 auto; padding: 0 28px; }
@@ -1595,8 +1607,8 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .cw2-visit svg { width: 16px; height: 16px; }
 
 .cw2-foot { text-align: center; margin-top: 52px; }
-.cw2-all { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 16px; color: #fff; background: var(--grad-brand); padding: 15px 30px; border-radius: 999px; transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s; }
-.cw2-all:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 20px 44px -16px rgba(139,92,246,.55); }
+.cw2-all { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 16px; color: #fff; background: var(--c-ink); padding: 15px 30px; border-radius: 999px; transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s; }
+.cw2-all:hover { color: #fff; background: #27272a; transform: translateY(-2px); box-shadow: 0 20px 44px -16px rgba(10,7,6,.42); }
 .cw2-all svg { width: 18px; height: 18px; }
 
 @media (max-width: 860px) {
@@ -2074,7 +2086,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   position: absolute;
   inset: -20% 30% auto 30%;
   height: 70%;
-  background: radial-gradient(ellipse at 50% 0%, rgba(139,92,246,.15), transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(192,138,40,.15), transparent 60%);
   filter: blur(40px);
   z-index: 0;
   pointer-events: none;
@@ -2527,7 +2539,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   max-width: 900px;
   height: 80vw;
   max-height: 900px;
-  background: radial-gradient(circle, rgba(139,92,246,.10) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(192,138,40,.10) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
 }
@@ -2593,7 +2605,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   font-size: var(--fs-small);
   font-weight: 700;
   letter-spacing: 0.06em;
-  background: var(--grad-brand);
+  background: var(--grad-brand-text);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -2861,7 +2873,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
   max-width: 1000px;
   height: 90vw;
   max-height: 1000px;
-  background: radial-gradient(ellipse at center, rgba(139,92,246,.22) 0%, rgba(59,130,246,.08) 40%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(192,138,40,.22) 0%, rgba(240,200,120,.08) 40%, transparent 70%);
   pointer-events: none;
 }
 
@@ -2927,7 +2939,7 @@ img.brand-mark { background: transparent; box-shadow: none; }
 }
 
 .lux-finale-cta:hover {
-  background: rgba(139,92,246,.18);
+  background: rgba(192,138,40,.18);
   border-color: rgba(167,139,250,.5);
   color: #fff;
 }

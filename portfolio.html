@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=63" />
+  <link rel="stylesheet" href="styles.css?v=64" />
 
   <script type="application/ld+json">
     {
@@ -43,15 +43,17 @@
 
     /* ---------- HERO PANEL ---------- */
     .pf-hero { padding: 104px 0 56px; }
+    /* Dark stage — the live client sites read as lit windows on a gallery
+       wall, which suits a portfolio better than the old white-card wash. */
     .pf-panel {
       position: relative; overflow: hidden;
-      border-radius: 34px;
-      border: 1px solid var(--border);
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.10);
       background:
-        radial-gradient(900px 480px at 88% -10%, rgba(139,92,246,.20), transparent 62%),
-        radial-gradient(700px 420px at 4% 108%, rgba(59,130,246,.16), transparent 60%),
-        linear-gradient(160deg, #ffffff 0%, #fafafa 60%, #f4f4f5 100%);
-      box-shadow: var(--sh-md);
+        radial-gradient(900px 480px at 88% -10%, rgba(240,200,120,.16), transparent 62%),
+        radial-gradient(700px 420px at 4% 108%, rgba(192,138,40,.13), transparent 60%),
+        linear-gradient(160deg, #191510 0%, #110e0b 62%, #0a0706 100%);
+      box-shadow: 0 30px 70px -30px rgba(10,7,6,.55);
       padding: 66px 62px 70px;
       display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
       gap: 56px; align-items: center;
@@ -59,33 +61,36 @@
     .pf-badge {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 12.5px; font-weight: 600; letter-spacing: .02em;
-      color: var(--text-muted); background: var(--bg-3);
-      border: 1px solid var(--border);
+      color: rgba(255,255,255,.74); background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.16);
       padding: 7px 15px 7px 12px; border-radius: 999px;
     }
     .pf-badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--grad-brand); display: block; }
     .pf-panel h1 {
       font-size: clamp(2.5rem, 4.6vw, 4rem); font-weight: 700;
       letter-spacing: -.035em; line-height: 1.02; margin: 22px 0 20px;
+      color: #fff;
     }
-    .pf-panel h1 .dim { color: var(--text-subtle); }
+    .pf-panel h1 .dim { color: var(--c-accent-bright); }
     .pf-copy > p {
-      max-width: 46ch; color: var(--text-muted); font-size: 1.03rem; line-height: 1.62; font-weight: 500;
+      max-width: 46ch; color: rgba(255,255,255,.72); font-size: 1.03rem; line-height: 1.62; font-weight: 500;
     }
     .pf-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
     .pf-cta {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: .98rem; font-weight: 600; padding: 15px 26px; border-radius: 999px;
-      background: var(--c-ink); color: #fff;
-      transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+      background: #fff; color: var(--c-ink);
+      transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out), background .2s;
     }
-    .pf-cta:hover { color: #fff; background: #27272a; transform: translateY(-2px); box-shadow: var(--sh-md); }
+    .pf-cta:hover { color: var(--c-ink); background: #ececec; transform: translateY(-2px); box-shadow: 0 18px 40px -18px rgba(0,0,0,.6); }
     .pf-cta svg { width: 15px; height: 15px; }
-    .pf-cta--ghost { background: transparent; color: var(--text); border: 1px solid var(--border-strong); }
-    .pf-cta--ghost:hover { color: var(--text); background: var(--bg-3); box-shadow: none; }
+    .pf-cta--ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.34); }
+    .pf-cta--ghost:hover { color: var(--c-ink); background: #fff; box-shadow: none; }
 
     /* ---------- HERO STACK (live device previews) ---------- */
-    .pf-stack { position: relative; aspect-ratio: 1 / .82; min-height: 340px; }
+    /* max-width caps the width that min-height + aspect-ratio would
+       otherwise derive, which overflowed the panel on narrow screens. */
+    .pf-stack { position: relative; aspect-ratio: 1 / .82; min-height: 340px; max-width: 100%; }
     .pf-tile {
       position: absolute; overflow: hidden; border-radius: 12px;
       background: var(--bg-3); border: 1px solid var(--border);
@@ -204,7 +209,9 @@
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 1080px) {
-      .pf-panel { padding: 52px 40px 56px; grid-template-columns: 1fr; gap: 44px; }
+      /* minmax(0,1fr), not 1fr — a bare 1fr track floors at min-content,
+         which lets the preview stack push the column past the panel. */
+      .pf-panel { padding: 52px 40px 56px; grid-template-columns: minmax(0, 1fr); gap: 44px; }
       .cases { width: 90%; gap: 56px; }
     }
     @media (max-width: 720px) {
@@ -330,7 +337,7 @@
           </article>
 
           <!-- Safeway Furnitures -->
-          <article class="case" data-cat="construction" data-url="https://safewayfurniture.co.zw" data-domain="safewayfurniture.co.zw" style="--accent:#1d4ed8">
+          <article class="case" data-cat="construction" data-url="https://safewayfurniture.co.zw" data-domain="safewayfurniture.co.zw" style="--accent:#8F5D0F">
             <div class="case-head">
               <h2>Safeway Furnitures</h2>
               <a class="case-visit" href="https://safewayfurniture.co.zw" target="_blank" rel="noopener">safewayfurniture.co.zw
