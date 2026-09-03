@@ -123,8 +123,13 @@
     const iconMenu  = navToggle.querySelector('.icon-menu');
     const iconClose = navToggle.querySelector('.icon-close');
 
+    // The open dropdown puts a light panel behind the pill, so the nav has
+    // to drop its over-photo white text or the brand and close icon vanish.
+    const navRoot = navToggle.closest('.nav');
+
     const openMenu = () => {
       navMobileMenu.classList.add('is-open');
+      if (navRoot) navRoot.classList.add('nav--menu-open');
       navToggle.setAttribute('aria-expanded', 'true');
       navMobileMenu.setAttribute('aria-hidden', 'false');
       if (iconMenu)  iconMenu.style.display  = 'none';
@@ -132,6 +137,7 @@
     };
     const closeMenu = () => {
       navMobileMenu.classList.remove('is-open');
+      if (navRoot) navRoot.classList.remove('nav--menu-open');
       navToggle.setAttribute('aria-expanded', 'false');
       navMobileMenu.setAttribute('aria-hidden', 'true');
       if (iconMenu)  iconMenu.style.display  = 'block';

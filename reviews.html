@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=64" />
+  <link rel="stylesheet" href="styles.css?v=65" />
 
   <script type="application/ld+json">
     {
@@ -176,6 +176,15 @@
   </style>
 </head>
 <body>
+  <!-- Glass refraction filter for the nav pill — see index.html for notes. -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <filter id="glass-distortion" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="17" result="turb" />
+      <feGaussianBlur in="turb" stdDeviation="1.1" result="softTurb" />
+      <feDisplacementMap in="SourceGraphic" in2="softTurb" scale="22" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+
   <div class="scroll-progress-bar"></div>
 
   <!-- ============ NAV ============ -->
@@ -419,7 +428,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=62"></script>
+  <script src="script.js?v=65"></script>
 
   <!-- ===== Card reveal ===== -->
   <script>

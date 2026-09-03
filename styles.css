@@ -16,10 +16,10 @@
   --surface-alt:  #fafafa;  /* elevated / hover surface */
 
   /* Sticky-nav height (used by hero to slide its image up under the nav).
-     The pill nav actually renders ~69px tall (16px top padding + the
-     pill's own padding/border/button height) — this must be >= that or
-     a strip of body background shows above the hero photo. */
-  --nav-h:        72px;
+     The pill renders ~60px tall (12px top padding + the pill itself) —
+     this must be >= that or a strip of body background shows above the
+     hero photo. Re-measure if the pill's padding or CTA size changes. */
+  --nav-h:        62px;
 
   /* Text — zinc ramp. --text-on-dark stays light for copy over photography. */
   --text:         #09090b;  /* zinc-950 — shadcn --foreground */
@@ -351,10 +351,19 @@ p  { margin: 0; }
 /* =========================================================
    Nav
    ========================================================= */
-/* Sits directly on the hero photo — transparent, no blur, no rounding,
-   light text. Once scrolled past the hero it becomes a plain solid
-   bar (still no glass, no rounding) so it stays legible over the
-   white content sections below. Toggled by script.js. */
+/* A floating glass pill over the hero photo, going more opaque once
+   scrolled into the light content below. The optical distortion is an
+   SVG displacement filter run over the backdrop (see #glass-distortion
+   in the page markup) — layered as a progressive enhancement so engines
+   without url() support in backdrop-filter keep the plain frosted blur.
+   Toggled by script.js. */
+/* Filter-only SVG: present for reference, never painted. */
+.svg-defs {
+  position: absolute;
+  width: 0; height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 .nav {
   display: flex;
   justify-content: center;
@@ -362,33 +371,93 @@ p  { margin: 0; }
   top: 0;
   z-index: 50;
   height: auto;
-  padding: 16px var(--s-6) 0;
+  padding: 12px var(--s-6) 0;
   background: transparent;
   border-bottom: none;
   box-shadow: none;
   transition: padding .25s var(--ease-out);
 }
-.nav.nav--scrolled { padding-top: 12px; }
+.nav.nav--scrolled { padding-top: 9px; }
 .nav-inner {
   position: relative;
   width: auto;
   max-width: 100%;
   margin: 0;
-  padding: 7px 8px 7px 22px;
+  padding: 5px 5px 5px 16px;
   display: flex;
   align-items: center;
-  gap: var(--s-8);
+  gap: var(--s-6);
   border-radius: 999px;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.2);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255,255,255,.13);
+  border: 1px solid rgba(255,255,255,.30);
+  /* Frosted base — every engine with backdrop-filter gets this. */
+  backdrop-filter: blur(13px) saturate(180%) brightness(1.07);
+  -webkit-backdrop-filter: blur(13px) saturate(180%) brightness(1.07);
+  /* Bevel: bright top edge where light catches the lip of the glass,
+     a fainter bottom edge, and an inner sheen across the body. */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.55),
+    inset 0 -1px 0 rgba(255,255,255,.14),
+    inset 0 0 24px rgba(255,255,255,.10),
+    0 10px 30px -10px rgba(0,0,0,.38);
   transition: background-color .25s var(--ease-out), border-color .25s var(--ease-out), box-shadow .25s var(--ease-out);
 }
+/* Optical distortion — refracts the backdrop through the glass. Only
+   applied where the engine actually claims support, so Safari/Firefox
+   fall back to the frosted blur above rather than losing it. */
+@supports (backdrop-filter: url("#glass-distortion")) {
+  .nav-inner {
+    /* Lighter blur than the fallback: too much and the refraction has no
+       detail left to bend, so the distortion stops reading as glass. */
+    backdrop-filter: url("#glass-distortion") blur(4px) saturate(190%) brightness(1.08);
+  }
+}
+/* Lens rim — real glass catches light hardest at the curved edge, so a
+   soft highlight runs top-left to bottom-right over the pill's border. */
+.nav-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,.85) 0%,
+    rgba(255,255,255,.10) 32%,
+    rgba(255,255,255,0) 55%,
+    rgba(255,255,255,.28) 82%,
+    rgba(255,255,255,.65) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: .9;
+  transition: opacity .25s var(--ease-out);
+}
+.nav--scrolled .nav-inner::after { opacity: .5; }
+
+/* Menu open: the dropdown behind the pill is light, so borrow the
+   scrolled (light) treatment regardless of scroll position. */
+.nav--menu-open .nav-inner {
+  background: rgba(255,255,255,.82);
+  border-color: rgba(255,255,255,.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    inset 0 -1px 0 rgba(0,0,0,.03),
+    0 10px 30px -12px rgba(20,15,5,.22);
+}
+.nav--menu-open .nav-inner::after { opacity: .5; }
+.nav--menu-open .brand { color: var(--text); text-shadow: none; }
+.nav--menu-open .nav-toggle { color: var(--text); border-color: var(--border-strong); }
 .nav--scrolled .nav-inner {
-  background: rgba(255,255,255,.92);
-  border-color: var(--border);
-  box-shadow: 0 10px 30px rgba(20,15,5,.1);
+  /* Enough opacity that dark content passing behind the pill can't muddy
+     the link text, while still reading as glass rather than a solid bar. */
+  background: rgba(255,255,255,.82);
+  border-color: rgba(255,255,255,.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    inset 0 -1px 0 rgba(0,0,0,.03),
+    0 10px 30px -12px rgba(20,15,5,.22);
 }
 .brand {
   display: inline-flex;
@@ -398,7 +467,7 @@ p  { margin: 0; }
   white-space: nowrap;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15.5px;
   letter-spacing: -0.015em;
   color: #fff;
   text-shadow: 0 1px 3px rgba(0,0,0,.35);
@@ -407,7 +476,7 @@ p  { margin: 0; }
 .nav--scrolled .brand { color: var(--text); text-shadow: none; }
 .brand-mark {
   width: auto;
-  height: 28px;
+  height: 21px;
   border-radius: 8px;
   background: transparent;
   object-fit: contain;
@@ -418,11 +487,11 @@ img.brand-mark { background: transparent; box-shadow: none; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--s-6);
+  gap: 19px;
 }
 .nav-links a {
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: 12.75px;
   font-weight: 500;
   color: rgba(255,255,255,.88);
   text-shadow: none;
@@ -476,6 +545,12 @@ img.brand-mark { background: transparent; box-shadow: none; }
   background: var(--c-ink);
   color: #fff;
   transform: translateY(-1px);
+}
+/* Nav CTA sits inside the pill, so it runs tighter than a page button */
+.nav .btn--sm {
+  padding: 8px 15px;
+  font-size: 12.5px;
+  border-radius: 999px;
 }
 /* Nav buttons — light-outlined over the photo, ink-outlined once scrolled */
 .nav .btn--outline-ink {
