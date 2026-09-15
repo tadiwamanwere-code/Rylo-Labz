@@ -11,29 +11,24 @@ function xmlEscape(value) {
 
 module.exports = async (_req, res) => {
   const baseUrl = 'https://rylolabz.com';
-  const staticUrls = [
-    `${baseUrl}/`,
-    `${baseUrl}/portfolio`,
-    `${baseUrl}/reviews`
-  ];
+  const staticUrls = [`${baseUrl}/`, `${baseUrl}/portfolio`, `${baseUrl}/reviews`].map((loc) => ({ loc }));
 
   let articleUrls = [];
   try {
     const response = await list({ prefix: 'articles/', limit: 200 });
     articleUrls = (response.blobs || []).map((blob) => {
       const slug = blob.pathname.replace(/^articles\//, '').replace(/\.json$/, '');
-      return `${baseUrl}/article?slug=${encodeURIComponent(slug)}`;
+      return { loc: `${baseUrl}/article?slug=${encodeURIComponent(slug)}`, lastmod: blob.uploadedAt ? new Date(blob.uploadedAt).toISOString().slice(0, 10) : null };
     });
   } catch {
     articleUrls = [];
   }
 
   const urls = [...staticUrls, ...articleUrls];
-  const now = new Date().toISOString().slice(0, 10);
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...urls.map((url) => `  <url><loc>${xmlEscape(url)}</loc><lastmod>${now}</lastmod></url>`),
+    ...urls.map(({ loc, lastmod }) => `  <url><loc>${xmlEscape(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}</url>`),
     '</urlset>'
   ].join('\n');
 
