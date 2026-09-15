@@ -15,6 +15,17 @@
       "permanent": true
     }
   ],
+  "crons": [
+    {
+      "path": "/api/cron-post",
+      "schedule": "0 6 * * 1,4"
+    }
+  ],
+  "functions": {
+    "api/cron-post.js": {
+      "maxDuration": 300
+    }
+  },
   "rewrites": [
     {
       "source": "/sitemap.xml",
