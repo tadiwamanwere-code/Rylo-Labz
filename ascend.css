@@ -1508,8 +1508,8 @@ main.article-wrap { padding-top: calc(78px + clamp(40px, 6vw, 80px)); }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10,18,15,.7) 0%, rgba(10,18,15,.3) 40%, rgba(10,18,15,.85) 100%),
-    linear-gradient(100deg, rgba(10,18,15,.72) 0%, rgba(10,18,15,.1) 65%);
+    linear-gradient(180deg, rgba(10,18,15,.62) 0%, rgba(10,18,15,.2) 42%, rgba(10,18,15,.66) 100%),
+    linear-gradient(95deg, rgba(10,18,15,.8) 0%, rgba(10,18,15,.34) 46%, rgba(10,18,15,0) 72%);
 }
 .price-hero-inner {
   position: relative;
