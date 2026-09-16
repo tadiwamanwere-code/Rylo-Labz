@@ -1,0 +1,18 @@
+[  107279ms] [ERROR] Failed to load resource: net::ERR_QUIC_PROTOCOL_ERROR @ https://ascend-studio-20260914.web.app/_next/static/chunks/825-e8c2aaeb638cb34a.js:0
+[  107287ms] [ERROR] Failed to load resource: net::ERR_QUIC_PROTOCOL_ERROR @ https://ascend-studio-20260914.web.app/_next/static/chunks/794-d98395dee80b8e0c.js:0
+[  114935ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://ascend-studio-20260914.web.app/favicon.ico:0
+[ 1898804ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5178/api/articles:0
+[ 1903984ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://yuta-opp.vercel.app/api/v1/events:0
+[ 1964031ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://yuta-opp.vercel.app/api/v1/events:0
+[ 1976398ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://yuta-opp.vercel.app/api/v1/events:0
+[ 2306190ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5178/api/articles:0
+[ 2308455ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://yuta-opp.vercel.app/api/v1/events:0
+[ 2322952ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://yuta-opp.vercel.app/api/v1/events:0
+[ 2329442ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://yuta-opp.vercel.app/api/v1/events:0
+[ 3215602ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5178/api/articles:0
+[ 3220983ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://yuta-opp.vercel.app/api/v1/events:0
+[ 4479043ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://arygyle.co.zw/logo.png:0
+[ 4479048ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://arygyle.co.zw/hero.jpg:0
+[ 4479054ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://arygyle.co.zw/card-formation.jpg:0
+[ 4479055ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://arygyle.co.zw/card-tax.jpg:0
+[ 4805087ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://arygyle.co.zw/farai-tofa.png:0

@@ -175,51 +175,6 @@
     }
   }
 
-  // Homepage stage: the hero stays pinned while a second panel rises
-  // over it from the bottom, tied to how far the visitor has scrolled.
-  const stage = document.querySelector('.stage');
-  if (stage) {
-    const fold = stage.querySelector('.stage-fold');
-    const foldBg = stage.querySelector('.stage-fold-bg');
-    const foldInner = stage.querySelector('.stage-fold-inner');
-    const landscape = stage.querySelector('.stage-landscape');
-    const heroCopy = stage.querySelector('.stage-hero');
-    const flyer = stage.querySelector('.stage-flyer');
-
-    if (prefersReducedMotion || !fold || !('CSS' in window && CSS.supports('clip-path', 'inset(0 0 0 0)'))) {
-      stage.classList.add('stage--static');
-    } else {
-      const clamp = (v) => Math.min(1, Math.max(0, v));
-      const ease = (t) => 1 - Math.pow(1 - t, 3);
-      let queued = false;
-
-      const render = () => {
-        queued = false;
-        const range = stage.offsetHeight - window.innerHeight;
-        const p = range > 0 ? clamp(-stage.getBoundingClientRect().top / range) : 0;
-        const rise = ease(clamp((p - 0.12) / 0.6));
-
-        landscape.style.transform = `scale(${1.08 - p * 0.08})`;
-        heroCopy.style.transform = `translate3d(0, ${-rise * 70}px, 0)`;
-        heroCopy.style.opacity = String(1 - rise * 0.85);
-        fold.style.clipPath = `inset(${(1 - rise) * 100}% 0 0 0)`;
-        if (foldBg) foldBg.style.transform = `translate3d(0, ${(1 - rise) * 6}%, 0) scale(${1 + (1 - p) * 0.04})`;
-        if (foldInner) foldInner.style.transform = `translate3d(0, ${(1 - rise) * 90}px, 0)`;
-        if (flyer) {
-          // The drone drifts across the sky and dips as the page scrolls.
-          const across = 3 + p * 112;
-          const dip = Math.sin(p * Math.PI) * 16;
-          flyer.style.transform = `translate3d(${across}vw, ${dip}vh, 0) rotate(${-4 + p * 8}deg)`;
-        }
-      };
-      const queue = () => { if (!queued) { queued = true; requestAnimationFrame(render); } };
-
-      window.addEventListener('scroll', queue, { passive: true });
-      window.addEventListener('resize', queue, { passive: true });
-      render();
-    }
-  }
-
   // Articles loader — drives #articles-list from /api/articles
   function formatArticleDate(isoDate) {
     const value = isoDate ? new Date(isoDate) : null;

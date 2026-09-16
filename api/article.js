@@ -71,7 +71,7 @@ function page({ title, description, canonical, robots, bodyHtml, jsonLd, status 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css?v=65" />
-  <link rel="stylesheet" href="/ascend.css?v=3" />
+  <link rel="stylesheet" href="/ascend.css?v=6" />
   ${jsonLd.map((data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`).join('\n  ')}
   <style>
     body { background: var(--bg); }

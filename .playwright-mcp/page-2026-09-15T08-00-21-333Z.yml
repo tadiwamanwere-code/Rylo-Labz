@@ -1,0 +1,506 @@
+- generic [active] [ref=f65e1]:
+  - banner [ref=f65e2]:
+    - generic [ref=f65e3]:
+      - link [ref=f65e4] [cursor=pointer]:
+        - /url: /
+        - img "Higgsfield" [ref=f65e5]
+      - navigation "Main" [ref=f65e9]:
+        - list [ref=f65e12]:
+          - listitem [ref=f65e13]:
+            - link "Explore" [ref=f65e14] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f65e15]:
+            - link "Image" [ref=f65e16] [cursor=pointer]:
+              - /url: /ai/image?model=gpt_image_2
+          - listitem [ref=f65e17]:
+            - link "Video" [ref=f65e18] [cursor=pointer]:
+              - /url: /ai/video
+          - listitem [ref=f65e19]:
+            - link "Audio" [ref=f65e20] [cursor=pointer]:
+              - /url: /audio
+          - listitem [ref=f65e21]:
+            - link "MCP" [ref=f65e22] [cursor=pointer]:
+              - /url: /mcp
+          - separator [ref=f65e23]
+          - listitem [ref=f65e24]:
+            - link "ChatGPT Plugin New" [ref=f65e25] [cursor=pointer]:
+              - /url: /gpt-astra
+              - generic [ref=f65e26]: ChatGPT Plugin
+              - generic [ref=f65e27]: ChatGPT Plugin
+              - generic [ref=f65e28]: New
+          - listitem [ref=f65e29]:
+            - link "Genjutsu" [ref=f65e30] [cursor=pointer]:
+              - /url: /ai/video?model=genjutsu
+          - listitem [ref=f65e31]:
+            - link "Effects New" [ref=f65e32] [cursor=pointer]:
+              - /url: /effects/use
+              - text: Effects
+              - generic [ref=f65e33]: New
+          - listitem [ref=f65e34]:
+            - link "Cinema Studio" [ref=f65e35] [cursor=pointer]:
+              - /url: /generate
+          - listitem [ref=f65e36]:
+            - link "Marketing Studio" [ref=f65e37] [cursor=pointer]:
+              - /url: /marketing-studio
+          - listitem [ref=f65e38]:
+            - link "Supercomputer" [ref=f65e39] [cursor=pointer]:
+              - /url: /supercomputer
+          - listitem [ref=f65e41]:
+            - link "3D Jutsu New" [ref=f65e42] [cursor=pointer]:
+              - /url: /3d-jutsu
+              - text: 3D Jutsu
+              - generic [ref=f65e43]: New
+          - listitem [ref=f65e44]:
+            - link "Edit" [ref=f65e45] [cursor=pointer]:
+              - /url: /layers
+          - listitem [ref=f65e46]:
+            - link "Academy" [ref=f65e47] [cursor=pointer]:
+              - /url: /academy
+          - listitem [ref=f65e48]:
+            - link "Community" [ref=f65e49] [cursor=pointer]:
+              - /url: /community
+          - listitem [ref=f65e50]:
+            - link "Contests" [ref=f65e51] [cursor=pointer]:
+              - /url: /contests/higgsfield-global-film-festival
+          - listitem [ref=f65e52]:
+            - link "Plugins" [ref=f65e53] [cursor=pointer]:
+              - /url: /plugins/after-effects
+          - listitem [ref=f65e54]:
+            - link "Canvas" [ref=f65e55] [cursor=pointer]:
+              - /url: /canvas
+          - listitem [ref=f65e56]:
+            - link "Originals" [ref=f65e57] [cursor=pointer]:
+              - /url: /original-series
+      - generic [ref=f65e58]:
+        - generic [ref=f65e59]:
+          - generic [ref=f65e60] [cursor=pointer]
+          - link "Pricing" [ref=f65e61] [cursor=pointer]:
+            - /url: /pricing
+          - link "Enterprise" [ref=f65e64] [cursor=pointer]:
+            - /url: https://higgsfield.ai/enterprise
+          - generic [ref=f65e68] [cursor=pointer]
+        - generic [ref=f65e70]:
+          - button "Login" [ref=f65e71] [cursor=pointer]
+          - button "Sign up" [ref=f65e72] [cursor=pointer]
+  - main [ref=f65e73]:
+    - list [ref=f65e76]:
+      - listitem [ref=f65e77]:
+        - generic [ref=f65e78]:
+          - link "Open Higgsfield AI Motion Designer" [ref=f65e79] [cursor=pointer]:
+            - /url: https://higgsfield.ai/gpt-astra
+          - 'figure "Higgsfield AI Motion Designer: ChatGPT can now do motion design in After Effects." [ref=f65e81]':
+            - img "Loading the media file..."
+            - generic "Higgsfield AI Motion Designer - ChatGPT can now do motion design in After Effects." [ref=f65e82]: Your browser does not support the video.
+          - generic [ref=f65e83]:
+            - heading "Higgsfield AI Motion Designer" [level=3] [ref=f65e84]
+            - paragraph [ref=f65e85]: ChatGPT can now do motion design in After Effects.
+      - listitem [ref=f65e86]:
+        - generic [ref=f65e87]:
+          - link "Open Higgsfield Effects" [ref=f65e88] [cursor=pointer]:
+            - /url: https://higgsfield.ai/effects
+          - 'figure "Higgsfield Effects: Viral video presets now in ChatGPT, with free generations" [ref=f65e90]':
+            - img "Loading the media file..."
+            - generic "Higgsfield Effects - Viral video presets now in ChatGPT, with free generations" [ref=f65e91]: Your browser does not support the video.
+          - generic [ref=f65e92]:
+            - heading "Higgsfield Effects" [level=3] [ref=f65e93]
+            - paragraph [ref=f65e94]: Viral video presets now in ChatGPT, with free generations
+      - listitem [ref=f65e95]:
+        - generic [ref=f65e96]:
+          - link "Open Higgsfield Genjutsu" [ref=f65e97] [cursor=pointer]:
+            - /url: https://higgsfield.ai/ai/video?model=genjutsu
+          - 'figure "Higgsfield Genjutsu: One upload in. Endless new visions out." [ref=f65e99]':
+            - img "Loading the media file..."
+            - generic "Higgsfield Genjutsu - One upload in. Endless new visions out." [ref=f65e100]: Your browser does not support the video.
+          - generic [ref=f65e101]:
+            - heading "Higgsfield Genjutsu" [level=3] [ref=f65e102]
+            - paragraph [ref=f65e103]: One upload in. Endless new visions out.
+      - listitem [ref=f65e104]:
+        - generic [ref=f65e105]:
+          - link "Open GPT Image 2.5 Sunburst" [ref=f65e106] [cursor=pointer]:
+            - /url: https://higgsfield.ai/ai/image?model=gpt-image-2-5-sunburst
+          - 'figure "GPT Image 2.5 Sunburst: Sharper edits with more natural light and texture" [ref=f65e108]':
+            - img "Loading the media file..."
+            - generic "GPT Image 2.5 Sunburst - Sharper edits with more natural light and texture" [ref=f65e109]: Your browser does not support the video.
+          - generic [ref=f65e110]:
+            - heading "GPT Image 2.5 Sunburst" [level=3] [ref=f65e111]
+            - paragraph [ref=f65e112]: Sharper edits with more natural light and texture
+      - listitem [ref=f65e113]:
+        - generic [ref=f65e114]:
+          - link "Open HIGGSFIELD × GPT-6 ASTRA" [ref=f65e115] [cursor=pointer]:
+            - /url: https://higgsfield.ai/gpt-astra
+          - 'figure "HIGGSFIELD × GPT-6 ASTRA: Turn a single prompt into a playable 3D game. Story, mechanics, and every asset included" [ref=f65e117]':
+            - img "Loading the media file..."
+            - generic "HIGGSFIELD × GPT-6 ASTRA - Turn a single prompt into a playable 3D game. Story, mechanics, and every asset included" [ref=f65e118]: Your browser does not support the video.
+          - generic [ref=f65e119]:
+            - heading "HIGGSFIELD × GPT-6 ASTRA" [level=3] [ref=f65e120]
+            - paragraph [ref=f65e121]: Turn a single prompt into a playable 3D game. Story, mechanics, and every asset included
+      - generic [ref=f65e122]:
+        - listitem [ref=f65e123]:
+          - heading [level=3] [ref=f65e125]
+        - listitem [ref=f65e126]:
+          - heading [level=3] [ref=f65e128]
+        - listitem [ref=f65e129]:
+          - heading [level=3] [ref=f65e131]
+        - listitem [ref=f65e132]:
+          - heading [level=3] [ref=f65e134]
+        - listitem [ref=f65e135]:
+          - heading [level=3] [ref=f65e137]
+    - generic [ref=f65e138]:
+      - generic [ref=f65e140]:
+        - button "Sign up and get your extra discount Get unlimited Nano Banana Pro Unlock your extra discount Access to Seedance 2.5 Sign up and get your discount" [ref=f65e142] [cursor=pointer]:
+          - generic: Your browser does not support the video.
+          - generic [ref=f65e143]:
+            - heading "Sign up and get your extra discount" [level=3] [ref=f65e144]:
+              - generic [ref=f65e145]: Sign up and get your
+              - generic [ref=f65e146]: extra discount
+            - list [ref=f65e148]:
+              - listitem [ref=f65e149]:
+                - generic [ref=f65e152]: Get unlimited Nano Banana Pro
+              - listitem [ref=f65e153]:
+                - generic [ref=f65e156]: Unlock your extra discount
+              - listitem [ref=f65e157]:
+                - generic [ref=f65e160]: Access to Seedance 2.5
+            - generic [ref=f65e161]: Sign up and get your discount
+        - generic [ref=f65e165]:
+          - link "Seedance 2.5 Top The most advanced video model Video" [ref=f65e166] [cursor=pointer]:
+            - /url: /ai/video?model=seedance_2_5&resolution=1080p
+            - generic [ref=f65e170]:
+              - generic [ref=f65e171]:
+                - generic [ref=f65e172]: Seedance 2.5
+                - paragraph: Top
+              - paragraph [ref=f65e173]: The most advanced video model
+            - generic [ref=f65e174]: Video
+          - link "Nano Banana Pro Generate high-quality visuals Image" [ref=f65e177] [cursor=pointer]:
+            - /url: /nano-banana-pro
+            - generic [ref=f65e183]:
+              - generic [ref=f65e184]: Nano Banana Pro
+              - paragraph [ref=f65e186]: Generate high-quality visuals
+            - generic [ref=f65e187]: Image
+          - link "Higgsfield Genjutsu New One video, many versions" [ref=f65e191] [cursor=pointer]:
+            - /url: /ai/video?model=genjutsu
+            - generic [ref=f65e196]:
+              - generic [ref=f65e197]:
+                - generic [ref=f65e198]: Higgsfield Genjutsu
+                - paragraph: New
+              - paragraph [ref=f65e199]: One video, many versions
+          - link "MCP & CLI Turn Claude into a creative engine" [ref=f65e200] [cursor=pointer]:
+            - /url: /mcp
+            - generic [ref=f65e204]:
+              - generic [ref=f65e205]: MCP & CLI
+              - paragraph [ref=f65e207]: Turn Claude into a creative engine
+          - link "Cinema Studio 4.0 Create cinematic scenes effortlessly" [ref=f65e208] [cursor=pointer]:
+            - /url: /generate
+            - generic [ref=f65e212]:
+              - generic [ref=f65e213]: Cinema Studio 4.0
+              - paragraph [ref=f65e215]: Create cinematic scenes effortlessly
+          - link "Supercomputer Agent powered by GPT-6 Astra" [ref=f65e216] [cursor=pointer]:
+            - /url: /supercomputer?model=openai/gpt-6-astra
+            - generic [ref=f65e220]:
+              - generic [ref=f65e221]: Supercomputer
+              - paragraph [ref=f65e223]: Agent powered by GPT-6 Astra
+      - generic [ref=f65e226]:
+        - generic [ref=f65e227]:
+          - heading "Higgsfield MCP with GPT-6 Astra" [level=2] [ref=f65e228]:
+            - generic [ref=f65e229]: Higgsfield MCP with
+            - generic [ref=f65e230]:
+              - generic [ref=f65e231]:
+                - generic [ref=f65e232]: G
+                - generic [ref=f65e234]: P
+                - generic [ref=f65e236]: T
+                - generic [ref=f65e238]: "-"
+                - generic [ref=f65e240]: "6"
+              - generic [ref=f65e244]:
+                - generic [ref=f65e245]: A
+                - generic [ref=f65e247]: S
+                - generic [ref=f65e249]: T
+                - generic [ref=f65e251]: R
+                - generic [ref=f65e253]: A
+          - paragraph [ref=f65e255]: Build games, motion graphics, and interactive 3D experiences with Higgsfield MCP
+        - generic [ref=f65e256]:
+          - link "Install Higgsfield plugin" [ref=f65e257] [cursor=pointer]:
+            - /url: https://chatgpt.com/plugins/plugin_asdk_app_6a3293e129088191abf0875820e839da
+          - link "Explore use cases" [ref=f65e261] [cursor=pointer]:
+            - /url: /gpt-astra
+    - generic [ref=f65e266]:
+      - generic [ref=f65e268]:
+        - generic [ref=f65e269]:
+          - generic [ref=f65e270]:
+            - heading [level=2] [ref=f65e271]:
+              - link "Visual Effects" [ref=f65e272] [cursor=pointer]:
+                - /url: /effects
+            - paragraph [ref=f65e273]: Big-budget visual effects, from explosions to surreal transformations.
+          - link "Start generating" [ref=f65e274] [cursor=pointer]:
+            - /url: /effects/use
+        - generic [ref=f65e275]:
+          - list [ref=f65e277]:
+            - listitem [ref=f65e278]:
+              - figure [ref=f65e279]:
+                - link "View Floating fall" [ref=f65e281] [cursor=pointer]:
+                  - /url: /effects/examples/floating-fall
+                - generic:
+                  - heading "Floating fall" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/floating-fall
+            - listitem [ref=f65e282]:
+              - figure [ref=f65e283]:
+                - link "View High flip" [ref=f65e285] [cursor=pointer]:
+                  - /url: /effects/examples/high-flip
+                - generic:
+                  - heading "High flip" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/high-flip
+            - listitem [ref=f65e286]:
+              - figure [ref=f65e287]:
+                - link "View Burning man" [ref=f65e289] [cursor=pointer]:
+                  - /url: /effects/examples/burning-man
+                - generic:
+                  - heading "Burning man" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/burning-man
+            - listitem [ref=f65e290]:
+              - figure [ref=f65e291]:
+                - link "View Studio slide" [ref=f65e293] [cursor=pointer]:
+                  - /url: /effects/examples/studio-slide
+                - generic:
+                  - heading "Studio slide" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/studio-slide
+            - listitem [ref=f65e294]:
+              - figure [ref=f65e295]:
+                - link "View Incline" [ref=f65e297] [cursor=pointer]:
+                  - /url: /effects/examples/incline
+                - generic:
+                  - heading "Incline" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/incline
+            - listitem [ref=f65e298]:
+              - figure [ref=f65e299]:
+                - link "View Act natural" [ref=f65e301] [cursor=pointer]:
+                  - /url: /effects/examples/act-natural
+                - generic:
+                  - heading "Act natural" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/act-natural
+            - listitem [ref=f65e302]:
+              - figure [ref=f65e303]:
+                - link "View Eyes in" [ref=f65e305] [cursor=pointer]:
+                  - /url: /effects/examples/eyes-in
+                - generic:
+                  - heading "Eyes in" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/eyes-in
+            - listitem [ref=f65e306]:
+              - figure [ref=f65e307]:
+                - link "View Street colossus" [ref=f65e309] [cursor=pointer]:
+                  - /url: /effects/examples/street-colossus
+                - generic:
+                  - heading "Street colossus" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/street-colossus
+            - listitem [ref=f65e310]:
+              - figure [ref=f65e311]:
+                - link "View Melting" [ref=f65e313] [cursor=pointer]:
+                  - /url: /effects/examples/melting
+                - generic:
+                  - heading "Melting" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/melting
+            - listitem [ref=f65e314]:
+              - figure [ref=f65e315]:
+                - link "View Wild ride" [ref=f65e317] [cursor=pointer]:
+                  - /url: /effects/examples/wild-ride
+                - generic:
+                  - heading "Wild ride" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/wild-ride
+            - listitem [ref=f65e318]:
+              - figure [ref=f65e319]:
+                - link "View Cutout" [ref=f65e321] [cursor=pointer]:
+                  - /url: /effects/examples/cutout
+                - generic:
+                  - heading "Cutout" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/cutout
+            - listitem [ref=f65e322]:
+              - figure [ref=f65e323]:
+                - link "View World morphing" [ref=f65e325] [cursor=pointer]:
+                  - /url: /effects/examples/world-morphing
+                - generic:
+                  - heading "World morphing" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/world-morphing
+            - listitem [ref=f65e326]:
+              - figure [ref=f65e327]:
+                - link "View Smash and grab" [ref=f65e329] [cursor=pointer]:
+                  - /url: /effects/examples/smash-and-grab
+                - generic:
+                  - heading "Smash and grab" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/smash-and-grab
+            - listitem [ref=f65e330]:
+              - figure [ref=f65e331]:
+                - link "View Selfception" [ref=f65e333] [cursor=pointer]:
+                  - /url: /effects/examples/selfception
+                - generic:
+                  - heading "Selfception" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/selfception
+            - listitem [ref=f65e334]:
+              - figure [ref=f65e335]:
+                - link "View Lacewalker" [ref=f65e337] [cursor=pointer]:
+                  - /url: /effects/examples/lacewalker
+                - generic:
+                  - heading "Lacewalker" [level=2]
+                  - generic:
+                    - link "Recreate":
+                      - /url: /effects/use/lacewalker
+          - link "View all presets" [ref=f65e338] [cursor=pointer]:
+            - /url: /effects
+      - region "Higgsfield Genjutsu" [ref=f65e342]:
+        - generic [ref=f65e343]:
+          - generic [ref=f65e344]:
+            - generic [ref=f65e345]: New model
+            - heading "Higgsfield Genjutsu" [level=2] [ref=f65e349]
+            - paragraph [ref=f65e350]: Reality Manipulation — transfer motion into new scenes, or swap details while everything else stays as filmed.
+          - generic [ref=f65e351]:
+            - link "Start generating" [ref=f65e352] [cursor=pointer]:
+              - /url: /ai/video?model=genjutsu
+            - link "Learn more" [ref=f65e353] [cursor=pointer]:
+              - /url: /higgsfield-genjutsu-presets
+        - link "View all presets" [ref=f65e361] [cursor=pointer]:
+          - /url: /higgsfield-genjutsu-presets
+    - generic [ref=f65e364]:
+      - generic [ref=f65e365]:
+        - link "Seedance 2.5" [ref=f65e366] [cursor=pointer]:
+          - /url: /seedance-2-5-community
+        - paragraph [ref=f65e367]: The most advanced AI video model
+      - link "View all of Seedance 2.5" [ref=f65e392] [cursor=pointer]:
+        - /url: /seedance-2-5-community
+    - generic [ref=f65e396]:
+      - generic [ref=f65e397]:
+        - heading "Explore the inside of every project" [level=2] [ref=f65e398]
+        - paragraph [ref=f65e399]: See all prompts, assets, and how each project was created
+      - generic [ref=f65e400]:
+        - generic [ref=f65e401]:
+          - link "Higgsfield Studio H If you stop loving me, I'll die — I don't like dying, but for our love I'm ready to go that far by Higgsfield Studio Public" [ref=f65e402] [cursor=pointer]:
+            - /url: /@higgsfield.studio/projects/if-you-stop-loving-me-ill-die
+            - figure [ref=f65e404]
+            - generic [ref=f65e405]:
+              - generic [ref=f65e406]:
+                - generic [ref=f65e407]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e408]: H
+                - paragraph [ref=f65e411]: If you stop loving me, I'll die — I don't like dying, but for our love I'm ready to go that far by Higgsfield Studio
+              - paragraph [ref=f65e415]: Public
+          - link "Higgsfield Studio H Cully Hill Boys by Higgsfield Studio Public" [ref=f65e416] [cursor=pointer]:
+            - /url: /@higgsfield.studio/projects/cully-hill-boys
+            - figure [ref=f65e418]
+            - generic [ref=f65e419]:
+              - generic [ref=f65e420]:
+                - generic [ref=f65e421]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e422]: H
+                - paragraph [ref=f65e425]: Cully Hill Boys by Higgsfield Studio
+              - paragraph [ref=f65e429]: Public
+          - link "Higgsfield Studio H Red Flag by Higgsfield Studio Public" [ref=f65e430] [cursor=pointer]:
+            - /url: /@higgsfield.studio/projects/red-flag
+            - figure [ref=f65e432]
+            - generic [ref=f65e433]:
+              - generic [ref=f65e434]:
+                - generic [ref=f65e435]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e436]: H
+                - paragraph [ref=f65e439]: Red Flag by Higgsfield Studio
+              - paragraph [ref=f65e443]: Public
+          - link "Higgsfield Studio H Kok Boru by Higgsfield Studio Public" [ref=f65e444] [cursor=pointer]:
+            - /url: /@higgsfield.studio/projects/kok-boru-film
+            - figure [ref=f65e446]
+            - generic [ref=f65e447]:
+              - generic [ref=f65e448]:
+                - generic [ref=f65e449]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e450]: H
+                - paragraph [ref=f65e453]: Kok Boru by Higgsfield Studio
+              - paragraph [ref=f65e457]: Public
+          - link "Higgsfield Studio H Adiliada by Higgsfield Studio Public" [ref=f65e458] [cursor=pointer]:
+            - /url: /@higgsfield.studio/projects/adiliada
+            - figure [ref=f65e460]
+            - generic [ref=f65e461]:
+              - generic [ref=f65e462]:
+                - generic [ref=f65e463]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e464]: H
+                - paragraph [ref=f65e467]: Adiliada by Higgsfield Studio
+              - paragraph [ref=f65e471]: Public
+          - link "Higgsfield Studio H ONEIRIC by Higgsfield Studio Public" [ref=f65e472] [cursor=pointer]:
+            - /url: /@higgsfield.studio/projects/oneiric
+            - figure [ref=f65e474]
+            - generic [ref=f65e475]:
+              - generic [ref=f65e476]:
+                - generic [ref=f65e477]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e478]: H
+                - paragraph [ref=f65e481]: ONEIRIC by Higgsfield Studio
+              - paragraph [ref=f65e485]: Public
+          - 'link "Higgsfield Studio H ZEPHYR: Special by Higgsfield Studio Public" [ref=f65e486] [cursor=pointer]':
+            - /url: /@higgsfield.studio/projects/zephyr-special
+            - figure [ref=f65e488]
+            - generic [ref=f65e489]:
+              - generic [ref=f65e490]:
+                - generic [ref=f65e491]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e492]: H
+                - paragraph [ref=f65e495]: "ZEPHYR: Special by Higgsfield Studio"
+              - paragraph [ref=f65e499]: Public
+          - link "Higgsfield Studio H HELL GRIND by Higgsfield Studio Public" [ref=f65e500] [cursor=pointer]:
+            - /url: /@higgsfield.studio/projects/hell-grind
+            - figure [ref=f65e502]
+            - generic [ref=f65e503]:
+              - generic [ref=f65e504]:
+                - generic [ref=f65e505]:
+                  - img "Higgsfield Studio"
+                  - generic [ref=f65e506]: H
+                - paragraph [ref=f65e509]: HELL GRIND by Higgsfield Studio
+              - paragraph [ref=f65e513]: Public
+        - link "Explore community" [ref=f65e514] [cursor=pointer]:
+          - /url: /community
+    - link "Supercomputer One superagent for your entire creative stack Try Supercomputer" [ref=f65e518] [cursor=pointer]:
+      - /url: /supercomputer
+      - generic [ref=f65e520]:
+        - generic [ref=f65e523]:
+          - heading "Supercomputer" [level=2] [ref=f65e524]
+          - paragraph [ref=f65e525]: One superagent for your entire creative stack
+        - generic [ref=f65e526]: Try Supercomputer
+  - contentinfo [ref=f65e527]:
+    - navigation [ref=f65e528]:
+      - paragraph [ref=f65e529]:
+        - generic [ref=f65e530]: © 2026 Higgsfield, Inc.
+        - generic [ref=f65e531]: All rights reserved.
+      - list [ref=f65e532]:
+        - listitem [ref=f65e533]
+        - listitem [ref=f65e535]:
+          - link "Help center" [ref=f65e536] [cursor=pointer]:
+            - /url: /creator-hub/help-center
+        - listitem [ref=f65e537]:
+          - link "Cookie Notice" [ref=f65e538] [cursor=pointer]:
+            - /url: /cookie-notice
+        - listitem [ref=f65e539]:
+          - link "Terms" [ref=f65e540] [cursor=pointer]:
+            - /url: /terms-of-use-agreement
+        - listitem [ref=f65e541]:
+          - link "Privacy" [ref=f65e542] [cursor=pointer]:
+            - /url: /privacy-policy

@@ -1,0 +1,3 @@
+[  508219ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://yuta-opp.vercel.app/api/v1/events:0
+[  638505ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://yuta-opp.vercel.app/api/v1/events:0
+[  735848ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://yuta-opp.vercel.app/api/v1/events:0
