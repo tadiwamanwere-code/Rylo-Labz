@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://images.pexels.com" />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=65" />
-  <link rel="stylesheet" href="ascend.css?v=1" />
+  <link rel="stylesheet" href="ascend.css?v=2" />
 
   <script type="application/ld+json">
     {
@@ -185,11 +185,15 @@
     <section class="hero stage" aria-label="Rylo Labz introduction">
       <div class="stage-viewport">
         <div class="stage-scene">
-          <img class="stage-landscape" src="/images/hero-concept-a.jpg" alt="" aria-hidden="true" fetchpriority="high" />
+          <picture>
+            <source media="(max-width: 640px)" srcset="/images/hero-valley-mobile.jpg" />
+            <img class="stage-landscape" src="/images/hero-valley-desktop.jpg" alt="" aria-hidden="true" fetchpriority="high" />
+          </picture>
+          <img class="stage-flyer" src="/images/drone.png" alt="" aria-hidden="true" />
           <div class="stage-shade"></div>
           <div class="stage-hero">
             <span class="stage-eyebrow">For all business owners</span>
-            <h1><span>Want to scale your business</span><span>and run it smoother?</span></h1>
+            <h1><span>Want to scale your business </span><span>and run it smoother?</span></h1>
             <p class="stage-lede">With automated software that runs your business, and a high-end website that drives growth and real value.</p>
             <div class="stage-actions">
               <a href="https://wa.me/263715079192" target="_blank" rel="noopener" class="pill-cta" data-uop-event="clicked_book_call_hero">
@@ -214,7 +218,7 @@
         </div>
 
         <div class="stage-fold">
-          <img class="stage-fold-bg" src="/images/ai-flow-band.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img class="stage-fold-bg" src="/images/night-valley.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           <div class="stage-fold-inner">
             <div class="stage-fold-top"><span>Rylo Labz &middot; AI Automation</span><span>Harare &middot; Bulawayo &middot; Remote</span></div>
             <div class="stage-fold-copy">
@@ -907,7 +911,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=66"></script>
+  <script src="script.js?v=67"></script>
 
     <!-- ===== Client Work showcase, lightweight ===== -->
   <script>

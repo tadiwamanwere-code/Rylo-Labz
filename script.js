@@ -184,6 +184,7 @@
     const foldInner = stage.querySelector('.stage-fold-inner');
     const landscape = stage.querySelector('.stage-landscape');
     const heroCopy = stage.querySelector('.stage-hero');
+    const flyer = stage.querySelector('.stage-flyer');
 
     if (prefersReducedMotion || !fold || !('CSS' in window && CSS.supports('clip-path', 'inset(0 0 0 0)'))) {
       stage.classList.add('stage--static');
@@ -204,6 +205,12 @@
         fold.style.clipPath = `inset(${(1 - rise) * 100}% 0 0 0)`;
         if (foldBg) foldBg.style.transform = `translate3d(0, ${(1 - rise) * 6}%, 0) scale(${1 + (1 - p) * 0.04})`;
         if (foldInner) foldInner.style.transform = `translate3d(0, ${(1 - rise) * 90}px, 0)`;
+        if (flyer) {
+          // The drone drifts across the sky and dips as the page scrolls.
+          const across = 3 + p * 112;
+          const dip = Math.sin(p * Math.PI) * 16;
+          flyer.style.transform = `translate3d(${across}vw, ${dip}vh, 0) rotate(${-4 + p * 8}deg)`;
+        }
       };
       const queue = () => { if (!queued) { queued = true; requestAnimationFrame(render); } };
 
