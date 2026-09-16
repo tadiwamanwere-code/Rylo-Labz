@@ -6,3 +6,5 @@ design-research/.raw/
 !.env.example
 
 .env*
+
+.playwright-mcp/
