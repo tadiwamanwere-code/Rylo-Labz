@@ -1700,3 +1700,9 @@ main.article-wrap { padding-top: calc(78px + clamp(40px, 6vw, 80px)); }
   .care-points { grid-template-columns: 1fr; }
   .care-actions .btn-green { width: 100%; }
 }
+
+/* The care section has no picture, so the list uses the full width. */
+.care-grid--solo { grid-template-columns: 1fr; max-width: 900px; }
+.care-grid--solo .care-points { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 860px) { .care-grid--solo .care-points { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .care-grid--solo .care-points { grid-template-columns: 1fr; } }
