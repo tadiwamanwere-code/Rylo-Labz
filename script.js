@@ -99,7 +99,7 @@
   // user scrolls into the light content below it.
   const navEl = document.querySelector('.nav');
   if (navEl) {
-    const heroEl = document.querySelector('.hero, .photo-band');
+    const heroEl = document.querySelector('.hero-v, .hero, .photo-band');
     if (!heroEl) {
       // No dark photo behind the nav on this page (article, admin) — the
       // glass-on-photo look would be unreadable on a light background, so
@@ -262,6 +262,17 @@
     const submitBtn = form.querySelector('.contact-form-submit');
     const submitLabel = form.querySelector('.contact-form-submit-label');
 
+    // The visitor picks what they need and when. Put those answers at the top
+    // of the message so the team sees them with the enquiry.
+    function buildMessage(data) {
+      var service = String(data.get('service') || '').trim();
+      var timeline = String(data.get('timeline') || '').trim();
+      var body = String(data.get('message') || '').trim();
+      var head = [];
+      if (service) head.push('Needs: ' + service);
+      if (timeline) head.push('Timeline: ' + timeline);
+      return head.length ? head.join('\n') + (body ? '\n\n' + body : '') : body;
+    }
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -297,7 +308,7 @@
             email,
             phone,
             company: String(data.get('company') || '').trim(),
-            message: String(data.get('message') || '').trim(),
+            message: buildMessage(data),
             visitor_id: (typeof window.uopVisitorId === 'function') ? window.uopVisitorId() : null,
             landing_page: location.pathname,
             ...utm,
