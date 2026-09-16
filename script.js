@@ -99,7 +99,7 @@
   // user scrolls into the light content below it.
   const navEl = document.querySelector('.nav');
   if (navEl) {
-    const heroEl = document.querySelector('.hero-v, .hero, .photo-band');
+    const heroEl = document.querySelector('.hero-v, .uop-hero, .price-hero, .hero, .photo-band');
     if (!heroEl) {
       // No dark photo behind the nav on this page (article, admin) — the
       // glass-on-photo look would be unreadable on a light background, so

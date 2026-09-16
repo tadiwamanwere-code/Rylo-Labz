@@ -11,7 +11,7 @@ function xmlEscape(value) {
 
 module.exports = async (_req, res) => {
   const baseUrl = 'https://rylolabz.com';
-  const staticUrls = [`${baseUrl}/`, `${baseUrl}/portfolio`, `${baseUrl}/pricing`, `${baseUrl}/reviews`].map((loc) => ({ loc }));
+  const staticUrls = [`${baseUrl}/`, `${baseUrl}/portfolio`, `${baseUrl}/pricing`, `${baseUrl}/reviews`, `${baseUrl}/utah`].map((loc) => ({ loc }));
 
   let articleUrls = [];
   try {

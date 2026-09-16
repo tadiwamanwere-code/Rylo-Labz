@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=65" />
-  <link rel="stylesheet" href="ascend.css?v=8" />
+  <link rel="stylesheet" href="ascend.css?v=9" />
 
   <script type="application/ld+json">
     {
@@ -123,7 +123,7 @@
         <a href="/portfolio">Use cases</a>
         <a href="/pricing">Pricing</a>
         <a href="/reviews">Reviews</a>
-        <a href="https://yuta-opp.vercel.app/login" target="_blank" rel="noopener" data-uop-event="clicked_utah_nav">UtahOp</a>
+        <a href="/utah">UtahOp</a>
       </nav>
       <div class="nav-actions">
         <a href="#contact" class="btn btn--ink btn--sm" data-uop-event="clicked_start_project_nav">
@@ -141,7 +141,7 @@
         <a href="/portfolio">Use cases</a>
         <a href="/pricing">Pricing</a>
         <a href="/reviews">Reviews</a>
-        <a href="https://yuta-opp.vercel.app/login" target="_blank" rel="noopener">UtahOp</a>
+        <a href="/utah">UtahOp</a>
       </nav>
       <div class="nav-mobile-cta">
         <a href="#contact" class="btn btn--ink btn--lg" data-uop-event="clicked_start_project_nav_mobile">Start a project</a>
@@ -240,53 +240,13 @@
         </div>
       </div>
     </section>
-
-    <!-- ============ UTAHOP SHOWCASE ============ -->
+    <!-- ============ UTAHOP ============ -->
     <section class="section section--alt utah-show" id="utah">
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow"><span class="eyebrow-dot"></span> UtahOp &middot; business system</span>
           <h2 class="section-title">Your whole business on <span class="serif-italic">one screen.</span></h2>
-          <p class="section-sub">UtahOp is the system we built to run the messy middle: who asked for what, what it costs, who is doing it, and what is still owed. These are real screens from the live app.</p>
-        </div>
-
-        <div class="ushow reveal">
-          <div class="ushow-rail" role="tablist" aria-label="UtahOp screens">
-            <button type="button" class="ushow-tab on" role="tab" aria-selected="true" data-shot="pipeline">
-              <b>Sales pipeline</b>
-              <span>Every deal, its stage, its value and who owns it</span>
-            </button>
-            <button type="button" class="ushow-tab" role="tab" aria-selected="false" data-shot="pos">
-              <b>Point of sale</b>
-              <span>Ring up a sale, build a cart, take the money</span>
-            </button>
-            <button type="button" class="ushow-tab" role="tab" aria-selected="false" data-shot="products">
-              <b>Products and prices</b>
-              <span>One price list feeding the till, quotes and invoices</span>
-            </button>
-            <button type="button" class="ushow-tab" role="tab" aria-selected="false" data-shot="calendar">
-              <b>Calendar</b>
-              <span>Bookings, payments due and follow-ups in one diary</span>
-            </button>
-          </div>
-
-          <div class="ushow-stage">
-            <div class="ushow-frame">
-              <div class="ushow-bar"><i></i><i></i><i></i><span class="ushow-url">u-opp.app</span></div>
-              <div class="ushow-vp">
-                <img class="ushow-img on" data-shot="pipeline" src="/images/utah/pipeline.jpg" alt="UtahOp sales pipeline with every opportunity, its value and its close date" width="1600" height="750" loading="lazy" decoding="async" />
-                <img class="ushow-img" data-shot="pos" src="/images/utah/pos.jpg" alt="UtahOp point of sale screen with a product grid and a cart" width="1600" height="750" loading="lazy" decoding="async" />
-                <img class="ushow-img" data-shot="products" src="/images/utah/products.jpg" alt="UtahOp products and services list with stock and prices" width="1600" height="750" loading="lazy" decoding="async" />
-                <img class="ushow-img" data-shot="calendar" src="/images/utah/calendar.jpg" alt="UtahOp month calendar showing follow-ups and bookings" width="1600" height="750" loading="lazy" decoding="async" />
-              </div>
-            </div>
-            <div class="ushow-dots" aria-hidden="true">
-              <button type="button" class="on" data-shot="pipeline"></button>
-              <button type="button" data-shot="pos"></button>
-              <button type="button" data-shot="products"></button>
-              <button type="button" data-shot="calendar"></button>
-            </div>
-          </div>
+          <p class="section-sub">UtahOp is the system we built to run the messy middle: who asked for what, what it costs, who is doing it, and what is still owed. You can open a working copy and click around it.</p>
         </div>
 
         <ul class="ushow-points reveal">
@@ -297,10 +257,10 @@
         </ul>
 
         <div class="ushow-cta reveal">
-          <a href="https://yuta-opp.vercel.app/login" target="_blank" rel="noopener" class="btn-green" data-uop-event="clicked_utah_showcase">Get started with UtahOp
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          <a href="/utah" class="btn-green" data-uop-event="clicked_utah_demo_home">Try the live demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a href="#contact" class="ushow-cta-link">Or ask us to set it up for you</a>
+          <a href="https://yuta-opp.vercel.app/login" target="_blank" rel="noopener" class="ushow-cta-link" data-uop-event="clicked_utah_showcase">Or sign in to UtahOp</a>
         </div>
       </div>
     </section>
@@ -314,6 +274,14 @@
         </div>
 
         <div class="cases-grid">
+          <a class="case-tile reveal" href="https://the-sound-haus.vercel.app" target="_blank" rel="noopener" style="--accent:#1c5a3c">
+            <div class="browser-frame">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">the-sound-haus.vercel.app</span></div>
+              <div class="browser-vp"><span class="frame-poster">The Sound Haus</span><iframe data-src="https://the-sound-haus.vercel.app" title="The Sound Haus live site" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>
+            </div>
+            <div class="case-meta"><b>The Sound Haus</b><span>Instrument shop with basket and checkout</span></div>
+          </a>
+
           <a class="case-tile reveal" href="https://safewayfurniture.co.zw" target="_blank" rel="noopener" style="--accent:#8F5D0F">
             <div class="browser-frame">
               <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">safewayfurniture.co.zw</span></div>
@@ -348,7 +316,7 @@
         </div>
 
         <div class="cases-foot">
-          <a href="/portfolio" class="btn btn--ink btn--lg"><span>See all 20 use cases</span></a>
+          <a href="/portfolio" class="btn btn--ink btn--lg"><span>See all 21 use cases</span></a>
         </div>
       </div>
     </section>
@@ -500,6 +468,7 @@
         <div class="footer-col">
           <h5>UtahOp</h5>
           <ul>
+            <li><a href="/utah">What it does</a></li>
             <li><a href="https://yuta-opp.vercel.app/login" target="_blank" rel="noopener">Sign in</a></li>
             <li><a href="https://yuta-opp.vercel.app/login" target="_blank" rel="noopener">Create an account</a></li>
           </ul>
@@ -519,7 +488,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=70"></script>
-  <script src="stage.js?v=6"></script>
+  <script src="script.js?v=71"></script>
+  <script src="stage.js?v=7"></script>
 </body>
 </html>

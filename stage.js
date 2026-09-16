@@ -1,7 +1,6 @@
 /* Homepage extras:
    1. the hero video and its on-load reveal
    2. the live client sites shown inside browser frames
-   3. the UtahOp screen showcase
    Kept out of script.js so the rest of the site loads the same everywhere. */
 (function () {
   'use strict';
@@ -93,66 +92,9 @@
     });
   }
 
-  // ---------- 3. UtahOp screen showcase ----------
-  function utahShowcase() {
-    var wrap = document.querySelector('.ushow');
-    if (!wrap) return;
-
-    var tabs = Array.prototype.slice.call(wrap.querySelectorAll('.ushow-tab'));
-    var dots = Array.prototype.slice.call(wrap.querySelectorAll('.ushow-dots button'));
-    var shots = Array.prototype.slice.call(wrap.querySelectorAll('.ushow-img'));
-    if (!tabs.length || !shots.length) return;
-
-    var auto = null;
-    var current = 0;
-
-    function show(name) {
-      tabs.forEach(function (t, i) {
-        var on = t.dataset.shot === name;
-        t.classList.toggle('on', on);
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        if (on) current = i;
-      });
-      dots.forEach(function (d) { d.classList.toggle('on', d.dataset.shot === name); });
-      shots.forEach(function (s) { s.classList.toggle('on', s.dataset.shot === name); });
-    }
-
-    function stop() {
-      if (auto) { clearInterval(auto); auto = null; }
-    }
-
-    function start() {
-      if (auto || reduced) return;
-      auto = setInterval(function () {
-        show(tabs[(current + 1) % tabs.length].dataset.shot);
-      }, 5000);
-    }
-
-    tabs.concat(dots).forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        stop();
-        show(btn.dataset.shot);
-      });
-    });
-    wrap.addEventListener('mouseenter', stop);
-
-    // Only cycle while the showcase is on screen.
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) start();
-          else stop();
-        });
-      }, { threshold: 0.3 }).observe(wrap);
-    } else {
-      start();
-    }
-  }
-
   function init() {
     hero();
     liveFrames();
-    utahShowcase();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
