@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio: Websites we've built · Rylo Labz</title>
-  <meta name="description" content="Twenty live websites designed and built by Rylo Labz: hospitality, healthcare, construction, trades, professional services, retail and food brands shipped to production across Zimbabwe and beyond." />
+  <title>Website Development: 21 Sites We Built | Rylo Labz</title>
+  <meta name="description" content="Websites designed and built by Rylo Labz for shops, lodges, builders, pharmacies, accountants and schools across Zimbabwe. Every site below is live and in use today." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="Rylo Labz" />
   <meta name="theme-color" content="#eeece7" />
@@ -12,8 +12,8 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Rylo Labz" />
-  <meta property="og:title" content="Portfolio: Websites we've built · Rylo Labz" />
-  <meta property="og:description" content="Live previews and case studies for 21 websites designed and built by Rylo Labz, shipped to production for real businesses." />
+  <meta property="og:title" content="Website Development: 21 Sites We Built | Rylo Labz" />
+  <meta property="og:description" content="Websites we built for real businesses across Zimbabwe. Every one is live today." />
   <meta property="og:url" content="https://rylolabz.com/portfolio" />
 
   <link rel="icon" href="/images/Portfolio/rylo-favicon.png" type="image/png" />
@@ -26,15 +26,67 @@
   <link rel="stylesheet" href="styles.css?v=65" />
 
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rylolabz.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://rylolabz.com/portfolio" }
-      ]
-    }
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://rylolabz.com/portfolio#webpage",
+        "url": "https://rylolabz.com/portfolio",
+        "name": "Website Development: sites built by Rylo Labz",
+        "description": "Websites designed and built by Rylo Labz for businesses across Zimbabwe. Every site listed is live and in use today.",
+        "isPartOf": {
+          "@id": "https://rylolabz.com/#website"
+        },
+        "about": {
+          "@id": "https://rylolabz.com/#organization"
+        },
+        "publisher": {
+          "@id": "https://rylolabz.com/#organization"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rylolabz.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Website Development",
+            "item": "https://rylolabz.com/portfolio"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://rylolabz.com/#service-websites",
+        "name": "Website design and development",
+        "serviceType": "Web design",
+        "provider": {
+          "@id": "https://rylolabz.com/#organization"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Zimbabwe"
+        },
+        "description": "Websites built around the enquiry: fast, findable on Google, with forms and quote tools that turn visitors into work.",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://rylolabz.com/pricing",
+          "priceCurrency": "USD",
+          "price": "150"
+        }
+      }
+    ]
+  }
   </script>
+
 
   <style>
     /* =========================================================
@@ -227,7 +279,7 @@
       .case-live i { animation: none; }
     }
   </style>
-  <link rel="stylesheet" href="ascend.css?v=12" />
+  <link rel="stylesheet" href="ascend.css?v=13" />
 </head>
 <body>
   <!-- Glass refraction filter for the nav pill — see index.html for notes. -->

@@ -11,7 +11,17 @@ function xmlEscape(value) {
 
 module.exports = async (_req, res) => {
   const baseUrl = 'https://rylolabz.com';
-  const staticUrls = [`${baseUrl}/`, `${baseUrl}/portfolio`, `${baseUrl}/pricing`, `${baseUrl}/reviews`, `${baseUrl}/utah`].map((loc) => ({ loc }));
+
+  // Bump PAGES_CHANGED whenever one of the fixed pages is rewritten, so the
+  // date Google sees is the date the page really changed.
+  const PAGES_CHANGED = '2026-09-17';
+  const staticUrls = [
+    { loc: `${baseUrl}/`, priority: '1.0' },
+    { loc: `${baseUrl}/pricing`, priority: '0.9' },
+    { loc: `${baseUrl}/utah`, priority: '0.9' },
+    { loc: `${baseUrl}/portfolio`, priority: '0.8' },
+    { loc: `${baseUrl}/reviews`, priority: '0.7' }
+  ].map((entry) => ({ ...entry, lastmod: PAGES_CHANGED }));
 
   let articleUrls = [];
   try {
@@ -28,7 +38,7 @@ module.exports = async (_req, res) => {
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...urls.map(({ loc, lastmod }) => `  <url><loc>${xmlEscape(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}</url>`),
+    ...urls.map(({ loc, lastmod, priority }) => `  <url><loc>${xmlEscape(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}${priority ? `<priority>${priority}</priority>` : ""}</url>`),
     '</urlset>'
   ].join('\n');
 

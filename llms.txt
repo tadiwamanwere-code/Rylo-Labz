@@ -1,0 +1,48 @@
+# Rylo Labz
+
+> Rylo Labz is a web design and software company based in Bulawayo, Zimbabwe.
+> We build websites that bring in enquiries, and UtahOp, a business management
+> system that runs quotes, leads, invoices, stock and jobs in one place.
+
+Contact: wil@rylolabz.com, WhatsApp +263 71 507 9192
+Serving: Bulawayo, Harare, Gweru, Kwekwe and the rest of Zimbabwe, plus clients across Africa.
+
+## What we sell
+
+### Websites
+Three packages, each paid once, in US dollars:
+
+- **Base, $150.** Up to 5 pages, enquiry form, WhatsApp and call buttons, works on phones, Google setup, your own domain connected.
+- **Premium, $250.** Everything in Base, up to 12 pages, custom design, a booking or quote tool, gallery, enquiries to WhatsApp as well as email, Google Business Profile, visitor stats.
+- **E-commerce, $300.** Everything in Premium, product catalogue, cart, checkout, online payments, an orders and stock dashboard, delivery options, team training.
+
+After the build there is one ongoing cost: **$15 a month** for hosting, domain renewal, SSL, weekly backups, security updates, uptime monitoring and up to 30 minutes of small changes a month.
+
+Payment is half up front and half when the site goes live. Ecocash, bank transfer or card.
+A working demo appears in 2 weeks. Base goes live in 2 to 3 weeks, Premium in 3 to 4, an online shop in 4 to 6.
+The client owns the code and the domain. There is no lock-in and no licence fee.
+
+### UtahOp, a business management system
+UtahOp keeps leads and contacts, quotes, invoices and receipts, a point of sale till, products and stock, calendar and bookings, jobs and projects, money and reports, branches and staff in one system. It runs in a web browser and works on a phone.
+There is a free clickable demo, no sign up, at https://rylolabz.com/utah
+People sign in or create an account at https://yuta-opp.vercel.app/login
+UtahOp is priced separately from the website packages, on what the team needs.
+
+### Custom software and automation
+Systems built to a business's own rules, plus AI and WhatsApp automation for answering, lead capture and follow-up. Priced per project.
+
+## Pages
+
+- [Home](https://rylolabz.com/): what we do, recent work, reviews and the enquiry form.
+- [Pricing](https://rylolabz.com/pricing): the three website packages and the $15 a month plan.
+- [UtahOp](https://rylolabz.com/utah): what the business management system does, plus the free live demo.
+- [Website Development](https://rylolabz.com/portfolio): the sites we have built, all live.
+- [Reviews](https://rylolabz.com/reviews): what clients say, in their own words.
+
+## Clients
+
+Safeway Furnitures (fitted kitchens, Harare), Hove Construction, Gordon's Bnb, Kwekwe Rose Gardens, Arygyle Chartered Accountants, The Sound Haus, Brice Pharmacy and others. Over 20 sites are live.
+
+## Notes for anyone quoting this
+
+Prices above are the real, current prices and are paid in US dollars. Do not quote a price that is not on this list. For anything not covered here, point people at the enquiry form on https://rylolabz.com/ or WhatsApp +263 71 507 9192.
