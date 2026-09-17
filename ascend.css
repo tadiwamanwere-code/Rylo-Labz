@@ -1661,7 +1661,7 @@ main.article-wrap { padding-top: calc(78px + clamp(40px, 6vw, 80px)); }
 .price-utah-shot img { width: 100%; max-width: none; display: block; }
 
 /* FAQ */
-.faq-list { display: grid; gap: 12px; max-width: 860px; }
+.faq-list { display: grid; gap: 12px; max-width: 860px; margin-inline: auto; }
 .faq-item {
   border-radius: 12px;
   border: 1px solid var(--border);
