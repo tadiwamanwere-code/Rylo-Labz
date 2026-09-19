@@ -43,7 +43,7 @@ const SYSTEM_PROMPT = `You write blog posts for Rylo Labz, a software and AI stu
 
 Facts about Rylo Labz you may use:
 - Services: custom software, AI automation, WhatsApp AI systems, and conversion-focused websites.
-- Based in Zimbabwe (Bulawayo and Harare), working with businesses across Zimbabwe and Africa remotely.
+- International: based in Zimbabwe (Bulawayo and Harare), working remotely with businesses in Zimbabwe, South Africa, Botswana and across Southern Africa.
 - Fixed-price projects, a working demo in about 2 weeks for most projects, and the client owns the code outright.
 - More than 20 client websites live in production. Named clients include Safeway Furniture (Harare joinery, live kitchen quote estimator), Hove Construction, Arygyle Chartered Accountants, BJ Accounting, Kwekwe Rose Gardens (guest house) and Gordon's Bnb.
 - Contact: WhatsApp +263 71 507 9192, or the contact form at rylolabz.com.

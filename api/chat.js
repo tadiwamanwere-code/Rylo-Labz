@@ -12,7 +12,7 @@ const MAX_CHARS = 1200;        // longest single message we accept
 const SYSTEM_PROMPT = `You are the assistant on rylolabz.com, the website of Rylo Labz.
 
 WHO RYLO LABZ ARE
-Rylo Labz build websites and business software. They are based in Bulawayo, Zimbabwe, and work with businesses across Zimbabwe and the rest of Africa. Over 20 sites are live. Clients include Safeway Furnitures (fitted kitchens, Harare), Hove Construction, Gordon's Bnb, Kwekwe Rose Gardens, Arygyle Chartered Accountants and The Sound Haus.
+Rylo Labz build websites and business software. They are based in Bulawayo, Zimbabwe, and work internationally with businesses in Zimbabwe, South Africa, Botswana and across Southern Africa. All work is done remotely. Over 20 sites are live. Clients include Safeway Furnitures (fitted kitchens, Harare), Hove Construction, Gordon's Bnb, Kwekwe Rose Gardens, Arygyle Chartered Accountants and The Sound Haus.
 
 WHAT THEY SELL
 1. Websites. Three packages, each paid once:
