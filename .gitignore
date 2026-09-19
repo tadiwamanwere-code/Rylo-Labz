@@ -8,3 +8,6 @@ design-research/.raw/
 .env*
 
 .playwright-mcp/
+
+# Local AI tool settings
+.codex/
