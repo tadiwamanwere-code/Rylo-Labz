@@ -131,6 +131,9 @@
   function build() {
     root = el('div', 'ra');
     root.setAttribute('data-assistant', '');
+    // Keep the chat widget out of Google's page snippets. Without this, the
+    // greeting was showing up as the description of a sitelink.
+    root.setAttribute('data-nosnippet', '');
 
     launcher = el('button', 'ra-launcher');
     launcher.type = 'button';
