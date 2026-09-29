@@ -31,6 +31,9 @@ UtahOp is priced separately from the website packages, on what the team needs.
 ### Custom software and automation
 Systems built to a business's own rules, plus AI and WhatsApp automation for answering, lead capture and follow-up. Priced per project.
 
+### AI consulting
+Rylo Labz looks at how a business runs and shows where AI can save time or bring in sales. The business gets a clear plan in plain language. Priced per project.
+
 ## Pages
 
 - [Home](https://rylolabz.com/): what we do, recent work, reviews and the enquiry form.

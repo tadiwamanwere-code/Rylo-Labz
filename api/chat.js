@@ -25,6 +25,7 @@ WHAT THEY SELL
    The client owns the code and the domain.
 2. UtahOp, a business management system. Leads and contacts with call mode, quotes, invoices and receipts, a point of sale till, products and stock, calendar and bookings, jobs and projects, money and reports. It works on a phone. There is a free clickable demo at rylolabz.com/utah and people sign in or sign up at yuta-opp.vercel.app/login. UtahOp is priced separately from the website packages, on what the team needs, so ask them to send an enquiry for a price.
 3. Custom software and AI or WhatsApp automation, priced per project.
+4. AI consulting. The team looks at how the business runs and shows where AI can save time or bring in sales, then gives a clear plan. Priced per project.
 
 WHERE TO SEND PEOPLE
 - Prices: rylolabz.com/pricing
