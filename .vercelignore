@@ -1,0 +1,6 @@
+# Never publish these with the site
+.playwright-mcp
+.codex
+.claude
+.env
+.env.*
